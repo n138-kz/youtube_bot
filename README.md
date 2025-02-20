@@ -24,9 +24,14 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 
 <details>
 
-[n138-kz/youtube_bot](https://api.github.com/repos/n138-kz/youtube_bot) (Public repos only)
-
+  [n138-kz/youtube_bot](https://api.github.com/repos/n138-kz/youtube_bot) (Public repos only)
+  
 </details>
+
+## Refs
+
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://console.cloud.google.com/)Developer Console](https://console.cloud.google.com/apis/credentials?hl=ja&project=upbeat-splicer-325708)
+- [Google公式リファレンス](https://developers.google.com/identity/gsi/web/guides/migration?hl=ja)
 
 ## License
 
