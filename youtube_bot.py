@@ -44,8 +44,13 @@ async def on_message(message):
 
             # 送信する
             await message.reply(f"Pong!\nBotのPing値は{ping}msです。")
-        if message.content == "/version":
-            await message.reply(f"Current version is below.\ndiscordpy:\t"+discord.__version__)
+        if message.content == "!version":
+            version = ''
+            version += '\n'
+            version += 'python\n```\n'+sys.version+'```\n'
+            version += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
+
+            await message.reply(f"Current version is below.\n{version}")
     except:
         sys.exit()
 
