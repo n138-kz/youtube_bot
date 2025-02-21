@@ -167,6 +167,9 @@ async def loops():
             'id': item['id']['videoId'],
             'flag': 0,
         })
+        if abs(math.trunc(time.time())-data[len(data)-1]['publishedAt'])>config['internal']['youtube']['notice_limit']:
+            data[len(data)-1]['flag']=data[len(data)-1]['flag']|1
+        
     print(f'{console}')
 
 @tree.command(name="ping",description="Botのレイテンシを測定します。")
