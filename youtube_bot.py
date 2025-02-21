@@ -168,6 +168,10 @@ async def loops():
         if os.path.isfile(file):
             with open(file) as f:
                 notice=json.load(f)
+        else:
+            print(f'Unable access to "{file}"')
+            sys.exit(1)           
+
         data.append({
             'publishedAt': math.trunc(datetime.datetime.fromisoformat(item['snippet']['publishedAt'].replace('Z', '+00:00')).astimezone(pytz.utc).timestamp()),
             'channelId': item['snippet']['channelId'],
