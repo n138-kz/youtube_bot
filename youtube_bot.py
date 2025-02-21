@@ -3,7 +3,7 @@ import os
 import sys
 import discord
 import http.client
-from urllib.parse import urlencode
+import urllib.parse
 from datetime import datetime
 from apiclient.discovery import build
 
