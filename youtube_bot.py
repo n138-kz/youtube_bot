@@ -114,6 +114,7 @@ async def on_message(message):
             print(text)
             await message.reply(text)
         if message.content == "!youtube rawitems":
+            print(f'do_action: {message.content}')
             data1=getYoutubeItems()
             data2=[]
             data3=''
@@ -134,7 +135,8 @@ async def on_message(message):
             text = ''
             text += '\n'
             text += data3+'\n'
-            await message.reply(f"{text}",file=discord.File('result.json'))
+            print(text)
+            await message.reply(text, file=discord.File('result.json'))
     except:
         sys.exit()
 
