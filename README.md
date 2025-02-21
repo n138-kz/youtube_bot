@@ -42,6 +42,12 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://discordbot.jp)Ping値を測定](https://discordbot.jp/blog/16/)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)Discord.py の Intents について](https://qiita.com/Erytheia/items/8b8e14f60fd7f266872b)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)discord.py入門(1)](https://qiita.com/sizumita/items/9d44ae7d1ce007391699)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://zenn.dev)YouTube APIを用いてPythonでデータを取得する](https://zenn.dev/eito_blog/articles/94dc874c112c9f)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)【Python】YouTube Data API を使って、いろんな情報を取得してみた](https://qiita.com/rkamikawa/items/dd1fd4c1427ece787eea)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)DiscordのBotでのファイル添付の仕方など【Python】](https://qiita.com/chatrate/items/aa6625f6663fa2ca33d6)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com))send_Discord](https://github.com/n138-kz/send_Discord)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)Discordにwebhook経由でPOST(cURL)](https://qiita.com/n138-kz/items/7b86e3eee9d9994fc4d2)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://zenn.dev)【discord.py】複数ファイルを同時に送信するなど。](https://zenn.dev/milkystack/articles/35948cdfb7eb00)
 
 ## Issue client_credential (google)
 
@@ -59,6 +65,70 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 1. Reset bot token.
 1. Turn on Message Content Intent
 ![](docs/assets/d0fa711d463ea216a117245a8b945635.webp)
+
+## Sample of .secret/config
+
+<details>
+
+```json
+{
+  "build":{
+      "requirement":[
+          "discord",
+          "google-api-python-client",
+          "google-auth-httplib2",
+          "google-auth-oauthlib"
+      ]
+  },
+  "internal":{},
+  "external":{
+      "youtube":{
+          "api_key":"",
+          "client_id":"",
+          "client_secret":"",
+          "web": {
+              "client_id": "",
+              "project_id": "",
+              "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+              "token_uri": "https://oauth2.googleapis.com/token",
+              "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+              "client_secret": ""
+          },
+          "channel_id":""
+      },
+      "discord":{
+          "client_id":1,
+          "client_secret":"",
+          "public_key":"",
+          "bot_token":"",
+          "scope":{
+              "redirect_url":null,
+              "bot":[
+                  "view_channel (1024)",
+                  "send_message (2048)",
+                  "embed_links (16384)",
+                  "attach_files (32768)",
+                  "read_message_history (65536)",
+                  "mention_everyone (131072)",
+                  "use_slash_command (2147483648)",
+                  "use_embedded_activities (549755813888)"
+              ]
+          },
+          "install_context":{
+              "user":false,
+              "guild":true
+          },
+          "bot_invite_url":"",
+          "send_message_channel":{
+              "on_ready":[
+              ]
+          }
+      }
+  }
+}
+```
+
+</details>
 
 ## Relation
 

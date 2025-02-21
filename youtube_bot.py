@@ -1,6 +1,12 @@
 import json
+import os
 import sys
 import discord
+import http.client
+import urllib.parse
+from datetime import datetime
+from apiclient.discovery import build
+from discord.ext import commands, tasks
 
 def load_config():
     config = None
@@ -9,7 +15,6 @@ def load_config():
     return config
 
 def print_version():
-    print("version")
     print("python: "+sys.version)
     print("discordpy: "+discord.__version__+' ('+str(discord.version_info)+')')
 
@@ -22,6 +27,34 @@ DISCORD_API_TOKEN = config['external']['discord']['bot_token']
 # botが起動したときに送信するチャンネル一覧
 DISCORD_SEND_MESSAGE=config['external']['discord']['send_message_channel']
 
+# Youtube APIトークン
+YOUTUBE_API_KEY = config['external']['youtube']['api_key']
+
+# 新着動画を監視するチャンネルID
+YOUTUBE_CHANNEL_ID = config['external']['youtube']['channel_id']
+
+def getYoutubeItems():
+    """
+    * @return :Dictionary
+    """
+    YOUTUBE_API_SERVICE_NAME = 'youtube'
+    YOUTUBE_API_VERSION = 'v3'
+
+    youtube = build(
+        YOUTUBE_API_SERVICE_NAME,
+        YOUTUBE_API_VERSION,
+        developerKey=YOUTUBE_API_KEY
+    )
+
+    response = youtube.search().list(
+        part = "snippet",
+        channelId = YOUTUBE_CHANNEL_ID,
+        maxResults = 3,
+        order = "date" #日付順にソート
+    ).execute()
+
+    return response
+
 intents=discord.Intents.default()
 intents.message_content = True
 intents.reactions = True
@@ -29,12 +62,22 @@ client = discord.Client(intents=intents)
 tree = discord.app_commands.CommandTree(client)
 
 @client.event
+async def on_error(event):
+    text = ''
+    text += '\n'
+    text += 'Called On_Error\n'
+
+@client.event
 async def on_message(message):
     try:
         # 送信者がbotである場合は弾く
         if message.author.bot:
-            return 
+            return
+        
+        print(f'on_message: {message.content}')
+
         if message.content == "!help":
+            print(f'do_action: {message.content}')
             text = ''
             text += '\n'
             text += '`!help`\n'
@@ -43,26 +86,62 @@ async def on_message(message):
             text += 'Botのレイテンシを測定します。\n'
             text += '`!version`\n'
             text += 'Botのバージョンを表示します。\n'
-            await message.reply(f"{text}")
+            text += '`!youtube rawitems`\n'
+            text += 'Youtubeから最新の動画一覧を取得します。\n'
+            print(text)
+            await message.reply(text)
         # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
         if message.content == "!ping":
+            print(f'do_action: {message.content}')
             # Ping値を秒単位で取得
             raw_ping = client.latency
 
             # ミリ秒に変換して丸める
             ping = round(raw_ping * 1000)
 
+            text = f'Pong!\nBotのPing値は{ping}msです。'
+
             # 送信する
-            await message.reply(f"Pong!\nBotのPing値は{ping}msです。")
+            print(text)
+            await message.reply(text)
         if message.content == "!version":
+            print(f'do_action: {message.content}')
             text = ''
-            text += '\n'
+            text += 'Current version is below.\n'
             text += 'python\n```\n'+sys.version+'```\n'
             text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
-
-            await message.reply(f"Current version is below.\n{text}")
+            print(text)
+            await message.reply(text)
+        if message.content == "!youtube rawitems":
+            print(f'do_action: {message.content}')
+            data1=getYoutubeItems()
+            data2=[]
+            data3=''
+            for item in data1['items']:
+                data2.append({
+                    'publishedAt': item['snippet']['publishedAt'],
+                    'channelId': item['snippet']['channelId'],
+                    'title': item['snippet']['title'],
+                    'description': item['snippet']['description'],
+                    'id': item['id']['videoId'],
+                    'thumbnails': item['snippet']['thumbnails']['high'],
+                })
+                data3+='- {2}\n[{0}]({1})\n'.format(urllib.parse.unquote(item['snippet']['title']).replace('&quot;', '"'),'https://www.youtube.com/watch?v='+item['id']['videoId'],item['snippet']['publishedAt'])
+            with open('detail.json','w', encoding="utf-8") as f:
+                json.dump(data1, f, ensure_ascii=False, indent=4)
+            with open('result.json','w', encoding="utf-8") as f:
+                json.dump(data2, f, ensure_ascii=False, indent=4)
+            text = ''
+            text += '\n'
+            text += data3+'\n'
+            print(text)
+            await message.reply(text, files=[discord.File('result.json'),discord.File('detail.json')])
     except:
         sys.exit()
+
+@tasks.loop(seconds=30)
+async def loops():
+    print('',end='')
 
 @tree.command(name="ping",description="Botのレイテンシを測定します。")
 async def ping(interaction: discord.Interaction):
@@ -88,14 +167,14 @@ async def version(interaction: discord.Interaction):
 # botが起動したときの処理 [discord.pyを使用したdiscord botの作り方](https://qiita.com/TakeMimi/items/1e2d76eecc25e92c93ef#210-ver)
 @client.event
 async def on_ready():
-    print(client.user.name+"が起動しました")
+    print(client.user.name.capitalize()+"が起動しました")
 
     #スラッシュコマンドを同期
     await tree.sync()
 
     for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
         channel = client.get_channel(channel_id)
-        await channel.send(client.user.name+"が起動しました")
+        await channel.send(client.user.name.capitalize()+"が起動しました")
         await channel.send('[Discord Developers Console](https://discord.com/developers/applications/1342289249365659778)')
 
 # botを起動
