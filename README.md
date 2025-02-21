@@ -40,6 +40,8 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com)http_post](https://github.com/n138-kz/http_post)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)discord.pyを使用したdiscord botの作り方](https://qiita.com/TakeMimi/items/1e2d76eecc25e92c93ef#210-ver)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://discordbot.jp)Ping値を測定](https://discordbot.jp/blog/16/)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)Discord.py の Intents について](https://qiita.com/Erytheia/items/8b8e14f60fd7f266872b)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)discord.py入門(1)](https://qiita.com/sizumita/items/9d44ae7d1ce007391699)
 
 ## Issue client_credential (google)
 
