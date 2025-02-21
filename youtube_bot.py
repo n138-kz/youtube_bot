@@ -91,9 +91,10 @@ async def on_message(message):
                 text += 'Youtubeから最新の動画一覧を取得します。\n'
                 print(text)
                 await message.reply(text)
-            # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
-            if message.content == "!ytb ping":
+            elif message.content == "!ytb ping":
+                # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
                 print(f'do_action: {message.content}')
+
                 # Ping値を秒単位で取得
                 raw_ping = client.latency
 
