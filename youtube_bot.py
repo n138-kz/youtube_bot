@@ -87,7 +87,7 @@ async def on_message(message):
             text += '`!version`\n'
             text += 'Botのバージョンを表示します。\n'
             text += '`!youtube rawitems`\n'
-            text += 'Youtubeから動画一覧を取得します。\n'
+            text += 'Youtubeから最新の動画一覧を取得します。\n'
             print(text)
             await message.reply(text)
         # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
