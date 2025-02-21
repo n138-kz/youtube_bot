@@ -154,7 +154,7 @@ async def on_message(message):
     except:
         sys.exit()
 
-@tasks.loop(seconds=30)
+@tasks.loop(seconds=config['internal']['youtube']['cycle_interval'])
 async def loops():
     YOUTUBE_CONTENTS=getYoutubeItems()
     data=[]
