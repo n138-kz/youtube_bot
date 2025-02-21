@@ -156,54 +156,59 @@ async def on_message(message):
 
 @tasks.loop(seconds=config['internal']['youtube']['cycle_interval'])
 async def loops():
-    YOUTUBE_CONTENTS=getYoutubeItems()
-    data=[]
-    console=''
-    for item in YOUTUBE_CONTENTS['items']:
-        file='notice.json'
-        notice=[]
-        if not(os.path.exists(file)):
+    try:
+        YOUTUBE_CONTENTS=getYoutubeItems()
+        data=[]
+        console=''
+        for item in YOUTUBE_CONTENTS['items']:
+            file='notice.json'
+            notice=[]
+            if not(os.path.exists(file)):
+                with open(file,mode='w',encoding='UTF-8') as f:
+                    json.dump([],f)
+            if os.path.isfile(file):
+                with open(file,encoding='UTF-8') as f:
+                    notice=json.load(f)
+            else:
+                print(f'Unable access to "{file}"')
+                sys.exit(1)           
+
+            data.append({
+                'publishedAt': math.trunc(datetime.datetime.fromisoformat(item['snippet']['publishedAt'].replace('Z', '+00:00')).astimezone(pytz.utc).timestamp()),
+                'channel_id': item['snippet']['channelId'],
+                'title': urllib.parse.unquote(item['snippet']['title']).replace('&quot;', '"'),
+                'video_id': item['id']['videoId'],
+                'flag': 0,
+            })
+            if abs(math.trunc(time.time())-data[len(data)-1]['publishedAt'])>config['internal']['youtube']['notice_limit']:
+                data[len(data)-1]['flag']=data[len(data)-1]['flag']|1
+            for l in notice:
+                if l['video_id'] == data[len(data)-1]['video_id']:
+                    data[len(data)-1]['flag']=data[len(data)-1]['flag']|2
+            
+            if data[len(data)-1]['flag']==0:
+                for channel_id in DISCORD_SEND_MESSAGE['notice']:
+                    channel = client.get_channel(channel_id)
+                    await channel.send('動画がアップロードされました。\n[{0}]({1})\n{1}'.format(
+                        data[len(data)-1]['title'],
+                        'https://www.youtube.com/watch?v='+data[len(data)-1]['video_id'],
+                    ))
+                    data[len(data)-1]['flag']=data[len(data)-1]['flag']|2
+
             with open(file,mode='w',encoding='UTF-8') as f:
-                json.dump([],f)
-        if os.path.isfile(file):
-            with open(file,encoding='UTF-8') as f:
-                notice=json.load(f)
-        else:
-            print(f'Unable access to "{file}"')
-            sys.exit(1)           
+                json.dump(data,f,ensure_ascii=False,indent=4)
 
-        data.append({
-            'publishedAt': math.trunc(datetime.datetime.fromisoformat(item['snippet']['publishedAt'].replace('Z', '+00:00')).astimezone(pytz.utc).timestamp()),
-            'channel_id': item['snippet']['channelId'],
-            'title': urllib.parse.unquote(item['snippet']['title']).replace('&quot;', '"'),
-            'video_id': item['id']['videoId'],
-            'flag': 0,
-        })
-        if abs(math.trunc(time.time())-data[len(data)-1]['publishedAt'])>config['internal']['youtube']['notice_limit']:
-            data[len(data)-1]['flag']=data[len(data)-1]['flag']|1
-        for l in notice:
-            if l['video_id'] == data[len(data)-1]['video_id']:
-                data[len(data)-1]['flag']=data[len(data)-1]['flag']|2
-        
-        if data[len(data)-1]['flag']==0:
-            for channel_id in DISCORD_SEND_MESSAGE['notice']:
-                channel = client.get_channel(channel_id)
-                await channel.send('動画がアップロードされました。\n[{0}]({1})\n{1}'.format(
-                    data[len(data)-1]['title'],
-                    'https://www.youtube.com/watch?v='+data[len(data)-1]['video_id'],
-                ))
-                data[len(data)-1]['flag']=data[len(data)-1]['flag']|2
-
-        with open(file,mode='w',encoding='UTF-8') as f:
-            json.dump(data,f,ensure_ascii=False,indent=4)
-
-        console+='[{3}] {2} [{0}] {1}\n'.format(
-            data[len(data)-1]['video_id'],
-            data[len(data)-1]['title'],
-            data[len(data)-1]['publishedAt'],
-            '{}'.format(data[len(data)-1]['flag']),
-        )
-    print(f'{console}')
+            console+='[{3}] {2} [{0}] {1}\n'.format(
+                data[len(data)-1]['video_id'],
+                data[len(data)-1]['title'],
+                data[len(data)-1]['publishedAt'],
+                '{}'.format(data[len(data)-1]['flag']),
+            )
+        print(f'{console}')
+    except apiclient.errors.HttpError as e:
+        print(f'apiclient.errors.HttpError:\n{e}')
+    except googleapiclient.errors.HttpError as e:
+        print(f'googleapiclient.errors.HttpError:\n{e}')
 
 @tree.command(name="ping",description="Botのレイテンシを測定します。")
 async def ping(interaction: discord.Interaction):
