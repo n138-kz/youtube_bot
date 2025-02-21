@@ -162,6 +162,9 @@ async def loops():
     for item in YOUTUBE_CONTENTS['items']:
         file='notice.json'
         notice=[]
+        if not(os.path.exists(file)):
+            with open(file,mode='w') as f:
+                json.dump([],f)
         data.append({
             'publishedAt': math.trunc(datetime.datetime.fromisoformat(item['snippet']['publishedAt'].replace('Z', '+00:00')).astimezone(pytz.utc).timestamp()),
             'channelId': item['snippet']['channelId'],
