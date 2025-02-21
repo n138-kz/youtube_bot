@@ -7,6 +7,7 @@ import urllib.parse
 import datetime
 import time
 import pytz
+import logging
 from apiclient.discovery import build
 from discord.ext import commands, tasks
 
@@ -156,6 +157,7 @@ async def on_message(message):
 
 @tasks.loop(seconds=config['internal']['youtube']['cycle_interval'])
 async def loops():
+    logging.basicConfig(level=logging.ERROR)
     try:
         YOUTUBE_CONTENTS=getYoutubeItems()
         data=[]
@@ -209,6 +211,8 @@ async def loops():
         print(f'apiclient.errors.HttpError:\n{e}')
     except googleapiclient.errors.HttpError as e:
         print(f'googleapiclient.errors.HttpError:\n{e}')
+    except Exception as e:
+        logging.error(f'Error has occured: {e}')
 
 @tree.command(name="ping",description="Botのレイテンシを測定します。")
 async def ping(interaction: discord.Interaction):
