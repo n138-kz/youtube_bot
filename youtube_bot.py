@@ -93,14 +93,18 @@ async def on_message(message):
             await message.reply(text)
         # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
         if message.content == "!ping":
+            print(f'do_action: {message.content}')
             # Ping値を秒単位で取得
             raw_ping = client.latency
 
             # ミリ秒に変換して丸める
             ping = round(raw_ping * 1000)
 
+            text = f'Pong!\nBotのPing値は{ping}msです。'
+
             # 送信する
-            await message.reply(f"Pong!\nBotのPing値は{ping}msです。")
+            print(text)
+            await message.reply(text)
         if message.content == "!version":
             text = ''
             text += '\n'
