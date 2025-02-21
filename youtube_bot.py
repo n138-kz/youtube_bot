@@ -79,7 +79,9 @@ async def version(interaction: discord.Interaction):
 @client.event
 async def on_ready():
     print(client.user.name+"が起動しました")
-    await tree.sync()#スラッシュコマンドを同期
+
+    #スラッシュコマンドを同期
+    await tree.sync()
 
     for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
         channel = client.get_channel(channel_id)
