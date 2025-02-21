@@ -48,6 +48,7 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 1. Create OAuth client_id(type=Web Application)
 
 ## Relation
+
 ```mermaid
 flowchart LR
 Youtube_Data_API --> youtube_bot --> Discord
