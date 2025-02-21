@@ -54,6 +54,17 @@ async def on_message(message):
     except:
         sys.exit()
 
+@tree.command(name="ping",description="Botのレイテンシを測定します。")
+async def ping(interaction: discord.Interaction):
+    # Ping値を秒単位で取得
+    raw_ping = client.latency
+
+    # ミリ秒に変換して丸める
+    ping = round(raw_ping * 1000)
+
+    # 送信する
+    await interaction.response.send_message(f"Pong!\nBotのPing値は{ping}msです。",ephemeral=False)#ephemeral=True→「これらはあなただけに表示されています」
+
 
 # botが起動したときの処理 [discord.pyを使用したdiscord botの作り方](https://qiita.com/TakeMimi/items/1e2d76eecc25e92c93ef#210-ver)
 @client.event
