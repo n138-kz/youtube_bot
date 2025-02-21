@@ -37,6 +37,9 @@ async def on_ready():
 @client.event
 async def on_message(message):
     try:
+        # 送信者がbotである場合は弾く
+        if message.author.bot:
+            return 
         # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
         if message.content == "!ping":
             # Ping値を秒単位で取得
