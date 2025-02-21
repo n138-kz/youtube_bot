@@ -106,11 +106,13 @@ async def on_message(message):
             print(text)
             await message.reply(text)
         if message.content == "!version":
+            print(f'do_action: {message.content}')
             text = ''
-            text += '\n'
+            text += 'Current version is below.\n'
             text += 'python\n```\n'+sys.version+'```\n'
             text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
-            await message.reply(f"Current version is below.\n{text}")
+            print(text)
+            await message.reply(text)
         if message.content == "!youtube rawitems":
             data1=getYoutubeItems()
             data2=[]
