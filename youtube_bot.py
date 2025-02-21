@@ -160,6 +160,13 @@ async def loops():
     data=[]
     console=''
     for item in YOUTUBE_CONTENTS['items']:
+        data.append({
+            'publishedAt': math.trunc(datetime.datetime.fromisoformat(item['snippet']['publishedAt'].replace('Z', '+00:00')).astimezone(pytz.utc).timestamp()),
+            'channelId': item['snippet']['channelId'],
+            'title': urllib.parse.unquote(item['snippet']['title']).replace('&quot;', '"'),
+            'id': item['id']['videoId'],
+            'flag': 0,
+        })
     print(f'{console}')
 
 @tree.command(name="ping",description="Botのレイテンシを測定します。")
