@@ -6,6 +6,7 @@ import http.client
 import urllib.parse
 from datetime import datetime
 from apiclient.discovery import build
+from discord.ext import commands, tasks
 
 def load_config():
     config = None
@@ -128,6 +129,10 @@ async def on_message(message):
             await message.reply(f"{text}",file=discord.File('result.json'))
     except:
         sys.exit()
+
+@tasks.loop(seconds=30)
+async def loops():
+    print('',end='')
 
 @tree.command(name="ping",description="Botのレイテンシを測定します。")
 async def ping(interaction: discord.Interaction):
