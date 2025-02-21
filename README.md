@@ -42,8 +42,8 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://discordbot.jp)Ping値を測定](https://discordbot.jp/blog/16/)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)Discord.py の Intents について](https://qiita.com/Erytheia/items/8b8e14f60fd7f266872b)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)discord.py入門(1)](https://qiita.com/sizumita/items/9d44ae7d1ce007391699)
-- [YouTube APIを用いてPythonでデータを取得する](https://zenn.dev/eito_blog/articles/94dc874c112c9f)
 - [【Python】YouTube Data API を使って、いろんな情報を取得してみた](https://qiita.com/rkamikawa/items/dd1fd4c1427ece787eea)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://zenn.dev)YouTube APIを用いてPythonでデータを取得する](https://zenn.dev/eito_blog/articles/94dc874c112c9f)
 
 ## Issue client_credential (google)
 
