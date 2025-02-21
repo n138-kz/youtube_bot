@@ -1,5 +1,4 @@
 import json
-import os
 import sys
 import discord
 from discord.ext import commands, tasks
@@ -36,7 +35,6 @@ async def on_ready():
     print("Botが立ち上がったよ！")
     for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
         channel = client.get_channel(channel_id)
-        await channel.send('おはよう！'+os.path.basename(sys.argv[0]))
 
 @client.event
 async def on_message(message):
