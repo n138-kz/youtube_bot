@@ -34,6 +34,16 @@ async def on_message(message):
         # 送信者がbotである場合は弾く
         if message.author.bot:
             return 
+        if message.content == "!help":
+            text = ''
+            text += '\n'
+            text += '`!help`\n'
+            text += 'コマンドマニュアルを表示します。\n'
+            text += '`!ping`\n'
+            text += 'Botのレイテンシを測定します。\n'
+            text += '`!version`\n'
+            text += 'Botのバージョンを表示します。\n'
+            await message.reply(f"{text}")
         # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
         if message.content == "!ping":
             # Ping値を秒単位で取得
