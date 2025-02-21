@@ -251,10 +251,16 @@ async def on_ready():
     await tree.sync()
 
     for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
+        print('Discord channel({0})に起動メッセージ送信中'.format(
+            channel_id
+        ))
         channel = client.get_channel(channel_id)
         await channel.send('{0}\n{1}'.format(
             client.user.name.capitalize()+"が起動しました",
             '[Discord Developers Console](https://discord.com/developers/applications/1342289249365659778)',
+        ))
+        print('Discord channel({0})に起動メッセージ送信完了'.format(
+            channel_id
         ))
 
     loops.start()
