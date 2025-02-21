@@ -20,7 +20,10 @@ config = load_config()
 # Discord APIトークン
 DISCORD_API_TOKEN = config['external']['discord']['bot_token']
 
-intents=discord.Intents.none()
+# botが起動したときに送信するチャンネル一覧
+DISCORD_SEND_MESSAGE=config['external']['discord']['send_message_channel']
+
+intents=discord.Intents.default()
 intents.message_content = True
 intents.reactions = True
 client = discord.Client(intents=intents)
