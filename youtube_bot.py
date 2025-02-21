@@ -106,7 +106,7 @@ async def on_message(message):
                 # 送信する
                 print(text)
                 await message.reply(text)
-            if message.content == "!ytb version":
+            elif message.content == "!ytb version":
                 print(f'do_action: {message.content}')
                 text = ''
                 text += 'Current version is below.\n'
