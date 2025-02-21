@@ -47,6 +47,7 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)DiscordのBotでのファイル添付の仕方など【Python】](https://qiita.com/chatrate/items/aa6625f6663fa2ca33d6)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com))send_Discord](https://github.com/n138-kz/send_Discord)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)Discordにwebhook経由でPOST(cURL)](https://qiita.com/n138-kz/items/7b86e3eee9d9994fc4d2)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://zenn.dev)【discord.py】複数ファイルを同時に送信するなど。](https://zenn.dev/milkystack/articles/35948cdfb7eb00)
 
 ## Issue client_credential (google)
 
