@@ -163,10 +163,10 @@ async def loops():
         file='notice.json'
         notice=[]
         if not(os.path.exists(file)):
-            with open(file,mode='w') as f:
+            with open(file,mode='w',encoding='UTF-8') as f:
                 json.dump([],f)
         if os.path.isfile(file):
-            with open(file) as f:
+            with open(file,encoding='UTF-8') as f:
                 notice=json.load(f)
         else:
             print(f'Unable access to "{file}"')
@@ -194,8 +194,8 @@ async def loops():
                 ))
                 data[len(data)-1]['flag']=data[len(data)-1]['flag']|2
 
-        with open(file,mode='w') as f:
             json.dump(data,f)
+        with open(file,mode='w',encoding='UTF-8') as f:
 
         console+='[{3}] {2} [{0}] {1}\n'.format(
             data[len(data)-1]['video_id'],
