@@ -2,7 +2,6 @@ import json
 import os
 import sys
 import discord
-import http.client
 import urllib.parse
 from datetime import datetime
 from apiclient.discovery import build
