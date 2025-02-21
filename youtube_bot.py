@@ -174,15 +174,15 @@ async def loops():
 
         data.append({
             'publishedAt': math.trunc(datetime.datetime.fromisoformat(item['snippet']['publishedAt'].replace('Z', '+00:00')).astimezone(pytz.utc).timestamp()),
-            'channelId': item['snippet']['channelId'],
+            'channel_id': item['snippet']['channelId'],
             'title': urllib.parse.unquote(item['snippet']['title']).replace('&quot;', '"'),
-            'id': item['id']['videoId'],
+            'video_id': item['id']['videoId'],
             'flag': 0,
         })
         if abs(math.trunc(time.time())-data[len(data)-1]['publishedAt'])>config['internal']['youtube']['notice_limit']:
             data[len(data)-1]['flag']=data[len(data)-1]['flag']|1
         for l in notice:
-            if l['video_id'] == data[len(data)-1]['id']:
+            if l['video_id'] == data[len(data)-1]['video_id']:
                 data[len(data)-1]['flag']=data[len(data)-1]['flag']|2
         
         if data[len(data)-1]['flag']==0:
@@ -190,11 +190,11 @@ async def loops():
                 channel = client.get_channel(channel_id)
                 await channel.send('動画がアップロードされました。\n[{0}]({1})\n{1}'.format(
                     data[len(data)-1]['title'],
-                    'https://www.youtube.com/watch?v='+data[len(data)-1]['id'],
+                    'https://www.youtube.com/watch?v='+data[len(data)-1]['video_id'],
                 ))
 
         console+='[{3}] {2} [{0}] {1}\n'.format(
-            data[len(data)-1]['id'],
+            data[len(data)-1]['video_id'],
             data[len(data)-1]['title'],
             data[len(data)-1]['publishedAt'],
             '{}'.format(data[len(data)-1]['flag']),
