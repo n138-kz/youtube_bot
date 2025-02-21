@@ -32,6 +32,7 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://console.cloud.google.com/)Developer Console](https://console.cloud.google.com/apis/credentials?hl=ja&project=upbeat-splicer-325708)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://console.cloud.google.com/)Google公式リファレンス](https://developers.google.com/identity/gsi/web/guides/migration?hl=ja)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://console.cloud.google.com/)YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/quotas?inv=1&invt=AbqMUg&project=bold-rampart-413416)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://discord.com)Developer Console](https://discord.com/developers/applications)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://discord.com)Discord公式リファレンス](https://discord.com/developers/docs/topics/oauth2)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)「DiscordのIDでログイン」を実装する(Oauth2)](https://qiita.com/masayoshi4649/items/46fdb744cb8255f5eb98)
