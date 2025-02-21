@@ -170,6 +170,14 @@ async def loops():
         if abs(math.trunc(time.time())-data[len(data)-1]['publishedAt'])>config['internal']['youtube']['notice_limit']:
             data[len(data)-1]['flag']=data[len(data)-1]['flag']|1
         
+        if data[len(data)-1]['flag']==0:
+            for channel_id in DISCORD_SEND_MESSAGE['notice']:
+                channel = client.get_channel(channel_id)
+                await channel.send('動画がアップロードされました。\n[{0}]({1})\n{1}'.format(
+                    data[len(data)-1]['title'],
+                    'https://www.youtube.com/watch?v='+data[len(data)-1]['id'],
+                ))
+
         console+='[{3}] {2} [{0}] {1}\n'.format(
             data[len(data)-1]['id'],
             data[len(data)-1]['title'],
