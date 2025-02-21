@@ -5,7 +5,7 @@ import discord
 import http.client
 from urllib.parse import urlencode
 from datetime import datetime
-from googleapiclient.discovery import build
+from apiclient.discovery import build
 
 def load_config():
     config = None
