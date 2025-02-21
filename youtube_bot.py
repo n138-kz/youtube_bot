@@ -26,5 +26,18 @@ client = discord.Client(intents=discord.Intents.default())
 async def on_ready():
     print("Botが立ち上がったよ！")
 
+# Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
+@client.event
+async def on_message(message):
+    if message.content == "!ping":
+        # Ping値を秒単位で取得
+        raw_ping = client.latency
+
+        # ミリ秒に変換して丸める
+        ping = round(raw_ping * 1000)
+
+        # 送信する
+        await message.reply(f"Pong!\nBotのPing値は{ping}msです。")
+
 # botを起動
 client.run(DISCORD_API_TOKEN)

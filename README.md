@@ -39,6 +39,7 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://scrapbox.io)OAuth2 Scopesの一覧](https://scrapbox.io/discordwiki/OAuth2_Scopes%E3%81%AE%E4%B8%80%E8%A6%A7)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com)http_post](https://github.com/n138-kz/http_post)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)discord.pyを使用したdiscord botの作り方](https://qiita.com/TakeMimi/items/1e2d76eecc25e92c93ef#210-ver)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://discordbot.jp)Ping値を測定](https://discordbot.jp/blog/16/)
 
 ## Issue client_credential
 
