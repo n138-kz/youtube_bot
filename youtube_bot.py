@@ -192,6 +192,7 @@ async def loops():
                     data[len(data)-1]['title'],
                     'https://www.youtube.com/watch?v='+data[len(data)-1]['video_id'],
                 ))
+                data[len(data)-1]['flag']=data[len(data)-1]['flag']|2
 
         console+='[{3}] {2} [{0}] {1}\n'.format(
             data[len(data)-1]['video_id'],
