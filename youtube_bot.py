@@ -114,7 +114,7 @@ async def on_message(message):
                 text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
                 print(text)
                 await message.reply(text)
-            if message.content == "!ytb youtube rawitems":
+            elif message.content == "!ytb youtube rawitems":
                 print(f'do_action: {message.content}')
                 data1=getYoutubeItems()
                 data2=[]
