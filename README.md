@@ -53,6 +53,11 @@ flowchart LR
 Youtube_Data_API --> youtube_bot --> Discord
 ```
 
+## Library
+
+- python: 3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]
+- discordpy: 2.5.0 (VersionInfo(major=2, minor=5, micro=0, releaselevel='final', serial=0))
+
 ## License
 
 [Copyright (c) 2025 Yuu Komiya (n138), Under MIT License](LICENSE)  
