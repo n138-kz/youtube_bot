@@ -181,6 +181,9 @@ async def loops():
         })
         if abs(math.trunc(time.time())-data[len(data)-1]['publishedAt'])>config['internal']['youtube']['notice_limit']:
             data[len(data)-1]['flag']=data[len(data)-1]['flag']|1
+        for l in notice:
+            if l['video_id'] == data[len(data)-1]['id']:
+                data[len(data)-1]['flag']=data[len(data)-1]['flag']|2
         
         if data[len(data)-1]['flag']==0:
             for channel_id in DISCORD_SEND_MESSAGE['notice']:
