@@ -31,4 +31,4 @@ print(title)
 print(f'https://www.youtube.com/watch?v={videoId}')
 
 json_file=open('test.json', 'w')
-print(json.dump(snippetInfo,json_file))
+json.dump(snippetInfo,json_file)
