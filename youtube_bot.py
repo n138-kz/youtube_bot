@@ -1,6 +1,7 @@
 import json
 import os
 import sys
+import math
 import discord
 import urllib.parse
 import datetime
