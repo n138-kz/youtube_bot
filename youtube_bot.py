@@ -207,8 +207,6 @@ async def loops():
                 '{}'.format(data[len(data)-1]['flag']),
             )
         print(f'{console}')
-    except googleapiclient.errors.HttpError as e:
-        print(f'googleapiclient.errors.HttpError:\n{e}')
     except Exception as e:
         logging.error(f'Error has occured: {e}')
 
