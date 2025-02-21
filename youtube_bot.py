@@ -231,6 +231,22 @@ async def version(interaction: discord.Interaction):
 async def on_ready():
     print(client.user.name.capitalize()+"が起動しました")
 
+    print('--設定情報--')
+    print('[Discord]')
+    print('起動メッセージ送信先: ',end='')
+    for s in config['internal']['discord']['send_message_channel']['on_ready']:
+        print('{},'.format(s),end='')
+    print('')
+    print('通知メッセージ送信先: ',end='')
+    for s in config['internal']['discord']['send_message_channel']['notice']:
+        print('{},'.format(s),end='')
+    print('')
+    print('[Youtube]')
+    print('動画投稿監視チャンネル: {}'.format(YOUTUBE_CHANNEL_ID))
+    print('動画投稿監視間隔: {}'.format(config['internal']['youtube']['cycle_interval']))
+    print('通知送信タイムリミット: {}'.format(config['internal']['youtube']['notice_limit']))
+    print('--設定情報--\n')
+
     #スラッシュコマンドを同期
     await tree.sync()
 
