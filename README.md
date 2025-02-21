@@ -33,6 +33,17 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://console.cloud.google.com/)Developer Console](https://console.cloud.google.com/apis/credentials?hl=ja&project=upbeat-splicer-325708)
 - [Google公式リファレンス](https://developers.google.com/identity/gsi/web/guides/migration?hl=ja)
 
+## Issue client_credential
+
+1. access to [![](https://www.google.com/s2/favicons?size=64&domain=https://console.cloud.google.com/)Developer Console](https://console.cloud.google.com/apis/credentials?hl=ja&project=upbeat-splicer-325708)
+1. Create new project.
+1. Forward to 認証情報 (left side pain)
+1. Create API Key.
+1. Create OAuth client_id
+  |   |   |
+  |:-:|:-:|
+  | Type | Web Application |
+
 ## License
 
 [Copyright (c) 2025 Yuu Komiya (n138), Under MIT License](LICENSE)  
