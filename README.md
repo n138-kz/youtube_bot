@@ -41,7 +41,7 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)discord.pyを使用したdiscord botの作り方](https://qiita.com/TakeMimi/items/1e2d76eecc25e92c93ef#210-ver)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://discordbot.jp)Ping値を測定](https://discordbot.jp/blog/16/)
 
-## Issue client_credential
+## Issue client_credential (google)
 
 1. access to [![](https://www.google.com/s2/favicons?size=64&domain=https://console.cloud.google.com/)Developer Console](https://console.cloud.google.com/apis/credentials?hl=ja&project=upbeat-splicer-325708)
 1. Create new project.
