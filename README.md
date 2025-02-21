@@ -49,6 +49,15 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 1. Create API Key.
 1. Create OAuth client_id(type=Web Application)
 
+## Issue client_credential (discord)
+
+1. access to [![](https://www.google.com/s2/favicons?size=64&domain=https://discord.com)Developer Console](https://discord.com/developers/applications)
+1. Create new application.
+1. Reset OAuth2 information.
+1. Reset bot token.
+1. Turn on Message Content Intent
+![](docs/assets/d0fa711d463ea216a117245a8b945635.webp)
+
 ## Relation
 
 ```mermaid
