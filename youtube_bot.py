@@ -3,7 +3,7 @@ import os
 import sys
 import discord
 import urllib.parse
-from datetime import datetime
+import datetime
 from apiclient.discovery import build
 from discord.ext import commands, tasks
 
