@@ -19,3 +19,12 @@ config = load_config()
 # Discord APIトークン
 DISCORD_API_TOKEN = config['external']['discord']['bot_token']
 
+client = discord.Client(intents=discord.Intents.default())
+
+# botが起動したときの処理
+@client.event
+async def on_ready():
+    print("Botが立ち上がったよ！")
+
+# botを起動
+client.run(DISCORD_API_TOKEN)
