@@ -39,5 +39,10 @@ async def on_message(message):
         # 送信する
         await message.reply(f"Pong!\nBotのPing値は{ping}msです。")
 
+@client.event
+async def on_message(message):
+    if message.content == "/version":
+        print_version()
+
 # botを起動
 client.run(DISCORD_API_TOKEN)
