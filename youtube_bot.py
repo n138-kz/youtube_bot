@@ -78,6 +78,7 @@ async def on_message(message):
         print(f'on_message: {message.content}')
 
         if message.content == "!help":
+            print(f'do_action: {message.content}')
             text = ''
             text += '\n'
             text += '`!help`\n'
@@ -88,7 +89,8 @@ async def on_message(message):
             text += 'Botのバージョンを表示します。\n'
             text += '`!youtube rawitems`\n'
             text += 'Youtubeから動画一覧を取得します。\n'
-            await message.reply(f"{text}")
+            print(text)
+            await message.reply(text)
         # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
         if message.content == "!ping":
             # Ping値を秒単位で取得
