@@ -15,7 +15,6 @@ def load_config():
     return config
 
 def print_version():
-    print("version")
     print("python: "+sys.version)
     print("discordpy: "+discord.__version__+' ('+str(discord.version_info)+')')
 
