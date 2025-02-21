@@ -186,5 +186,7 @@ async def on_ready():
         await channel.send(client.user.name.capitalize()+"が起動しました")
         await channel.send('[Discord Developers Console](https://discord.com/developers/applications/1342289249365659778)')
 
+    loops.start()
+
 # botを起動
 client.run(DISCORD_API_TOKEN)
