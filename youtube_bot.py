@@ -65,6 +65,15 @@ async def ping(interaction: discord.Interaction):
     # 送信する
     await interaction.response.send_message(f"Pong!\nBotのPing値は{ping}msです。",ephemeral=False)#ephemeral=True→「これらはあなただけに表示されています」
 
+@tree.command(name="version",description="Botのバージョンを表示します。")
+async def version(interaction: discord.Interaction):
+    version = ''
+    version += '\n'
+    version += 'python\n```\n'+sys.version+'```\n'
+    version += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
+
+    # 送信する
+    await interaction.response.send_message(f"Current version is below.\n{version}",ephemeral=False)#ephemeral=True→「これらはあなただけに表示されています」
 
 # botが起動したときの処理 [discord.pyを使用したdiscord botの作り方](https://qiita.com/TakeMimi/items/1e2d76eecc25e92c93ef#210-ver)
 @client.event
