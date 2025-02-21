@@ -130,7 +130,11 @@ async def on_message(message):
                         'id': item['id']['videoId'],
                         'thumbnails': item['snippet']['thumbnails']['high'],
                     })
-                    data3+='- {2}\n[{0}]({1})\n'.format(urllib.parse.unquote(item['snippet']['title']).replace('&quot;', '"'),'https://www.youtube.com/watch?v='+item['id']['videoId'],item['snippet']['publishedAt'])
+                    data3+='- {2}\n[{0}]({1})\n'.format(
+                        data2[len(data2)-1]['title'],
+                        'https://www.youtube.com/watch?v='+data2[len(data2)-1]['id'],
+                        data2[len(data2)-1]['publishedAt'],
+                    )
                 with open('detail.json','w', encoding="utf-8") as f:
                     json.dump(data1, f, ensure_ascii=False, indent=4)
                 with open('result.json','w', encoding="utf-8") as f:
