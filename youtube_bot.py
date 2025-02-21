@@ -39,7 +39,7 @@ async def on_message(message):
         # 送信する
         await message.reply(f"Pong!\nBotのPing値は{ping}msです。")
     if message.content == "/version":
-        await message.channel.send(print_version())
+        await message.reply(print_version())
         
 
 # botを起動
