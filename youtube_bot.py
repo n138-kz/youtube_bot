@@ -35,6 +35,7 @@ async def on_ready():
     print("Botが立ち上がったよ！")
     for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
         channel = client.get_channel(channel_id)
+        await channel.send(client.user.name+"が起動しました")
 
 @client.event
 async def on_message(message):
