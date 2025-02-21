@@ -31,7 +31,14 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 ## Refs
 
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://console.cloud.google.com/)Developer Console](https://console.cloud.google.com/apis/credentials?hl=ja&project=upbeat-splicer-325708)
-- [Google公式リファレンス](https://developers.google.com/identity/gsi/web/guides/migration?hl=ja)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://console.cloud.google.com/)Google公式リファレンス](https://developers.google.com/identity/gsi/web/guides/migration?hl=ja)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://discord.com)Developer Console](https://discord.com/developers/applications)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://discord.com)Discord公式リファレンス](https://discord.com/developers/docs/topics/oauth2)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)「DiscordのIDでログイン」を実装する(Oauth2)](https://qiita.com/masayoshi4649/items/46fdb744cb8255f5eb98)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)PHP、CURLFileでファイルをアップロードする。(multipart/form-data、POST)](https://qiita.com/Pell/items/4ed98c906fd6a580a33f)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://scrapbox.io)OAuth2 Scopesの一覧](https://scrapbox.io/discordwiki/OAuth2_Scopes%E3%81%AE%E4%B8%80%E8%A6%A7)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com)http_post](https://github.com/n138-kz/http_post)
+
 
 ## Issue client_credential
 
