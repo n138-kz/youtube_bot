@@ -26,14 +26,7 @@ intents=discord.Intents.default()
 intents.message_content = True
 intents.reactions = True
 client = discord.Client(intents=intents)
-
-# botが起動したときの処理 [discord.pyを使用したdiscord botの作り方](https://qiita.com/TakeMimi/items/1e2d76eecc25e92c93ef#210-ver)
-@client.event
-async def on_ready():
-    print("Botが立ち上がったよ！")
-    for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
-        channel = client.get_channel(channel_id)
-        await channel.send(client.user.name+"が起動しました")
+tree = discord.app_commands.CommandTree(client)
 
 @client.event
 async def on_message(message):
@@ -55,6 +48,18 @@ async def on_message(message):
             await message.reply(f"Current version is below.\ndiscordpy:\t"+discord.__version__)
     except:
         sys.exit()
+
+
+# botが起動したときの処理 [discord.pyを使用したdiscord botの作り方](https://qiita.com/TakeMimi/items/1e2d76eecc25e92c93ef#210-ver)
+@client.event
+async def on_ready():
+    print(client.user.name+"が起動しました")
+    await tree.sync()#スラッシュコマンドを同期
+
+    for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
+        channel = client.get_channel(channel_id)
+        await channel.send(client.user.name+"が起動しました")
+        await channel.send('[Discord Developers Console](https://discord.com/developers/applications/1342289249365659778)')
 
 # botを起動
 client.run(DISCORD_API_TOKEN)
