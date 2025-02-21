@@ -39,10 +39,7 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 1. Create new project.
 1. Forward to 認証情報 (left side pain)
 1. Create API Key.
-1. Create OAuth client_id
-  |   |   |
-  |:-:|:-:|
-  | Type | Web Application |
+1. Create OAuth client_id(type=Web Application)
 
 ## License
 
