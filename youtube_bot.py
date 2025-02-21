@@ -49,6 +49,12 @@ client = discord.Client(intents=intents)
 tree = discord.app_commands.CommandTree(client)
 
 @client.event
+async def on_error(event):
+    text = ''
+    text += '\n'
+    text += 'Called On_Error\n'
+
+@client.event
 async def on_message(message):
     try:
         # 送信者がbotである場合は弾く
