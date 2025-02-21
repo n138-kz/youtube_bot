@@ -27,7 +27,7 @@ config = load_config()
 DISCORD_API_TOKEN = config['external']['discord']['bot_token']
 
 # botが起動したときに送信するチャンネル一覧
-DISCORD_SEND_MESSAGE=config['external']['discord']['send_message_channel']
+DISCORD_SEND_MESSAGE=config['internal']['discord']['send_message_channel']
 
 # Youtube APIトークン
 YOUTUBE_API_KEY = config['external']['youtube']['api_key']
