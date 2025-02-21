@@ -1,4 +1,5 @@
 import json
+import discord
 
 def load_config():
     config = None
@@ -8,3 +9,7 @@ def load_config():
 
 config = load_config()
 
+# Discord APIトークン
+DISCORD_API_TOKEN = config['external']['discord']['bot_token']
+
+print(discord.version_info)
