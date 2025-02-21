@@ -49,6 +49,9 @@ async def on_message(message):
     if message.content == "/version":
         await message.reply(print_version())
         
+    try:
+    except:
+        sys.exit()
 
 # botを起動
 client.run(DISCORD_API_TOKEN)
