@@ -159,6 +159,7 @@ async def loops():
     YOUTUBE_CONTENTS=getYoutubeItems()
     data=[]
     console=''
+    for item in YOUTUBE_CONTENTS['items']:
     print(f'{console}')
 
 @tree.command(name="ping",description="Botのレイテンシを測定します。")
