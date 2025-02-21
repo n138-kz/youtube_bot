@@ -34,13 +34,26 @@ YOUTUBE_API_KEY = config['external']['youtube']['api_key']
 YOUTUBE_CHANNEL_ID = config['external']['youtube']['channel_id']
 
 def getYoutubeItems():
-    service = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
-    request = service.channels().list(
-        part = 'statistics',
-        # forUsername = '',
-        id = YOUTUBE_CHANNEL_ID
+    """
+    * @return :Dictionary
+    """
+    YOUTUBE_API_SERVICE_NAME = 'youtube'
+    YOUTUBE_API_VERSION = 'v3'
+
+    youtube = build(
+        YOUTUBE_API_SERVICE_NAME,
+        YOUTUBE_API_VERSION,
+        developerKey=YOUTUBE_API_KEY
     )
-    return request.execute()
+
+    response = youtube.search().list(
+        part = "snippet",
+        channelId = YOUTUBE_CHANNEL_ID,
+        maxResults = 10,
+        order = "date" #日付順にソート
+    ).execute()
+
+    return response
 
 intents=discord.Intents.default()
 intents.message_content = True
@@ -91,7 +104,9 @@ async def on_message(message):
         if message.content == "!youtuberawitems":
             text = ''
             text += '\n'
-            text += getYoutubeItems()
+            text += '```json\n'
+            text += json.dumps(getYoutubeItems()) + '\n'
+            text += '```\n'
             await message.reply(f"{text}")
     except:
         sys.exit()
