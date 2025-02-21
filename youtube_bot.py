@@ -74,6 +74,8 @@ async def on_message(message):
         if message.author.bot:
             return
         
+        print(f'on_message: {message.content}')
+
         if message.content == "!help":
             text = ''
             text += '\n'
