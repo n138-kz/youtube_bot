@@ -2,6 +2,7 @@
 Backup/
 backup/
 *.bak*
+*_trash
 
 # Temporary files
 *.tmp
