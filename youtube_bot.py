@@ -35,7 +35,7 @@ async def on_message(message):
         if message.author.bot:
             return 
         # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
-        if message.content == "/ping":
+        if message.content == "!ping":
             # Ping値を秒単位で取得
             raw_ping = client.latency
 
