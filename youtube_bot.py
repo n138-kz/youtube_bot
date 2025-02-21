@@ -157,6 +157,8 @@ async def on_message(message):
 @tasks.loop(seconds=30)
 async def loops():
     YOUTUBE_CONTENTS=getYoutubeItems()
+    data=[]
+    console=''
 
 @tree.command(name="ping",description="Botのレイテンシを測定します。")
 async def ping(interaction: discord.Interaction):
