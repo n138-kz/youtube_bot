@@ -74,68 +74,69 @@ async def on_message(message):
         if message.author.bot:
             return
         
-        print(f'on_message: {message.content}')
+        if message.content.startswith('!ytb'):
+            print(f'on_message: {message.content}')
 
-        if message.content == "!help":
-            print(f'do_action: {message.content}')
-            text = ''
-            text += '\n'
-            text += '`!help`\n'
-            text += 'コマンドマニュアルを表示します。\n'
-            text += '`!ping`\n'
-            text += 'Botのレイテンシを測定します。\n'
-            text += '`!version`\n'
-            text += 'Botのバージョンを表示します。\n'
-            text += '`!youtube rawitems`\n'
-            text += 'Youtubeから最新の動画一覧を取得します。\n'
-            print(text)
-            await message.reply(text)
-        # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
-        if message.content == "!ping":
-            print(f'do_action: {message.content}')
-            # Ping値を秒単位で取得
-            raw_ping = client.latency
+            if message.content == "!ytb help":
+                print(f'do_action: {message.content}')
+                text = ''
+                text += '\n'
+                text += '`!ytb help`\n'
+                text += 'コマンドマニュアルを表示します。\n'
+                text += '`!ytb ping`\n'
+                text += 'Botのレイテンシを測定します。\n'
+                text += '`!ytb version`\n'
+                text += 'Botのバージョンを表示します。\n'
+                text += '`!ytb youtube rawitems`\n'
+                text += 'Youtubeから最新の動画一覧を取得します。\n'
+                print(text)
+                await message.reply(text)
+            # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
+            if message.content == "!ytb ping":
+                print(f'do_action: {message.content}')
+                # Ping値を秒単位で取得
+                raw_ping = client.latency
 
-            # ミリ秒に変換して丸める
-            ping = round(raw_ping * 1000)
+                # ミリ秒に変換して丸める
+                ping = round(raw_ping * 1000)
 
-            text = f'Pong!\nBotのPing値は{ping}msです。'
+                text = f'Pong!\nBotのPing値は{ping}msです。'
 
-            # 送信する
-            print(text)
-            await message.reply(text)
-        if message.content == "!version":
-            print(f'do_action: {message.content}')
-            text = ''
-            text += 'Current version is below.\n'
-            text += 'python\n```\n'+sys.version+'```\n'
-            text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
-            print(text)
-            await message.reply(text)
-        if message.content == "!youtube rawitems":
-            print(f'do_action: {message.content}')
-            data1=getYoutubeItems()
-            data2=[]
-            data3=''
-            for item in data1['items']:
-                data2.append({
-                    'publishedAt': item['snippet']['publishedAt'],
-                    'channelId': item['snippet']['channelId'],
-                    'title': item['snippet']['title'],
-                    'description': item['snippet']['description'],
-                    'id': item['id']['videoId'],
-                    'thumbnails': item['snippet']['thumbnails']['high'],
-                })
-                data3+='- {2}\n[{0}]({1})\n'.format(urllib.parse.unquote(item['snippet']['title']).replace('&quot;', '"'),'https://www.youtube.com/watch?v='+item['id']['videoId'],item['snippet']['publishedAt'])
-            with open('detail.json','w', encoding="utf-8") as f:
-                json.dump(data1, f, ensure_ascii=False, indent=4)
-            with open('result.json','w', encoding="utf-8") as f:
-                json.dump(data2, f, ensure_ascii=False, indent=4)
-            text = ''
-            text += '\n'
-            text += data3+'\n'
-            print(text)
-            await message.reply(text, files=[discord.File('result.json'),discord.File('detail.json')])
+                # 送信する
+                print(text)
+                await message.reply(text)
+            if message.content == "!ytb version":
+                print(f'do_action: {message.content}')
+                text = ''
+                text += 'Current version is below.\n'
+                text += 'python\n```\n'+sys.version+'```\n'
+                text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
+                print(text)
+                await message.reply(text)
+            if message.content == "!ytb youtube rawitems":
+                print(f'do_action: {message.content}')
+                data1=getYoutubeItems()
+                data2=[]
+                data3=''
+                for item in data1['items']:
+                    data2.append({
+                        'publishedAt': item['snippet']['publishedAt'],
+                        'channelId': item['snippet']['channelId'],
+                        'title': item['snippet']['title'],
+                        'description': item['snippet']['description'],
+                        'id': item['id']['videoId'],
+                        'thumbnails': item['snippet']['thumbnails']['high'],
+                    })
+                    data3+='- {2}\n[{0}]({1})\n'.format(urllib.parse.unquote(item['snippet']['title']).replace('&quot;', '"'),'https://www.youtube.com/watch?v='+item['id']['videoId'],item['snippet']['publishedAt'])
+                with open('detail.json','w', encoding="utf-8") as f:
+                    json.dump(data1, f, ensure_ascii=False, indent=4)
+                with open('result.json','w', encoding="utf-8") as f:
+                    json.dump(data2, f, ensure_ascii=False, indent=4)
+                text = ''
+                text += '\n'
+                text += data3+'\n'
+                print(text)
+                await message.reply(text, files=[discord.File('result.json'),discord.File('detail.json')])
     except:
         sys.exit()
 
