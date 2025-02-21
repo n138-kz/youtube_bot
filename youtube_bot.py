@@ -45,12 +45,12 @@ async def on_message(message):
             # 送信する
             await message.reply(f"Pong!\nBotのPing値は{ping}msです。")
         if message.content == "!version":
-            version = ''
-            version += '\n'
-            version += 'python\n```\n'+sys.version+'```\n'
-            version += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
+            text = ''
+            text += '\n'
+            text += 'python\n```\n'+sys.version+'```\n'
+            text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
 
-            await message.reply(f"Current version is below.\n{version}")
+            await message.reply(f"Current version is below.\n{text}")
     except:
         sys.exit()
 
@@ -63,17 +63,17 @@ async def ping(interaction: discord.Interaction):
     ping = round(raw_ping * 1000)
 
     # 送信する
-    await interaction.response.send_message(f"Pong!\nBotのPing値は{ping}msです。",ephemeral=False)#ephemeral=True→「これらはあなただけに表示されています」
+    await interaction.response.send_message(f"Pong!\nBotのPing値は{ping}msです。",ephemeral=True)#ephemeral=True→「これらはあなただけに表示されています」
 
 @tree.command(name="version",description="Botのバージョンを表示します。")
 async def version(interaction: discord.Interaction):
-    version = ''
-    version += '\n'
-    version += 'python\n```\n'+sys.version+'```\n'
-    version += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
+    text = ''
+    text += '\n'
+    text += 'python\n```\n'+sys.version+'```\n'
+    text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
 
     # 送信する
-    await interaction.response.send_message(f"Current version is below.\n{version}",ephemeral=False)#ephemeral=True→「これらはあなただけに表示されています」
+    await interaction.response.send_message(f"Current version is below.\n{text}",ephemeral=True)#ephemeral=True→「これらはあなただけに表示されています」
 
 # botが起動したときの処理 [discord.pyを使用したdiscord botの作り方](https://qiita.com/TakeMimi/items/1e2d76eecc25e92c93ef#210-ver)
 @client.event
