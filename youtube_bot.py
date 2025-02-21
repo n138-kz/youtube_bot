@@ -21,7 +21,7 @@ DISCORD_API_TOKEN = config['external']['discord']['bot_token']
 
 client = discord.Client(intents=discord.Intents.default())
 
-# botが起動したときの処理
+# botが起動したときの処理 [discord.pyを使用したdiscord botの作り方](https://qiita.com/TakeMimi/items/1e2d76eecc25e92c93ef#210-ver)
 @client.event
 async def on_ready():
     print("Botが立ち上がったよ！")
