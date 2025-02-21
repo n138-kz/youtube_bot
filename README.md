@@ -39,7 +39,6 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://scrapbox.io)OAuth2 Scopesの一覧](https://scrapbox.io/discordwiki/OAuth2_Scopes%E3%81%AE%E4%B8%80%E8%A6%A7)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com)http_post](https://github.com/n138-kz/http_post)
 
-
 ## Issue client_credential
 
 1. access to [![](https://www.google.com/s2/favicons?size=64&domain=https://console.cloud.google.com/)Developer Console](https://console.cloud.google.com/apis/credentials?hl=ja&project=upbeat-splicer-325708)
@@ -47,6 +46,12 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 1. Forward to 認証情報 (left side pain)
 1. Create API Key.
 1. Create OAuth client_id(type=Web Application)
+
+## Relation
+```mermaid
+flowchart LR
+Youtube_Data_API --> youtube_bot --> Discord
+```
 
 ## License
 
