@@ -72,7 +72,8 @@ async def on_message(message):
     try:
         # 送信者がbotである場合は弾く
         if message.author.bot:
-            return 
+            return
+        
         if message.content == "!help":
             text = ''
             text += '\n'
