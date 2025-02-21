@@ -4,6 +4,7 @@ import sys
 import discord
 import urllib.parse
 import datetime
+import pytz
 from apiclient.discovery import build
 from discord.ext import commands, tasks
 
