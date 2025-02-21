@@ -1,6 +1,11 @@
 import json
+import os
 import sys
 import discord
+import http.client
+from urllib.parse import urlencode
+from datetime import datetime
+from googleapiclient.discovery import build
 
 def load_config():
     config = None
@@ -21,6 +26,21 @@ DISCORD_API_TOKEN = config['external']['discord']['bot_token']
 
 # botが起動したときに送信するチャンネル一覧
 DISCORD_SEND_MESSAGE=config['external']['discord']['send_message_channel']
+
+# Youtube APIトークン
+YOUTUBE_API_KEY = config['external']['youtube']['api_key']
+
+# 新着動画を監視するチャンネルID
+YOUTUBE_CHANNEL_ID = config['external']['youtube']['channel_id']
+
+def getYoutubeItems():
+    service = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
+    request = service.channels().list(
+        part = 'statistics',
+        # forUsername = '',
+        id = YOUTUBE_CHANNEL_ID
+    )
+    return request.execute()
 
 intents=discord.Intents.default()
 intents.message_content = True
@@ -43,6 +63,8 @@ async def on_message(message):
             text += 'Botのレイテンシを測定します。\n'
             text += '`!version`\n'
             text += 'Botのバージョンを表示します。\n'
+            text += '`!youtuberawitems`\n'
+            text += 'Youtubeから動画一覧を取得します。\n'
             await message.reply(f"{text}")
         # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
         if message.content == "!ping":
@@ -59,8 +81,12 @@ async def on_message(message):
             text += '\n'
             text += 'python\n```\n'+sys.version+'```\n'
             text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
-
             await message.reply(f"Current version is below.\n{text}")
+        if message.content == "!youtuberawitems":
+            text = ''
+            text += '\n'
+            text += getYoutubeItems()
+            await message.reply(f"{text}")
     except:
         sys.exit()
 
