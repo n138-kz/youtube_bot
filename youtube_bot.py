@@ -125,7 +125,7 @@ async def on_message(message):
                     data2.append({
                         'publishedAt': item['snippet']['publishedAt'],
                         'channelId': item['snippet']['channelId'],
-                        'title': item['snippet']['title'],
+                        'title': urllib.parse.unquote(item['snippet']['title']).replace('&quot;', '"'),
                         'description': item['snippet']['description'],
                         'id': item['id']['videoId'],
                         'thumbnails': item['snippet']['thumbnails']['high'],
