@@ -209,6 +209,10 @@ async def loops():
         print(f'{console}')
     except Exception as e:
         logging.error(f'Error has occured: {e}')
+        print(f'Error has occured: \n{e}')
+        for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
+            channel = client.get_channel(channel_id)
+            await channel.send(f'Error has occured: \n```\n{e}\n```\n')
 
 @tree.command(name="ping",description="Botのレイテンシを測定します。")
 async def ping(interaction: discord.Interaction):
