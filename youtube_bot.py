@@ -120,7 +120,7 @@ async def version(interaction: discord.Interaction):
 # botが起動したときの処理 [discord.pyを使用したdiscord botの作り方](https://qiita.com/TakeMimi/items/1e2d76eecc25e92c93ef#210-ver)
 @client.event
 async def on_ready():
-    print(client.user.name+"が起動しました")
+    print(client.user.name.capitalize()+"が起動しました")
 
     #スラッシュコマンドを同期
     await tree.sync()
