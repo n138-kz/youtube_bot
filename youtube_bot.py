@@ -49,7 +49,7 @@ def getYoutubeItems():
     response = youtube.search().list(
         part = "snippet",
         channelId = YOUTUBE_CHANNEL_ID,
-        maxResults = 10,
+        maxResults = 3,
         order = "date" #日付順にソート
     ).execute()
 
