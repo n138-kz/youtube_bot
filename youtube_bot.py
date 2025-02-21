@@ -105,12 +105,25 @@ async def on_message(message):
             text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
             await message.reply(f"Current version is below.\n{text}")
         if message.content == "!youtube rawitems":
+            data1=getYoutubeItems()
+            data2=[]
+            data3=''
+            for item in data1['items']:
+                data2.append({
+                    'publishedAt': item['snippet']['publishedAt'],
+                    'channelId': item['snippet']['channelId'],
+                    'title': item['snippet']['title'],
+                    'description': item['snippet']['description'],
+                    'id': item['id']['videoId'],
+                    'thumbnails': item['snippet']['thumbnails']['high'],
+                })
+                data3+='- {2}\n[{0}]({1})\n'.format(urllib.parse.unquote(item['snippet']['title']).replace('&quot;', '"'),'https://www.youtube.com/watch?v='+item['id']['videoId'],item['snippet']['publishedAt'])
+            with open('result.json','w', encoding="utf-8") as f:
+                json.dump(data2, f, ensure_ascii=False, indent=4)
             text = ''
             text += '\n'
-            text += '```json\n'
-            text += json.dumps(getYoutubeItems()) + '\n'
-            text += '```\n'
-            await message.reply(f"{text}")
+            text += data3+'\n'
+            await message.reply(f"{text}",file=discord.File('result.json'))
     except:
         sys.exit()
 
