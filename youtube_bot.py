@@ -82,7 +82,7 @@ async def on_message(message):
             text += 'Botのレイテンシを測定します。\n'
             text += '`!version`\n'
             text += 'Botのバージョンを表示します。\n'
-            text += '`!youtuberawitems`\n'
+            text += '`!youtube rawitems`\n'
             text += 'Youtubeから動画一覧を取得します。\n'
             await message.reply(f"{text}")
         # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
@@ -101,7 +101,7 @@ async def on_message(message):
             text += 'python\n```\n'+sys.version+'```\n'
             text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
             await message.reply(f"Current version is below.\n{text}")
-        if message.content == "!youtuberawitems":
+        if message.content == "!youtube rawitems":
             text = ''
             text += '\n'
             text += '```json\n'
