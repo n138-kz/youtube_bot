@@ -123,7 +123,7 @@ async def on_message(message):
             text = ''
             text += '\n'
             text += data3+'\n'
-            await message.reply(f"{text}",files=discord.File('result.json'))
+            await message.reply(f"{text}",file=discord.File('result.json'))
     except:
         sys.exit()
 
