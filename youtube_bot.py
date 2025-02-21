@@ -33,7 +33,7 @@ DISCORD_SEND_MESSAGE=config['internal']['discord']['send_message_channel']
 YOUTUBE_API_KEY = config['external']['youtube']['api_key']
 
 # 新着動画を監視するチャンネルID
-YOUTUBE_CHANNEL_ID = config['external']['youtube']['channel_id']
+YOUTUBE_CHANNEL_ID = config['internal']['youtube']['channel_id']
 
 def getYoutubeItems():
     """
