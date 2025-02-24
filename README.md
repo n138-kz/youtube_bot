@@ -73,59 +73,66 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 
 ```json
 {
-  "build":{
-      "requirement":[
-          "discord",
-          "google-api-python-client",
-          "google-auth-httplib2",
-          "google-auth-oauthlib"
-      ]
-  },
-  "internal":{},
-  "external":{
-      "youtube":{
-          "api_key":"",
-          "client_id":"",
-          "client_secret":"",
-          "web": {
-              "client_id": "",
-              "project_id": "",
-              "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-              "token_uri": "https://oauth2.googleapis.com/token",
-              "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-              "client_secret": ""
-          },
-          "channel_id":""
-      },
-      "discord":{
-          "client_id":1,
-          "client_secret":"",
-          "public_key":"",
-          "bot_token":"",
-          "scope":{
-              "redirect_url":null,
-              "bot":[
-                  "view_channel (1024)",
-                  "send_message (2048)",
-                  "embed_links (16384)",
-                  "attach_files (32768)",
-                  "read_message_history (65536)",
-                  "mention_everyone (131072)",
-                  "use_slash_command (2147483648)",
-                  "use_embedded_activities (549755813888)"
-              ]
-          },
-          "install_context":{
-              "user":false,
-              "guild":true
-          },
-          "bot_invite_url":"",
-          "send_message_channel":{
-              "on_ready":[
-              ]
-          }
-      }
-  }
+    "internal":{
+        "build":{
+            "requirement":[
+                "discord",
+                "google-api-python-client"
+            ]
+        },
+        "youtube":{
+            "notice_limit":3600,
+            "cycle_interval":300,
+            "channel_id":""
+        },
+        "discord":{
+            "send_message_channel":{
+                "on_ready":[
+                ],
+                "notice":[
+                ]
+            }
+        }
+    },
+    "external":{
+        "youtube":{
+            "api_key":"",
+            "client_id":"",
+            "client_secret":"",
+            "web": {
+                "client_id": "",
+                "project_id": "",
+                "auth_uri": "",
+                "token_uri": "",
+                "auth_provider_x509_cert_url": "",
+                "client_secret": ""
+            }
+        },
+        "discord":{
+            "client_id":0,
+            "client_secret":"",
+            "public_key":"",
+            "bot_token":"",
+            "scope":{
+                "redirect_url":null,
+                "bot":[
+                    "view_channel (1024)",
+                    "send_message (2048)",
+                    "embed_links (16384)",
+                    "attach_files (32768)",
+                    "read_message_history (65536)",
+                    "mention_everyone (131072)",
+                    "use_slash_command (2147483648)",
+                    "use_embedded_activities (549755813888)"
+                ]
+            },
+            "install_context":{
+                "user":false,
+                "guild":true
+            },
+            "bot_invite_url":""
+        }
+    }
 }
 ```
 
