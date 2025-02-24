@@ -261,7 +261,12 @@ async def on_ready():
 
     # アクティビティステータスを設定
     # https://qiita.com/ryo_001339/items/d20777035c0f67911454
-    client.user.setStatus(PresenceUpdateStatus.Online)
+    await client.user.setStatus(PresenceUpdateStatus.Online)
+    await client.user.setActivity({ 
+        name: '`!ytb help`',
+        type: ActivityType.Custom
+    });
+
     
     for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
         print('Discord channel({0})に起動メッセージ送信中'.format(
