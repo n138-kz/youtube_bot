@@ -64,7 +64,7 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 1. Create new application.
 1. Reset OAuth2 information.
 1. Reset bot token.
-1. Turn on Message Content Intent
+1. Turn on `Message Content Intent`
 ![](docs/assets/d0fa711d463ea216a117245a8b945635.webp)
 
 ## Sample of .secret/config
