@@ -263,7 +263,7 @@ async def on_ready():
     # https://qiita.com/ryo_001339/items/d20777035c0f67911454
     await client.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name='`!ytb help`'))
 
-    
+    # 起動メッセージ送信
     for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
         print('Discord channel({0})に起動メッセージ送信中'.format(
             channel_id
