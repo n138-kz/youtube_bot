@@ -140,23 +140,23 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 |:-|:-|:-|:-|
 |`.internal.build.requirement`|🟢False|||
 |`.internal.youtube.notice_limit`|🟠True|||
-|`.internal.youtube.cycle_interval`|True|||
-|`.internal.youtube.channel_id`|True|||
-|`.internal.discord.send_message_channel.on_ready`|True||指定しない場合は`[]`|
-|`.internal.discord.send_message_channel.notice`|True||指定しない場合は`[]`|
-|`.external.youtube.api_key`|True|||
-|`.external.youtube.client_id`|True|||
-|`.external.youtube.client_secret`|True|||
-|`.external.youtube.web`|False|||
-|`.external.discord.client_id`|True|||
-|`.external.discord.client_secret`|True|||
-|`.external.discord.public_key`|False|||
-|`.external.discord.bot_token`|True|||
-|`.external.discord.scope.redirect_url`|False|||
-|`.external.discord.scope.bot`|False|||
-|`.external.discord.install_context.user`|False|||
-|`.external.discord.install_context.guild`|False|||
-|`.external.discord.bot_invite_url`|False|||
+|`.internal.youtube.cycle_interval`|🟠True|||
+|`.internal.youtube.channel_id`|🟠True|||
+|`.internal.discord.send_message_channel.on_ready`|🟠True||指定しない場合は`[]`|
+|`.internal.discord.send_message_channel.notice`|🟠True||指定しない場合は`[]`|
+|`.external.youtube.api_key`|🟠True|||
+|`.external.youtube.client_id`|🟠True|||
+|`.external.youtube.client_secret`|🟠True|||
+|`.external.youtube.web`|🟢False|||
+|`.external.discord.client_id`|🟠True|||
+|`.external.discord.client_secret`|🟠True|||
+|`.external.discord.public_key`|🟢False|||
+|`.external.discord.bot_token`|🟠True|||
+|`.external.discord.scope.redirect_url`|🟢False|||
+|`.external.discord.scope.bot`|🟢False|||
+|`.external.discord.install_context.user`|🟢False|||
+|`.external.discord.install_context.guild`|🟢False|||
+|`.external.discord.bot_invite_url`|🟢False|||
 
 </details>
 
