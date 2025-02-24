@@ -259,6 +259,10 @@ async def on_ready():
     #スラッシュコマンドを同期
     await tree.sync()
 
+    # アクティビティステータスを設定
+    # https://qiita.com/ryo_001339/items/d20777035c0f67911454
+    client.user.setStatus(PresenceUpdateStatus.Online)
+    
     for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
         print('Discord channel({0})に起動メッセージ送信中'.format(
             channel_id
