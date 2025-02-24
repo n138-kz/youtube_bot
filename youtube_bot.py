@@ -249,7 +249,7 @@ async def on_ready():
     print('通知メッセージ送信先: ',end='')
     for s in config['internal']['discord']['send_message_channel']['notice']:
         print('{},'.format(s),end='')
-    print('')
+    print('\n')
     print('[Youtube]')
     print('動画投稿監視チャンネル: {}'.format(YOUTUBE_CHANNEL_ID))
     print('動画投稿監視間隔: {}'.format(config['internal']['youtube']['cycle_interval']))
