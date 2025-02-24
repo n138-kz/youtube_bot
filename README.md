@@ -137,7 +137,7 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 ```
 
 |項目名|必須|デフォルト値|説明|
-|:-:|||
+|:-:|:-|:-|:-|
 |`.internal.build.requirement`|False|||
 |`.internal.youtube.notice_limit`|True|||
 |`.internal.youtube.cycle_interval`|True|||
