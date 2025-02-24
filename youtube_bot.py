@@ -269,9 +269,8 @@ async def on_ready():
             channel_id
         ))
         channel = client.get_channel(channel_id)
-        await channel.send('{0}\n{1}'.format(
+        await channel.send('{0}'.format(
             client.user.name.capitalize()+"が起動しました",
-            '[Discord Developers Console](https://discord.com/developers/applications/1342289249365659778)',
         ))
         print('Discord channel({0})に起動メッセージ送信完了'.format(
             channel_id
