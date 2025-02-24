@@ -249,7 +249,7 @@ async def on_ready():
     print('通知メッセージ送信先: ',end='')
     for s in config['internal']['discord']['send_message_channel']['notice']:
         print('{},'.format(s),end='')
-    print('')
+    print('\n')
     print('[Youtube]')
     print('動画投稿監視チャンネル: {}'.format(YOUTUBE_CHANNEL_ID))
     print('動画投稿監視間隔: {}'.format(config['internal']['youtube']['cycle_interval']))
@@ -259,6 +259,11 @@ async def on_ready():
     #スラッシュコマンドを同期
     await tree.sync()
 
+    # アクティビティステータスを設定
+    # https://qiita.com/ryo_001339/items/d20777035c0f67911454
+    await client.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name='`!ytb help`'))
+
+    # 起動メッセージ送信
     for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
         print('Discord channel({0})に起動メッセージ送信中'.format(
             channel_id
