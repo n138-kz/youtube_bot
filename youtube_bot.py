@@ -11,6 +11,45 @@ import logging
 from apiclient.discovery import build
 from discord.ext import commands, tasks
 
+def default_config():
+    config = {}
+    config['internal'] = {} # require
+    config['internal']['build'] = {} # optional
+    config['internal']['build']['requirement'] = [] # optional
+    config['internal']['youtube'] = {} # require
+    config['internal']['youtube']['notice_limit'] = 3600 # require
+    config['internal']['youtube']['cycle_interval'] = 300 # require
+    config['internal']['youtube']['channel_id'] = '' # require
+    config['internal']['discord'] = {} # require
+    config['internal']['discord']['send_message_channel'] = {} # require
+    config['internal']['discord']['send_message_channel']['on_ready'] = [] # require
+    config['internal']['discord']['send_message_channel']['notice'] = [] # require
+    config['external'] = {} # require
+    config['external']['youtube'] = {} # require
+    config['external']['youtube']['api_key'] = '' # require
+    config['external']['youtube']['client_id'] = '' # optional
+    config['external']['youtube']['client_secret'] = '' # optional
+    config['external']['youtube']['web'] = {} # optional
+    config['external']['youtube']['web']['client_id'] = {} # optional
+    config['external']['youtube']['web']['project_id'] = {} # optional
+    config['external']['youtube']['web']['auth_uri'] = {} # optional
+    config['external']['youtube']['web']['token_uri'] = {} # optional
+    config['external']['youtube']['web']['auth_provider_x509_cert_url'] = {} # optional
+    config['external']['youtube']['web']['client_secret'] = {} # optional
+    config['external']['discord'] = {} # require
+    config['external']['discord']['client_id'] = '' # optional
+    config['external']['discord']['client_secret'] = '' # optional
+    config['external']['discord']['public_key'] = '' # optional
+    config['external']['discord']['bot_token'] = '' # require
+    config['external']['discord']['scope'] = {} # optional
+    config['external']['discord']['scope']['redirect_url'] = None # optional
+    config['external']['discord']['scope']['bot'] = [] # optional
+    config['external']['discord']['scope']['install_context'] = {} # optional
+    config['external']['discord']['scope']['install_context']['user'] = False # optional
+    config['external']['discord']['scope']['install_context']['guild'] = True # optional
+    config['external']['discord']['scope']['bot_invite_url'] = '' # optional
+    return config
+
 def load_config():
     config = None
     with open('.secret/config.json') as f:
