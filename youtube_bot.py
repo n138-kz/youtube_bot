@@ -153,14 +153,6 @@ def ytb_getChannelId(type='youtube'):
         return YOUTUBE_CHANNEL_ID
     elif type=='discord':
         return json.dumps(DISCORD_SEND_MESSAGE)
-    
-async def ytb_uploadNoticeFile(message,file=GLOBAL_FILE['notice_log']):
-    print('call def ytb_uploadNoticeFile')
-    if not(os.path.exists(file)):
-        with open(file,mode='w',encoding='UTF-8') as f:
-            json.dump([],f)
-    await message.reply(files=[discord.File(file)])
-    print('send file:{}'.format(file))
 
 intents=discord.Intents.default()
 intents.message_content = True
@@ -218,7 +210,11 @@ async def on_message(message):
                 # 管理者コマンド
                 print(json.dumps(message.author.guild_permissions.administrator))
                 if message.author.guild_permissions.administrator:
-                    ytb_uploadNoticeFile()
+                    file=GLOBAL_FILE['notice_log']
+                    if not(os.path.exists(file)):
+                        with open(file,mode='w',encoding='UTF-8') as f:
+                            json.dump([],f)
+                    await message.reply(files=[discord.File(file)])
                 else:
                     await message.reply(GLOBAL_TEXT['err'][LOCALE]['your_not_admin'])
             elif message.content == "!ytb youtube rawitems":
