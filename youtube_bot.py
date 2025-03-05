@@ -155,10 +155,12 @@ def ytb_getChannelId(type='youtube'):
         return json.dumps(DISCORD_SEND_MESSAGE)
     
 async def ytb_uploadNoticeFile(message,file=GLOBAL_FILE['notice_log']):
+    print('call def ytb_uploadNoticeFile')
     if not(os.path.exists(file)):
         with open(file,mode='w',encoding='UTF-8') as f:
             json.dump([],f)
     await message.reply(files=[discord.File(file)])
+    print('send file:{}'.format(file))
 
 intents=discord.Intents.default()
 intents.message_content = True
