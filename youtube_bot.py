@@ -38,11 +38,11 @@ def commit_config(config=default_config(),file=''):
 def load_config(config_file = '.secret/config.json'):
     config = default_config()
     if not(os.path.isfile(config_file)):
-        with open(config_file, mode='w') as f:
-            json.dump(config, f)
+        commit_config(config=config,file=config_file)
 
     with open(config_file) as f:
         config = config | json.load(f)
+        commit_config(config=config,file=config_file)
     return config
 
 def print_version():
