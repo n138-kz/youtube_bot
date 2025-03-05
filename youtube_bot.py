@@ -16,6 +16,7 @@ GLOBAL_FILE = {
     'config': '.secret/config.json', # 設定
     'notice_log': 'notice.json', # 通知状態管理ファイル
     'except_log': 'except.log',
+    'async_log': 'log/async_%time.log',
 }
 
 # メッセージ定義
@@ -406,6 +407,12 @@ async def on_ready():
             )
             response = await channel.send(embed=embed)
             print(response)
+            file=GLOBAL_FILE['async_log'].replace('%time',time.time())
+            if not(os.path.isdir(os.path.dirname(file))):
+                os.mkdir(os.path.dirname(file))
+            if os.path.isfile(file):
+                with open(file,encoding='UTF-8') as f:
+                    print(response,file=f)
             print('Discord channel({0})に起動メッセージ送信完了'.format( channel_id ))
         except:
             pass
