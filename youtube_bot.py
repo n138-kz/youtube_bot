@@ -33,6 +33,7 @@ def load_config():
     config = default_config()
     with open('.secret/config.json') as f:
         config = json.load(f)
+    config_file = '.secret/config.json'
     return config
 
 def print_version():
