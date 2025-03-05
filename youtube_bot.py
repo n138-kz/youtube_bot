@@ -317,9 +317,9 @@ async def loops():
     except Exception as e:
         logging.error(f'Error has occured: {e}')
         print(f'Error has occured: \n{e}')
-        print(e.content)
-        print(e.reason)
-        print(e.error_details)
+        print('content{}'.format(e.content))
+        print('reason{}'.format(e.reason))
+        print('error_details{}'.format(e.error_details))
         for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
             channel = client.get_channel(channel_id)
             file = GLOBAL_FILE['except_log']
