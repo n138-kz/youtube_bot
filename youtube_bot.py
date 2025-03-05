@@ -319,7 +319,7 @@ async def loops():
             channel = client.get_channel(channel_id)
             embed = discord.Embed(
                 title='Error has occured',
-                description='```\n{e}\n```',
+                description=f'```\n{e}\n```',
                 color=0xff0000,
                 url=GLOBAL_TEXT['url']['github']['repository'],
             )
