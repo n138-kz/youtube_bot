@@ -11,6 +11,8 @@ test*.*
 result.json
 detail.json
 notice.json
+except.log
+log/
 
 # Secret files
 *.env
