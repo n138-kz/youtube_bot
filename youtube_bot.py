@@ -67,6 +67,9 @@ YOUTUBE_CHANNEL_ID = config['internal']['youtube']['channel_id']
 # 動画投稿監視間隔 default=300s(5min)
 YOUTUBE_CYCLE_INTERVAL = config['internal']['youtube']['cycle_interval']
 
+# 通知送信タイムリミット default=3600s(a-hour)
+YOUTUBE_NOTICE_LIMIT = config['internal']['youtube']['notice_limit']
+
 def getYoutubeItems():
     """
     * @return :Dictionary
@@ -217,7 +220,7 @@ async def loops():
                 'video_id': item['id']['videoId'],
                 'flag': 0,
             })
-            if abs(math.trunc(time.time())-data[len(data)-1]['publishedAt'])>config['internal']['youtube']['notice_limit']:
+            if abs(math.trunc(time.time())-data[len(data)-1]['publishedAt'])>YOUTUBE_NOTICE_LIMIT:
                 data[len(data)-1]['flag']=data[len(data)-1]['flag']|1
             for l in notice:
                 if l['video_id'] == data[len(data)-1]['video_id']:
@@ -287,8 +290,8 @@ async def on_ready():
     print('\n')
     print('[Youtube]')
     print('動画投稿監視チャンネル: {}'.format(YOUTUBE_CHANNEL_ID))
-    print('通知送信タイムリミット: {}'.format(config['internal']['youtube']['notice_limit']))
     print('動画投稿監視間隔: {}'.format(YOUTUBE_CYCLE_INTERVAL))
+    print('通知送信タイムリミット: {}'.format(YOUTUBE_NOTICE_LIMIT))
     print('--設定情報--\n')
 
     #スラッシュコマンドを同期
