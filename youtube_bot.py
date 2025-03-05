@@ -105,6 +105,10 @@ async def on_message(message):
         if message.author.bot:
             return
         
+        # テキストチャンネルのみ処理
+        if message.channel.type != discord.ChannelType.text:
+            return
+        
         if message.content.startswith('!ytb'):
             print(f'on_message: {message.content}')
 
