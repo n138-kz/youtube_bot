@@ -17,6 +17,8 @@ GLOBAL_FILE = {
     'notice_log': 'notice.json' # 通知状態管理ファイル
 }
 
+LOCALE = 'en'
+
 def default_config():
     config = {}
     config['internal'] = {} # require
@@ -81,6 +83,9 @@ YOUTUBE_CYCLE_INTERVAL = config['internal']['youtube']['cycle_interval']
 
 # 通知送信タイムリミット default=3600s(a-hour)
 YOUTUBE_NOTICE_LIMIT = config['internal']['youtube']['notice_limit']
+
+# 言語
+LOCALE = 'ja'
 
 def getYoutubeItems():
     """
