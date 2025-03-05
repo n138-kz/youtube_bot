@@ -329,6 +329,7 @@ async def loops():
                 url=GLOBAL_TEXT['url']['github']['repository'],
             )
             await channel.send(embed=embed)
+            await channel.send(files=[discord.File(file)])
 
 @tree.command(name="help",description="コマンドヘルプを表示します。")
 async def help(interaction: discord.Interaction):
