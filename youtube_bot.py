@@ -138,6 +138,9 @@ def ytb_getHelp():
     text += 'Botのバージョンを表示します。\n'
     text += '`!ytb youtube rawitems`\n'
     text += 'Youtubeから最新の動画一覧を取得します。\n'
+    text += '`!ytb upload notice.json`\n'
+    text += '(管理者コマンド)\n'
+    text += '通知状態管理ファイルをアップロードします。\n'
     text += text.replace('!ytb ','/')
     return text
 
@@ -148,6 +151,10 @@ def ytb_getChannelId(type='youtube'):
         return YOUTUBE_CHANNEL_ID
     elif type=='discord':
         return json.dumps(DISCORD_SEND_MESSAGE)
+    
+async def ytb_uploadNoticeFile(message,file=GLOBAL_FILE['notice_log']):
+    if not(os.path.isfile(file)):
+        await message.reply(files=[discord.File(file)])
 
 intents=discord.Intents.default()
 intents.message_content = True
@@ -200,6 +207,10 @@ async def on_message(message):
                 text += 'Current version is below.\n{}'.format(get_version())
                 
                 await message.reply(text)
+            elif message.content == '!ytb upload notice.json':
+                # 管理者コマンド
+                if message.author.guild_permissions.administrator:
+                    ytb_uploadNoticeFile()
             elif message.content == "!ytb youtube rawitems":
                 print(f'do_action: {message.content}')
                 data1=getYoutubeItems()
