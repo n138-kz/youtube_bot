@@ -317,6 +317,7 @@ async def loops():
     except Exception as e:
         logging.error(f'Error has occured: {e}')
         print(f'Error has occured: \n{e}')
+        print(dir(e))
         for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
             channel = client.get_channel(channel_id)
             file = GLOBAL_FILE['except_log']
@@ -415,7 +416,7 @@ async def on_ready():
                     print(response,file=f)
             print('Discord channel({0})に起動メッセージ送信完了'.format( channel_id ))
         except Exception as e:
-            print(e)
+            print(dir(e))
 
     loops.start()
 
