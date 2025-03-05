@@ -414,8 +414,8 @@ async def on_ready():
                 with open(file,encoding='UTF-8') as f:
                     print(response,file=f)
             print('Discord channel({0})に起動メッセージ送信完了'.format( channel_id ))
-        except:
-            pass
+        except Exception as e:
+            print(e)
 
     loops.start()
 
