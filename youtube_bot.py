@@ -374,16 +374,12 @@ async def on_ready():
 
     # 起動メッセージ送信
     for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
-        print('Discord channel({0})に起動メッセージ送信中'.format(
-            channel_id
-        ))
+        print('Discord channel({0})に起動メッセージ送信中'.format( channel_id ))
         channel = client.get_channel(channel_id)
         await channel.send('{0}'.format(
             client.user.name.capitalize()+"が起動しました",
         ))
-        print('Discord channel({0})に起動メッセージ送信完了'.format(
-            channel_id
-        ))
+        print('Discord channel({0})に起動メッセージ送信完了'.format( channel_id ))
 
     loops.start()
 
