@@ -208,6 +208,7 @@ async def on_message(message):
                 
                 await message.reply(text)
             elif message.content == '!ytb upload notice.json':
+                print(f'do_action: {message.content}')
                 # 管理者コマンド
                 if message.author.guild_permissions.administrator:
                     ytb_uploadNoticeFile()
