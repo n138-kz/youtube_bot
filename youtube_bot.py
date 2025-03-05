@@ -31,9 +31,9 @@ def default_config():
 
 def load_config():
     config = default_config()
-    with open('.secret/config.json') as f:
-        config = json.load(f)
     config_file = '.secret/config.json'
+    with open(config_file) as f:
+        config = config | json.load(f)
     return config
 
 def print_version():
