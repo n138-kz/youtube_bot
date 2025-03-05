@@ -1,0 +1,6 @@
+{
+    "dependencies": {
+        "google-api-python-client": ">=2.161.0",
+        "discord": ">=2.3.2"
+    }
+}
