@@ -259,8 +259,8 @@ async def on_message(message):
                 text += 'Hint: Run `!ytb help`\n'
 
                 await message.reply(text)
-    except:
-        pass
+    except Exception as e:
+        print(e)
 
 @tasks.loop(seconds=YOUTUBE_CYCLE_INTERVAL)
 async def loops():
