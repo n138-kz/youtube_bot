@@ -17,6 +17,16 @@ GLOBAL_FILE = {
     'notice_log': 'notice.json' # 通知状態管理ファイル
 }
 
+# エラーメッセージ
+ERROR_TEXT = {
+    'en':{
+        'incomplete_command': '% Incomplete command.',
+    },
+    'ja':{
+        'incomplete_command': 'コマンドが不完全です。',
+    }
+}
+
 LOCALE = 'en'
 
 def default_config():
