@@ -400,7 +400,7 @@ async def on_ready():
                 color=0x00ff00,
                 url=GLOBAL_TEXT['url']['github']['repository'],
             )
-            embed.set_thumbnail(client.avatar.url)
+            embed.set_thumbnail(url=client.avatar.url)
             await channel.send(embed=embed)
             print('Discord channel({0})に起動メッセージ送信完了'.format( channel_id ))
         except:
