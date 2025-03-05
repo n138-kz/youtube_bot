@@ -10,6 +10,7 @@ import pytz
 import logging
 from apiclient.discovery import build
 from discord.ext import commands, tasks
+from re import sub as preg_replace
 
 # ファイルパス
 GLOBAL_FILE = {
@@ -315,11 +316,8 @@ async def loops():
             )
         print(f'{console}')
     except Exception as e:
-        logging.error(f'Error has occured: {e}')
-        print(f'Error has occured: \n{e}')
-        print('content{}'.format(e.content))
-        print('reason{}'.format(e.reason))
-        print('error_details{}'.format(e.error_details))
+        logging.error('Error has occured: {}'.format(e.reason))
+        print('Error has occured: {}'.format(e.reason))
         for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
             channel = client.get_channel(channel_id)
             file = GLOBAL_FILE['except_log']
@@ -328,7 +326,7 @@ async def loops():
 
             embed = discord.Embed(
                 title='Error has occured',
-                description=f'```\n{e}\n```',
+                description='```\n{}\n```'.format(preg_replace(r"<\w*>|</\w*>|<\w*\s\w*=\"\w*\">",'',e.reason)),
                 color=0xff0000,
                 url=GLOBAL_TEXT['url']['github']['repository'],
             )
