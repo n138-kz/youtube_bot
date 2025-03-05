@@ -322,6 +322,10 @@ async def youtube(interaction: discord.Interaction):
     # 送信する
     await interaction.response.send_message(GLOBAL_TEXT[LOCALE]['incomplete_command'],ephemeral=True)#ephemeral=True→「これらはあなただけに表示されています」
 
+@tree.command(name="upload",description="コマンドヘルプを参照してください。")
+async def upload(interaction: discord.Interaction):
+    # 送信する
+    await interaction.response.send_message(GLOBAL_TEXT[LOCALE]['incomplete_command'],ephemeral=True)#ephemeral=True→「これらはあなただけに表示されています」
 
 # botが起動したときの処理 [discord.pyを使用したdiscord botの作り方](https://qiita.com/TakeMimi/items/1e2d76eecc25e92c93ef#210-ver)
 @client.event
