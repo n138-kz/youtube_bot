@@ -197,14 +197,14 @@ async def on_message(message):
                 text = ''
                 text += '\n'
                 text += data3+'\n'
-                print(text)
+
                 await message.reply(text, files=[discord.File('result.json'),discord.File('detail.json')])
             else:
                 print(f'do_action: not recognised commands')
 
                 text = 'Not recognised commands.\n'
                 text += 'Hint: Run `!ytb help`\n'
-                print(text)
+
                 await message.reply(text)
     except:
         sys.exit()
