@@ -22,9 +22,11 @@ GLOBAL_TEXT = {
     'err': {
         'en':{
             'incomplete_command': '% Incomplete command.',
+            'your_not_admin': 'Your NOT Administrators.',
         },
         'ja':{
             'incomplete_command': 'コマンドが不完全です。',
+            'your_not_admin': 'あなたは管理者ロールが付与されていません。',
         }
     },
     'msg': {
@@ -212,6 +214,8 @@ async def on_message(message):
                 # 管理者コマンド
                 if message.author.guild_permissions.administrator:
                     ytb_uploadNoticeFile()
+                else:
+                    await message.reply(GLOBAL_TEXT['err'][LOCALE]['your_not_admin'])
             elif message.content == "!ytb youtube rawitems":
                 print(f'do_action: {message.content}')
                 data1=getYoutubeItems()
