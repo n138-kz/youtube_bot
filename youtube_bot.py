@@ -406,7 +406,6 @@ async def on_ready():
                 url=GLOBAL_TEXT['url']['github']['repository'],
             )
             response = await channel.send(embed=embed)
-            print(response)
             file=GLOBAL_FILE['async_log'].replace('%time',str(math.trunc(time.time())))
             if not(os.path.isdir(os.path.dirname(file))):
                 os.mkdir(os.path.dirname(file))
@@ -415,7 +414,7 @@ async def on_ready():
                     print(response,file=f)
             print('Discord channel({0})に起動メッセージ送信完了'.format( channel_id ))
         except Exception as e:
-            print(dir(e))
+            print(e)
 
     loops.start()
 
