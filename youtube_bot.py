@@ -14,7 +14,8 @@ from discord.ext import commands, tasks
 # ファイルパス
 GLOBAL_FILE = {
     'config': '.secret/config.json', # 設定
-    'notice_log': 'notice.json' # 通知状態管理ファイル
+    'notice_log': 'notice.json', # 通知状態管理ファイル
+    'except_log': 'except.log',
 }
 
 # メッセージ定義
@@ -317,6 +318,10 @@ async def loops():
         print(f'Error has occured: \n{e}')
         for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
             channel = client.get_channel(channel_id)
+            file = GLOBAL_FILE['except_log']
+            with open(file,mode='w',encoding='UTF-8') as f:
+                print(e,file=f)
+
             embed = discord.Embed(
                 title='Error has occured',
                 description=f'```\n{e}\n```',
