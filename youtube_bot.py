@@ -45,9 +45,15 @@ def load_config(config_file = '.secret/config.json'):
         commit_config(config=config,file=config_file)
     return config
 
-def print_version():
-    print("python: "+sys.version)
-    print("discordpy: "+discord.__version__+' ('+str(discord.version_info)+')')
+def get_version(returnable=True):
+    text = ''
+    text += '\n'
+    text += 'python\n```\n'+sys.version+'```\n'
+    text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
+    if returnable:
+        return text
+    else:
+        print(text)
 
 print_version()
 config = load_config()
@@ -150,10 +156,8 @@ async def on_message(message):
             elif message.content == "!ytb version":
                 print(f'do_action: {message.content}')
                 text = ''
-                text += 'Current version is below.\n'
-                text += 'python\n```\n'+sys.version+'```\n'
-                text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
-                print(text)
+                text += 'Current version is below.\n{}'.format(get_version())
+                
                 await message.reply(text)
             elif message.content == "!ytb youtube rawitems":
                 print(f'do_action: {message.content}')
@@ -271,7 +275,7 @@ async def version(interaction: discord.Interaction):
     text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
 
     # 送信する
-    await interaction.response.send_message(f"Current version is below.\n{text}",ephemeral=True)#ephemeral=True→「これらはあなただけに表示されています」
+    await interaction.response.send_message("Current version is below.\n{}".format(get_version()),ephemeral=True)#ephemeral=True→「これらはあなただけに表示されています」
 
 # botが起動したときの処理 [discord.pyを使用したdiscord botの作り方](https://qiita.com/TakeMimi/items/1e2d76eecc25e92c93ef#210-ver)
 @client.event
