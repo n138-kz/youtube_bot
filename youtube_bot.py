@@ -98,6 +98,28 @@ def getYoutubeItems():
 
     return response
 
+def ytb_getHelp():
+    text = ''
+    text += '\n'
+    text += '`!ytb help`\n'
+    text += 'コマンドマニュアルを表示します。\n'
+    text += '`!ytb ping`\n'
+    text += 'Botのレイテンシを測定します。\n'
+    text += '`!ytb version`\n'
+    text += 'Botのバージョンを表示します。\n'
+    text += '`!ytb youtube rawitems`\n'
+    text += 'Youtubeから最新の動画一覧を取得します。\n'
+    text += text.replace('!ytb ','/')
+    return text
+
+def ytb_getChannelId(type='youtube'):
+    if type==False:
+        pass
+    elif type=='youtube':
+        return YOUTUBE_CHANNEL_ID
+    elif type=='discord':
+        return json.dumps(DISCORD_SEND_MESSAGE)
+
 intents=discord.Intents.default()
 intents.message_content = True
 intents.reactions = True
@@ -126,18 +148,8 @@ async def on_message(message):
 
             if message.content == "!ytb help":
                 print(f'do_action: {message.content}')
-                text = ''
-                text += '\n'
-                text += '`!ytb help`\n'
-                text += 'コマンドマニュアルを表示します。\n'
-                text += '`!ytb ping`\n'
-                text += 'Botのレイテンシを測定します。\n'
-                text += '`!ytb version`\n'
-                text += 'Botのバージョンを表示します。\n'
-                text += '`!ytb youtube rawitems`\n'
-                text += 'Youtubeから最新の動画一覧を取得します。\n'
-                print(text)
-                await message.reply(text)
+
+                await message.reply(ytb_getHelp())
             elif message.content == "!ytb ping":
                 # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
                 print(f'do_action: {message.content}')
@@ -255,6 +267,10 @@ async def loops():
         for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
             channel = client.get_channel(channel_id)
             await channel.send(f'Error has occured: \n```\n{e}\n```\n')
+
+@tree.command(name="help",description="コマンドヘルプを表示します。")
+async def ping(interaction: discord.Interaction):
+    await interaction.response.send_message(ytb_getHelp(),ephemeral=True)#ephemeral=True→「これらはあなただけに表示されています」
 
 @tree.command(name="ping",description="Botのレイテンシを測定します。")
 async def ping(interaction: discord.Interaction):
