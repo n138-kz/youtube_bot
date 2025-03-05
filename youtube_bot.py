@@ -414,7 +414,7 @@ async def on_ready():
             if not(os.path.isdir(os.path.dirname(file))):
                 os.mkdir(os.path.dirname(file))
             with open(file,encoding='UTF-8',mode='w') as f:
-                f.write(response)
+                f.write('{}'.format(response))
             print('Discord channel({0})に起動メッセージ送信完了'.format( channel_id ))
         except Exception as e:
             print(e)
