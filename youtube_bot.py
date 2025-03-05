@@ -32,6 +32,10 @@ def default_config():
 def load_config():
     config = default_config()
     config_file = '.secret/config.json'
+    if not(os.path.isfile(config_file)):
+        with open(config_file, mode='w') as f:
+            json.dump(config, f)
+
     with open(config_file) as f:
         config = config | json.load(f)
     return config
