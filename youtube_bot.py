@@ -29,15 +29,14 @@ def default_config():
     config['external']['discord']['bot_token'] = '' # require
     return config
 
-def load_config():
 def commit_config(config=default_config(),file=''):
     config['internal']['meta'] = {}
     config['internal']['meta']['written_at'] = math.trunc(time.time())
     with open(file, mode='w') as f:
         json.dump(config, f)
 
+def load_config(config_file = '.secret/config.json'):
     config = default_config()
-    config_file = '.secret/config.json'
     if not(os.path.isfile(config_file)):
         with open(config_file, mode='w') as f:
             json.dump(config, f)
