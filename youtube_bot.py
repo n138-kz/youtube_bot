@@ -11,6 +11,12 @@ import logging
 from apiclient.discovery import build
 from discord.ext import commands, tasks
 
+# ファイルパス
+GLOBAL_FILE = {
+    'config': '.secret/config.json', # 設定
+    'notice_log': 'notice.json' # 通知状態管理ファイル
+}
+
 def default_config():
     config = {}
     config['internal'] = {} # require
@@ -29,13 +35,13 @@ def default_config():
     config['external']['discord']['bot_token'] = '' # require
     return config
 
-def commit_config(config=default_config(),file=''):
+def commit_config(config=default_config(),file=GLOBAL_FILE['config']):
     config['internal']['meta'] = {}
     config['internal']['meta']['written_at'] = math.trunc(time.time())
     with open(file, mode='w') as f:
         json.dump(config, f)
 
-def load_config(config_file = '.secret/config.json'):
+def load_config(config_file=GLOBAL_FILE['config']):
     config = default_config()
     if not(os.path.isfile(config_file)):
         commit_config(config=config,file=config_file)
@@ -56,7 +62,7 @@ def get_version(returnable=True):
         print(text)
 
 get_version(returnable=False)
-config = load_config()
+config = load_config(config_file=GLOBAL_FILE['config'])
 
 # Discord APIトークン
 DISCORD_API_TOKEN = config['external']['discord']['bot_token']
@@ -217,7 +223,7 @@ async def loops():
         data=[]
         console=''
         for item in YOUTUBE_CONTENTS['items']:
-            file='notice.json'
+            file=GLOBAL_FILE['notice_log']
             notice=[]
             if not(os.path.exists(file)):
                 with open(file,mode='w',encoding='UTF-8') as f:
