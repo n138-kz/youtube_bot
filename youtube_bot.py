@@ -55,7 +55,7 @@ config = load_config()
 # Discord APIトークン
 DISCORD_API_TOKEN = config['external']['discord']['bot_token']
 
-# botが起動したときに送信するチャンネル一覧
+# botが起動したときに送信するチャンネル一覧 type=dict
 DISCORD_SEND_MESSAGE=config['internal']['discord']['send_message_channel']
 
 # Youtube APIトークン
@@ -281,11 +281,11 @@ async def on_ready():
     print('--設定情報--')
     print('[Discord]')
     print('起動メッセージ送信先: ',end='')
-    for s in config['internal']['discord']['send_message_channel']['on_ready']:
+    for s in DISCORD_SEND_MESSAGE['on_ready']:
         print('{},'.format(s),end='')
     print('')
     print('通知メッセージ送信先: ',end='')
-    for s in config['internal']['discord']['send_message_channel']['notice']:
+    for s in DISCORD_SEND_MESSAGE['notice']:
         print('{},'.format(s),end='')
     print('\n')
     print('[Youtube]')
