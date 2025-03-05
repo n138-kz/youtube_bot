@@ -55,7 +55,7 @@ def get_version(returnable=True):
     else:
         print(text)
 
-print_version()
+get_version(returnable=False)
 config = load_config()
 
 # Discord APIトークン
