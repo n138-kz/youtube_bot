@@ -64,6 +64,9 @@ YOUTUBE_API_KEY = config['external']['youtube']['api_key']
 # 新着動画を監視するチャンネルID
 YOUTUBE_CHANNEL_ID = config['internal']['youtube']['channel_id']
 
+# 動画投稿監視間隔 default=300s(5min)
+YOUTUBE_CYCLE_INTERVAL = config['internal']['youtube']['cycle_interval']
+
 def getYoutubeItems():
     """
     * @return :Dictionary
@@ -187,7 +190,7 @@ async def on_message(message):
     except:
         sys.exit()
 
-@tasks.loop(seconds=config['internal']['youtube']['cycle_interval'])
+@tasks.loop(seconds=YOUTUBE_CYCLE_INTERVAL)
 async def loops():
     logging.basicConfig(level=logging.ERROR)
     try:
@@ -284,8 +287,8 @@ async def on_ready():
     print('\n')
     print('[Youtube]')
     print('動画投稿監視チャンネル: {}'.format(YOUTUBE_CHANNEL_ID))
-    print('動画投稿監視間隔: {}'.format(config['internal']['youtube']['cycle_interval']))
     print('通知送信タイムリミット: {}'.format(config['internal']['youtube']['notice_limit']))
+    print('動画投稿監視間隔: {}'.format(YOUTUBE_CYCLE_INTERVAL))
     print('--設定情報--\n')
 
     #スラッシュコマンドを同期
