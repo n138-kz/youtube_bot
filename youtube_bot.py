@@ -30,7 +30,7 @@ def default_config():
     return config
 
 def load_config():
-    config = None
+    config = default_config()
     with open('.secret/config.json') as f:
         config = json.load(f)
     return config
