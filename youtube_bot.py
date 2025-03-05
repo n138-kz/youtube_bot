@@ -275,7 +275,7 @@ async def loops():
             await channel.send(f'Error has occured: \n```\n{e}\n```\n')
 
 @tree.command(name="help",description="コマンドヘルプを表示します。")
-async def ping(interaction: discord.Interaction):
+async def help(interaction: discord.Interaction):
     await interaction.response.send_message(ytb_getHelp(),ephemeral=True)#ephemeral=True→「これらはあなただけに表示されています」
 
 @tree.command(name="ping",description="Botのレイテンシを測定します。")
