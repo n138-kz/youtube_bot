@@ -407,7 +407,7 @@ async def on_ready():
             )
             response = await channel.send(embed=embed)
             print(response)
-            file=GLOBAL_FILE['async_log'].replace('%time',time.time())
+            file=GLOBAL_FILE['async_log'].replace('%time',str(math.trunc(time.time())))
             if not(os.path.isdir(os.path.dirname(file))):
                 os.mkdir(os.path.dirname(file))
             if os.path.isfile(file):
