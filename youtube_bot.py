@@ -376,9 +376,12 @@ async def on_ready():
     for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
         print('Discord channel({0})に起動メッセージ送信中'.format( channel_id ))
         channel = client.get_channel(channel_id)
-        await channel.send('{0}'.format(
-            client.user.name.capitalize()+"が起動しました",
-        ))
+        embed = discord.Embed(
+            title=client.user.name.capitalize(),
+            description=client.user.name.capitalize()+"が起動しました",
+            color=0x00ff00,
+        )
+        await channel.send(embed=embed)
         print('Discord channel({0})に起動メッセージ送信完了'.format( channel_id ))
 
     loops.start()
