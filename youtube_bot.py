@@ -291,10 +291,6 @@ async def ping(interaction: discord.Interaction):
 
 @tree.command(name="version",description="Botのバージョンを表示します。")
 async def version(interaction: discord.Interaction):
-    text = ''
-    text += '\n'
-    text += 'python\n```\n'+sys.version+'```\n'
-    text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
 
     # 送信する
     await interaction.response.send_message("Current version is below.\n{}".format(get_version()),ephemeral=True)#ephemeral=True→「これらはあなただけに表示されています」
