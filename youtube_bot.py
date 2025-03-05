@@ -365,6 +365,10 @@ async def upload(interaction: discord.Interaction):
 @client.event
 async def on_ready():
     print('--設定情報--')
+    print('[Bot]')
+    print('Bot name: {}'.format(client.user.name.capitalize()))
+    print('Bot avatar: {}'.format(client.user.avatar.url))
+
     print('[Discord]')
     print('起動メッセージ送信先: ',end='')
     for s in DISCORD_SEND_MESSAGE['on_ready']:
@@ -374,10 +378,12 @@ async def on_ready():
     for s in DISCORD_SEND_MESSAGE['notice']:
         print('{},'.format(s),end='')
     print('\n')
+
     print('[Youtube]')
     print('動画投稿監視チャンネル: {}'.format(YOUTUBE_CHANNEL_ID))
     print('動画投稿監視間隔: {}'.format(YOUTUBE_CYCLE_INTERVAL))
     print('通知送信タイムリミット: {}'.format(YOUTUBE_NOTICE_LIMIT))
+
     print('--設定情報--\n')
 
     #スラッシュコマンドを同期
