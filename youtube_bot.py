@@ -406,7 +406,11 @@ async def on_ready():
                 url=GLOBAL_TEXT['url']['github']['repository'],
             )
             response = await channel.send(embed=embed)
-            file=GLOBAL_FILE['async_log'].replace('%time',str(math.trunc(time.time())))
+            file='{0}/{1}'.format(
+                os.getcwd(),
+                GLOBAL_FILE['async_log'].replace('%time',str(math.trunc(time.time())))
+            )
+            print(file)
             if not(os.path.isdir(os.path.dirname(file))):
                 os.mkdir(os.path.dirname(file))
             if os.path.isfile(file):
