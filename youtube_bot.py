@@ -207,7 +207,7 @@ async def on_message(message):
 
                 await message.reply(text)
     except:
-        sys.exit()
+        pass
 
 @tasks.loop(seconds=YOUTUBE_CYCLE_INTERVAL)
 async def loops():
