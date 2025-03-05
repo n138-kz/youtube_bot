@@ -17,14 +17,22 @@ GLOBAL_FILE = {
     'notice_log': 'notice.json' # 通知状態管理ファイル
 }
 
-# エラーメッセージ
-ERROR_TEXT = {
-    'en':{
-        'incomplete_command': '% Incomplete command.',
+# メッセージ定義
+GLOBAL_TEXT = {
+    'err': {
+        'en':{
+            'incomplete_command': '% Incomplete command.',
+        },
+        'ja':{
+            'incomplete_command': 'コマンドが不完全です。',
+        }
     },
-    'ja':{
-        'incomplete_command': 'コマンドが不完全です。',
-    }
+    'msg': {
+        'en':{
+        },
+        'ja':{
+        }
+    },
 }
 
 LOCALE = 'en'
