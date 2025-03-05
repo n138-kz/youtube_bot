@@ -391,17 +391,20 @@ async def on_ready():
 
     # 起動メッセージ送信
     for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
-        print('Discord channel({0})に起動メッセージ送信中'.format( channel_id ))
-        channel = client.get_channel(channel_id)
-        embed = discord.Embed(
-            title=client.user.name.capitalize(),
-            description=client.user.name.capitalize()+"が起動しました",
-            color=0x00ff00,
-            url=GLOBAL_TEXT['url']['github']['repository'],
-        )
-        embed.set_thumbnail(client.avatar.url)
-        await channel.send(embed=embed)
-        print('Discord channel({0})に起動メッセージ送信完了'.format( channel_id ))
+        try:
+            print('Discord channel({0})に起動メッセージ送信中'.format( channel_id ))
+            channel = client.get_channel(channel_id)
+            embed = discord.Embed(
+                title=client.user.name.capitalize(),
+                description=client.user.name.capitalize()+"が起動しました",
+                color=0x00ff00,
+                url=GLOBAL_TEXT['url']['github']['repository'],
+            )
+            embed.set_thumbnail(client.avatar.url)
+            await channel.send(embed=embed)
+            print('Discord channel({0})に起動メッセージ送信完了'.format( channel_id ))
+        except:
+            pass
 
     loops.start()
 
