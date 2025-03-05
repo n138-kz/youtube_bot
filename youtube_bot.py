@@ -30,6 +30,12 @@ def default_config():
     return config
 
 def load_config():
+def commit_config(config=default_config(),file=''):
+    config['internal']['meta'] = {}
+    config['internal']['meta']['written_at'] = math.trunc(time.time())
+    with open(file, mode='w') as f:
+        json.dump(config, f)
+
     config = default_config()
     config_file = '.secret/config.json'
     if not(os.path.isfile(config_file)):
