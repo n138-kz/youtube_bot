@@ -35,6 +35,11 @@ GLOBAL_TEXT = {
         'ja':{
         }
     },
+    'url': {
+        'github': {
+            'repository': 'https://github.com/n138-kz/youtube_bot',
+        }
+    }
 }
 
 LOCALE = 'en'
@@ -380,6 +385,7 @@ async def on_ready():
             title=client.user.name.capitalize(),
             description=client.user.name.capitalize()+"が起動しました",
             color=0x00ff00,
+            url=GLOBAL_TEXT['url']['github']['repository'],
         )
         await channel.send(embed=embed)
         print('Discord channel({0})に起動メッセージ送信完了'.format( channel_id ))
