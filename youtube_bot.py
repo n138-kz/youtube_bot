@@ -264,11 +264,16 @@ async def on_message(message):
 
                     embed = discord.Embed(title='Commit',description=text,color=0x00ff00)
                     embed.add_field(
-                        name='Before',
-                        value='`{0}`\n'.format(
-                            id_old
+                        name='Before: '+id_old,
+                        value='ID: [{0}](https://www.youtube.com/channel/{0})\nName: [{1}](https://www.youtube.com/channel/{0})\n[thumbnails]({2})\nView:{3}\nSubscriber:{4}\nVideo:{5}'.format(
+                            id_old,
+                            channel_info_old['snippet']['title'],
+                            channel_info_old['snippet']['thumbnails']['default']['url'],
+                            channel_info_old['statistics']['viewCount'],
+                            channel_info_old['statistics']['subscriberCount'],
+                            channel_info_old['statistics']['videoCount'],
                         ),
-                        inline=True
+                        inline=False
                     )
                     embed.add_field(
                         name='After',
@@ -277,9 +282,6 @@ async def on_message(message):
                         ),
                         inline=True
                     )
-                    embed.add_field(
-                        name='Before: '+id_old,
-
                     await message.reply(embed=embed)
                 else:
                     embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000)
