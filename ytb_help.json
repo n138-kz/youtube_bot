@@ -24,6 +24,10 @@
         "discord list channel": {
             "description": "通知先チャンネル一覧を表示します。",
             "admin":false
+        },
+        "discord add channel": {
+            "description": "通知先チャンネルに現在のチャンネルを追加します。",
+            "admin":false
         }
     }
 }

@@ -245,6 +245,7 @@ async def on_message(message):
         if message.content.startswith('!ytb'):
             print(f'on_message: {message.content}')
             global YOUTUBE_CHANNEL_ID
+            global DISCORD_SEND_MESSAGE
 
             if False:
                 pass
@@ -290,6 +291,74 @@ async def on_message(message):
                 else:
                     embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000)
                     await message.reply(embed=embed)
+            elif message.content.startswith('!ytb discord add channel'):
+                print(f'do_action: {message.content}')
+                print(f'do_author: {message.author.name}')
+
+                args=message.content.replace('!ytb discord list channel','').strip()
+                if len(args)==0:
+                    embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['require_args'],color=0xff0000)
+                    print(await message.reply(embed=embed))
+                else:
+                    """
+                    args[0]: type in "on_ready", "notice"
+                    """
+                    #message.guild.id
+                    #message.channel.id
+                    channels=DISCORD_SEND_MESSAGE
+
+                    if False:
+                        pass
+                    elif args[0] == 'on_ready':
+                        for channel_id in channels[args[0]]:
+                            if message.channel.id == channel_id:
+                                embed = discord.Embed(
+                                    title='Commit',description=GLOBAL_TEXT['err'][LOCALE]['alredy_defined'],color=0x00ff00,
+                                    url=GLOBAL_TEXT['url']['github']['repository'],
+                                    timestamp=datetime.datetime.now(datetime.timezone.utc),
+                                )
+                                break
+                        config['internal']['discord']['send_message_channel'][args[0]].append(message.channel.id)
+                        DISCORD_SEND_MESSAGE=config['internal']['discord']['send_message_channel']
+                        commit_config(config)
+                        channel = client.get_channel(channel_id)
+                        text='カテゴリ:{3}にチャンネル([{1}](https://discord.com/channels/{2}/{0}/))を新しく追加しました。'.format(
+                            channel.id,
+                            channel.name,
+                            channel.guild.id,
+                            args[0],
+                        )
+                        embed = discord.Embed(
+                            title='Commit',description=text,color=0x00ff00,
+                            url=GLOBAL_TEXT['url']['github']['repository'],
+                            timestamp=datetime.datetime.now(datetime.timezone.utc),
+                        )
+                        print(await message.reply(embed=embed))
+                    elif args[0] == 'notice':
+                        for channel_id in channels[args[0]]:
+                            if message.channel.id == channel_id:
+                                embed = discord.Embed(
+                                    title='Commit',description=GLOBAL_TEXT['err'][LOCALE]['alredy_defined'],color=0x00ff00,
+                                    url=GLOBAL_TEXT['url']['github']['repository'],
+                                    timestamp=datetime.datetime.now(datetime.timezone.utc),
+                                )
+                                break
+                        config['internal']['discord']['send_message_channel'][args[0]].append(message.channel.id)
+                        DISCORD_SEND_MESSAGE=config['internal']['discord']['send_message_channel']
+                        commit_config(config)
+                        channel = client.get_channel(channel_id)
+                        text='カテゴリ:{3}にチャンネル([{1}](https://discord.com/channels/{2}/{0}/))を新しく追加しました。'.format(
+                            channel.id,
+                            channel.name,
+                            channel.guild.id,
+                            args[0],
+                        )
+                        embed = discord.Embed(
+                            title='Commit',description=text,color=0x00ff00,
+                            url=GLOBAL_TEXT['url']['github']['repository'],
+                            timestamp=datetime.datetime.now(datetime.timezone.utc),
+                        )
+                        print(await message.reply(embed=embed))
             elif message.content.startswith('!ytb discord list channel'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
