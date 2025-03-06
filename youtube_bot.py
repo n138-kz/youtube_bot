@@ -301,6 +301,12 @@ async def on_message(message):
                 args+=' .'
                 args=args.split()
                 print(f'args: "{args}"')
+                if len(args)==0 or len(args[0])==0:
+                    embed = discord.Embed(
+                        title='Error',description=GLOBAL_TEXT['err'][LOCALE]['require_args'],color=0xff0000,
+                        url=GLOBAL_TEXT['url']['github']['repository'],
+                        timestamp=datetime.datetime.now(datetime.timezone.utc),
+                    )
                     print(await message.reply(embed=embed))
                 else:
                     """
