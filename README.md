@@ -119,6 +119,8 @@ Youtube_Data_API --> youtube_bot --> Discord
 
 - python 3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]
 - discordpy 2.5.0 (VersionInfo(major=2, minor=5, micro=0, releaselevel='final', serial=0))
+- google-api-python-client 2.161.0
+
 
 ## License
 
