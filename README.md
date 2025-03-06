@@ -96,27 +96,15 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 }
 ```
 
-|項目名|必須|デフォルト値|説明|
-|:-|:-|:-|:-|
-|`.internal.build.requirement`|🟢False|||
-|`.internal.discord.send_message_channel.on_ready`|🟠True||指定しない場合は`[]`|
-|`.internal.discord.send_message_channel.notice`|🟠True||指定しない場合は`[]`|
-|`.internal.youtube.cycle_interval`|🟠True|||
-|`.internal.youtube.channel_id`|🟠True|||
-|`.internal.youtube.notice_limit`|🟠True|||
-|`.external.youtube.api_key`|🟠True|||
-|`.external.youtube.client_id`|🟠True|||
-|`.external.youtube.client_secret`|🟠True|||
-|`.external.youtube.web`|🟢False|||
-|`.external.discord.bot_token`|🟠True|||
-|`.external.discord.client_id`|🟠True|||
-|`.external.discord.client_secret`|🟠True|||
-|`.external.discord.bot_invite_url`|🟢False|||
-|`.external.discord.public_key`|🟢False|||
-|`.external.discord.scope.bot`|🟢False|||
-|`.external.discord.scope.redirect_url`|🟢False|||
-|`.external.discord.install_context.user`|🟢False|||
-|`.external.discord.install_context.guild`|🟢False|||
+|項目名|デフォルト値|説明|
+|:-|:-|:-|
+|`.internal.discord.send_message_channel.on_ready`|`[]`|**起動**メッセージ送信先のチャンネルIDを整数リスト形式で記載します。|
+|`.internal.discord.send_message_channel.notice`|`[]`|**通知**メッセージ送信先のチャンネルIDを整数リスト形式で記載します。|
+|`.internal.youtube.cycle_interval`|300|単位: 秒(デフォルト: 5分)|
+|`.internal.youtube.channel_id`||動画投稿監視チャンネルID|
+|`.internal.youtube.notice_limit`|3600|単位: 秒(デフォルト: 1時間)|
+|`.external.youtube.api_key`||Youtube API アクセスキー|
+|`.external.discord.bot_token`||Discord API Botトークン|
 
 </details>
 
