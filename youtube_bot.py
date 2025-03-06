@@ -62,6 +62,7 @@ def default_config():
     config['internal']['discord']['send_message_channel'] = {} # require
     config['internal']['discord']['send_message_channel']['on_ready'] = [] # require
     config['internal']['discord']['send_message_channel']['notice'] = [] # require
+    config['internal']['local']['do_loop'] = True # require
     config['external'] = {} # require
     config['external']['youtube'] = {} # require
     config['external']['youtube']['api_key'] = '' # require
@@ -735,7 +736,8 @@ async def on_ready():
         except Exception as e:
             print(e)
 
-    loops.start()
+    if config['internal']['local']['do_loop']:
+        loops.start()
 
 # botを起動
 def main():
