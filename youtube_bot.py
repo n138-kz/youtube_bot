@@ -446,27 +446,30 @@ async def upload(interaction: discord.Interaction):
 # botが起動したときの処理 [discord.pyを使用したdiscord botの作り方](https://qiita.com/TakeMimi/items/1e2d76eecc25e92c93ef#210-ver)
 @client.event
 async def on_ready():
-    print('--設定情報--')
+    text_print=''
+    text_print+=''
+    text_print+='--設定情報--\n\n'
 
-    print('[Discord]')
-    print('Bot name: {}'.format(client.user.name.capitalize()))
-    print('Bot avatar: {}'.format(client.user.avatar.url))
-    print('起動メッセージ送信先: ',end='')
+    text_print+=''
+    text_print+='[Discord]\n'
+    text_print+='Bot name: `{0}`\n'.format(client.user.name.capitalize())
+    text_print+='起動メッセージ送信先: '
     for s in DISCORD_SEND_MESSAGE['on_ready']:
-        print('{},'.format(s),end='')
-    print('')
-    print('通知メッセージ送信先: ',end='')
+        text_print+='`{}`,'.format(s)
+    text_print+='\n'
+    text_print+='通知メッセージ送信先: '
     for s in DISCORD_SEND_MESSAGE['notice']:
-        print('{},'.format(s),end='')
-    print('\n')
+        text_print+='`{}`,'.format(s)
+    text_print+='\n'
+    text_print+='\n'
 
-    print('[Youtube]')
-    print('動画投稿監視チャンネル: {}'.format(YOUTUBE_CHANNEL_ID))
-    print('動画投稿監視間隔: {}'.format(YOUTUBE_CYCLE_INTERVAL))
-    print('通知送信タイムリミット: {}'.format(YOUTUBE_NOTICE_LIMIT))
-    print('\n')
+    text_print+='[Youtube]\n'
+    text_print+='動画投稿監視チャンネル: `{}`\n'.format(YOUTUBE_CHANNEL_ID)
+    text_print+='動画投稿監視間隔: `{}`\n'.format(YOUTUBE_CYCLE_INTERVAL)
+    text_print+='通知送信タイムリミット: `{}`\n'.format(YOUTUBE_NOTICE_LIMIT)
+    text_print+='\n'
 
-    print('--設定情報--\n')
+    print(text_print.replace('`',''))
 
     #スラッシュコマンドを同期
     await tree.sync()
