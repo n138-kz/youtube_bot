@@ -503,4 +503,8 @@ async def on_ready():
     loops.start()
 
 # botを起動
-client.run(DISCORD_API_TOKEN)
+def main():
+    client.run(DISCORD_API_TOKEN)
+
+if __name__ == '__main__':
+    main()
