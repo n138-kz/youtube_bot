@@ -121,6 +121,9 @@ Youtube_Data_API --> youtube_bot --> Discord
 - discordpy 2.5.0 (VersionInfo(major=2, minor=5, micro=0, releaselevel='final', serial=0))
 - google-api-python-client 2.161.0
 
+```sh
+if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+```
 
 ## License
 
