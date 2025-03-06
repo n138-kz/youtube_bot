@@ -259,6 +259,11 @@ async def on_message(message):
                         message.content,
                     )
 
+                    channel_info_old=getYoutubeChannels(channel_id=id_old)
+                    channel_info_old=channel_info_old['items']
+                    channel_info_new=getYoutubeChannels(channel_id=id_new)
+                    channel_info_new=channel_info_new['items']
+
                     embed = discord.Embed(title='Commit',description=text,color=0x00ff00)
                     embed.add_field(
                         name='Before',
@@ -274,6 +279,8 @@ async def on_message(message):
                         ),
                         inline=True
                     )
+                    embed.add_field(
+                        name='Before: '+id_old,
 
                     await message.reply(embed=embed)
                 else:
