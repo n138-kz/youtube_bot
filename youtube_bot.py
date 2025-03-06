@@ -207,6 +207,7 @@ async def on_message(message):
         
         if message.content.startswith('!ytb'):
             print(f'on_message: {message.content}')
+            global YOUTUBE_CHANNEL_ID
 
             if message.content == "!ytb help":
                 print(f'do_action: {message.content}')
