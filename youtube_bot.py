@@ -546,15 +546,15 @@ async def on_ready():
             guild = channel.guild
             guild_id = guild.id
 
-            print('Discord channel({0}/{1})に起動メッセージ送信中'.format( guild_id,channel_id ))
+            print('Discord channel({0}/{1})に起動メッセージ送信中: '.format( guild_id,channel_id ),end='')
             channel = client.get_channel(channel_id)
             embed = discord.Embed(
                 title=client.user.name.capitalize(),
                 description='{0}が起動しました。'.format(client.user.name.capitalize()),
                 color=0x00ff00,
                 url=GLOBAL_TEXT['url']['github']['repository'],
+                timestamp=datetime.datetime.now(datetime.timezone.utc),
             )
-            embed.timestamp=datetime.datetime.now(datetime.timezone.utc)
             embed.add_field(name='設定情報',value=text_markdown,inline=False)
             embed.set_thumbnail(url=client.user.avatar.url)
             response = await channel.send(embed=embed)
@@ -562,12 +562,13 @@ async def on_ready():
                 os.getcwd(),
                 GLOBAL_FILE['async_log'].replace('%time',str(math.trunc(time.time())))
             )
-            print(file)
             if not(os.path.isdir(os.path.dirname(file))):
                 os.mkdir(os.path.dirname(file))
             with open(file,encoding='UTF-8',mode='w') as f:
                 f.write('{}'.format(response))
-            print('Discord channel({0}/{1})に起動メッセージ送信完了'.format( guild_id,channel_id ))
+            print('... [ OK ]')
+
+            print('Ready.')
         except Exception as e:
             print(e)
 
