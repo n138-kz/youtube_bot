@@ -321,8 +321,14 @@ async def loops():
         for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
             channel = client.get_channel(channel_id)
             file = GLOBAL_FILE['except_log']
+            text = '{0}\n\n<Except reason>\n{1}\n\n<Except content>\n{2}\n\n<Except error_details>\n{3}\n'.format(
+                e,
+                e.reason,
+                e.content,
+                e.error_details,
+            )
             with open(file,mode='w',encoding='UTF-8') as f:
-                print(e,file=f)
+                print(text,file=f)
 
             embed = discord.Embed(
                 title='Error has occured',
