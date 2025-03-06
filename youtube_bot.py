@@ -322,7 +322,7 @@ async def on_message(message):
                         for channel_id in channels[args[0]]:
                             if message.channel.id == channel_id:
                                 embed = discord.Embed(
-                                    title='Commit',description=GLOBAL_TEXT['err'][LOCALE]['alredy_defined'],color=0x00ff00,
+                                    title='Result',description=GLOBAL_TEXT['err'][LOCALE]['alredy_defined'],color=0x00ff00,
                                     url=GLOBAL_TEXT['url']['github']['repository'],
                                     timestamp=datetime.datetime.now(datetime.timezone.utc),
                                 )
@@ -338,7 +338,7 @@ async def on_message(message):
                             args[0],
                         )
                         embed = discord.Embed(
-                            title='Commit',description=text,color=0x00ff00,
+                            title='Result',description=text,color=0x00ff00,
                             url=GLOBAL_TEXT['url']['github']['repository'],
                             timestamp=datetime.datetime.now(datetime.timezone.utc),
                         )
@@ -347,7 +347,7 @@ async def on_message(message):
                         for channel_id in channels[args[0]]:
                             if message.channel.id == channel_id:
                                 embed = discord.Embed(
-                                    title='Commit',description=GLOBAL_TEXT['err'][LOCALE]['alredy_defined'],color=0x00ff00,
+                                    title='Result',description=GLOBAL_TEXT['err'][LOCALE]['alredy_defined'],color=0x00ff00,
                                     url=GLOBAL_TEXT['url']['github']['repository'],
                                     timestamp=datetime.datetime.now(datetime.timezone.utc),
                                 )
@@ -363,7 +363,7 @@ async def on_message(message):
                             args[0],
                         )
                         embed = discord.Embed(
-                            title='Commit',description=text,color=0x00ff00,
+                            title='Result',description=text,color=0x00ff00,
                             url=GLOBAL_TEXT['url']['github']['repository'],
                             timestamp=datetime.datetime.now(datetime.timezone.utc),
                         )
@@ -413,7 +413,7 @@ async def on_message(message):
                         del tmp
                     text=json.dumps(channels,indent=2,ensure_ascii=False)
                     embed = discord.Embed(
-                        title='Commit',description=text,color=0x00ff00,
+                        title='Result',description=text,color=0x00ff00,
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
