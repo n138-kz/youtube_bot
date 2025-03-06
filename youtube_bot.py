@@ -9,6 +9,7 @@ import time
 import pytz
 import logging
 import traceback
+import zlib
 from apiclient.discovery import build
 from discord.ext import commands, tasks
 
@@ -50,7 +51,10 @@ GLOBAL_TEXT = {
 }
 
 LOCALE = 'en'
-VERSION = os.stat(__file__).st_mtime
+VERSION = '{0}.{1}'.format(
+    datetime.datetime.fromtimestamp(os.stat(__file__).st_mtime).strftime('%Y%m%d.%H%M%S'),
+    zlib.crc32(str(os.stat(__file__).st_mtime).encode('utf-8'))
+)
 
 def default_config():
     config = {}
