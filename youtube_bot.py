@@ -306,7 +306,6 @@ async def on_message(message):
                         for channel_id in channels[k]:
                             channel = client.get_channel(channel_id)
                             guild = channel.guild
-                            print('k: {0}, guild_id: {1}, channel_id: {2}'.format(k,guild.id,channel_id,))
                             tmp[k]|={guild.id: channel_id}
                     channels=tmp
                     print('channels: {0}'.format(channels))
