@@ -163,6 +163,34 @@ def getYoutubeChannels(channel_id=YOUTUBE_CHANNEL_ID):
             continue
         return item
 
+def getHumanableTime(second=0,mode='arr',format='%H:%m:%S'):
+    """
+    @args
+    second: int; i<=0
+    mode: str; i=["arr", 'str']
+    format: str; i='%H:%m:%S'
+    """
+    time=[0,0,second]
+    while second>=60:
+        if False:
+            pass
+        elif second>=3600:
+            time[0]+=1
+            second-=3600
+        elif second>=60:
+            time[1]+=1
+            second-=60
+    time[2]=second
+
+    if mode=='arr':
+        return time
+    elif mode=='str':
+        text=format
+        text=text.replace('%H', str(time[0]).zfill(2))
+        text=text.replace('%m', str(time[1]).zfill(2))
+        text=text.replace('%S', str(time[2]).zfill(2))
+        return text
+
 def ytb_getHelp():
     text = ''
     text += '\n'
@@ -489,10 +517,10 @@ async def on_ready():
     text_markdown+='[Youtube]\n'
     text_print+='動画投稿監視チャンネル: `{}`\n'.format(YOUTUBE_CHANNEL_ID)
     text_markdown+='動画投稿監視チャンネル: [{0}](https://www.youtube.com/channel/{0})\n'.format(YOUTUBE_CHANNEL_ID)
-    text_print+='動画投稿監視間隔: `{}`\n'.format(YOUTUBE_CYCLE_INTERVAL)
-    text_markdown+='動画投稿監視間隔: `{}`\n'.format(YOUTUBE_CYCLE_INTERVAL)
-    text_print+='通知送信タイムリミット: `{}`\n'.format(YOUTUBE_NOTICE_LIMIT)
-    text_markdown+='通知送信タイムリミット: `{}`\n'.format(YOUTUBE_NOTICE_LIMIT)
+    text_print+='動画投稿監視間隔: `{0}`({1})\n'.format(YOUTUBE_CYCLE_INTERVAL,getHumanableTime(second=YOUTUBE_CYCLE_INTERVAL,mode='str'))
+    text_markdown+='動画投稿監視間隔: `{0}`({1})\n'.format(YOUTUBE_CYCLE_INTERVAL,getHumanableTime(second=YOUTUBE_CYCLE_INTERVAL,mode='str'))
+    text_print+='通知送信タイムリミット: `{0}`({1})\n'.format(YOUTUBE_NOTICE_LIMIT,getHumanableTime(second=YOUTUBE_NOTICE_LIMIT,mode='str'))
+    text_markdown+='通知送信タイムリミット: `{0}`({1})\n'.format(YOUTUBE_NOTICE_LIMIT,getHumanableTime(second=YOUTUBE_NOTICE_LIMIT,mode='str'))
     text_print+='\n'
     text_markdown+='\n'
 
