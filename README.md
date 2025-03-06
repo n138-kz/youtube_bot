@@ -35,6 +35,7 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://console.cloud.google.com/)YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/quotas?inv=1&invt=AbqMUg&project=bold-rampart-413416)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://discord.com)Developer Console](https://discord.com/developers/applications)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://discord.com)Discord公式リファレンス](https://discord.com/developers/docs/topics/oauth2)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://discord.com)discord.py APIリファレンス](https://discordpy.readthedocs.io/ja/latest/api.html)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://scrapbox.io)OAuth2 Scopesの一覧](https://scrapbox.io/discordwiki/OAuth2_Scopes%E3%81%AE%E4%B8%80%E8%A6%A7)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com)http_post](https://github.com/n138-kz/http_post)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://qiita.com)discord.pyを使用したdiscord botの作り方](https://qiita.com/TakeMimi/items/1e2d76eecc25e92c93ef#210-ver)
