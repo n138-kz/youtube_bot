@@ -297,9 +297,10 @@ async def on_message(message):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
 
-                args=message.content.replace('!ytb discord list channel','').strip()
-                if len(args)==0:
-                    embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['require_args'],color=0xff0000)
+                args=message.content.replace('!ytb discord add channel','').strip()
+                args+=' .'
+                args=args.split()
+                print(f'args: "{args}"')
                     print(await message.reply(embed=embed))
                 else:
                     """
