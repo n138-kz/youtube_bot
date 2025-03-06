@@ -449,25 +449,40 @@ async def on_ready():
     text_print=''
     text_print+=''
     text_print+='--設定情報--\n\n'
+    text_markdown=''
+    text_markdown+=''
 
     text_print+=''
+    text_markdown+=''
     text_print+='[Discord]\n'
+    text_markdown+='[Discord]\n'
     text_print+='Bot name: `{0}`\n'.format(client.user.name.capitalize())
+    text_markdown+='Bot name: [{0}](https://discord.com/developers/applications/{1})\n'.format(client.user.name.capitalize(),client.user.id)
     text_print+='起動メッセージ送信先: '
+    text_markdown+='起動メッセージ送信先:\n'
     for s in DISCORD_SEND_MESSAGE['on_ready']:
         text_print+='`{}`,'.format(s)
+        text_markdown+='- `{}`\n'.format(s)
     text_print+='\n'
     text_print+='通知メッセージ送信先: '
+    text_markdown+='通知メッセージ送信先:\n'
     for s in DISCORD_SEND_MESSAGE['notice']:
         text_print+='`{}`,'.format(s)
+        text_markdown+='- `{}`\n'.format(s)
     text_print+='\n'
     text_print+='\n'
+    text_markdown+='\n'
 
     text_print+='[Youtube]\n'
+    text_markdown+='[Youtube]\n'
     text_print+='動画投稿監視チャンネル: `{}`\n'.format(YOUTUBE_CHANNEL_ID)
+    text_markdown+='動画投稿監視チャンネル: [{0}](https://www.youtube.com/channel/{0})\n'.format(YOUTUBE_CHANNEL_ID)
     text_print+='動画投稿監視間隔: `{}`\n'.format(YOUTUBE_CYCLE_INTERVAL)
+    text_markdown+='動画投稿監視間隔: `{}`\n'.format(YOUTUBE_CYCLE_INTERVAL)
     text_print+='通知送信タイムリミット: `{}`\n'.format(YOUTUBE_NOTICE_LIMIT)
+    text_markdown+='通知送信タイムリミット: `{}`\n'.format(YOUTUBE_NOTICE_LIMIT)
     text_print+='\n'
+    text_markdown+='\n'
 
     print(text_print.replace('`',''))
 
@@ -489,6 +504,7 @@ async def on_ready():
                 color=0x00ff00,
                 url=GLOBAL_TEXT['url']['github']['repository'],
             )
+            embed.add_field(name='設定情報',value=text_markdown,inline=False)
             response = await channel.send(embed=embed)
             file='{0}/{1}'.format(
                 os.getcwd(),
