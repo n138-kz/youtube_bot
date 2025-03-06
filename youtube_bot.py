@@ -63,6 +63,7 @@ def default_config():
     config['internal']['discord']['send_message_channel']['on_ready'] = [] # require
     config['internal']['discord']['send_message_channel']['notice'] = [] # require
     config['internal']['local']['do_loop'] = True # require
+    config['internal']['local']['do_sync_slash_command'] = True # require
     config['external'] = {} # require
     config['external']['youtube'] = {} # require
     config['external']['youtube']['api_key'] = '' # require
@@ -697,8 +698,11 @@ async def on_ready():
 
     # スラッシュコマンドを同期
     print('スラッシュコマンドを同期中: ',end='')
-    await tree.sync()
-    print('... [ OK ]')
+    if config['internal']['local']['do_sync_slash_command']:
+        await tree.sync()
+        print('... [ OK ]')
+    else:
+        print('... [ IGNORE ]')
 
     # アクティビティステータスを設定
     # https://qiita.com/ryo_001339/items/d20777035c0f67911454
