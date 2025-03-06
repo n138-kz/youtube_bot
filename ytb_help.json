@@ -2,7 +2,7 @@
     "prefix": "!ytb",
     "command": {
         "help": {
-            "description": "コマンドマニュアルを表示します。",
+            "description": "コマンドヘルプを表示します。",
             "admin":false
         },
         "version": {
