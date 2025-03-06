@@ -88,7 +88,7 @@ def get_version(returnable=True):
     if returnable:
         return text
     else:
-        print(text)
+        print(text.replace('`',''))
 
 get_version(returnable=False)
 config = load_config(config_file=GLOBAL_FILE['config'])
