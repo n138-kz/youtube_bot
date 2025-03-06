@@ -111,6 +111,10 @@ YOUTUBE_CYCLE_INTERVAL = config['internal']['youtube']['cycle_interval']
 # 通知送信タイムリミット default=3600s(a-hour)
 YOUTUBE_NOTICE_LIMIT = config['internal']['youtube']['notice_limit']
 
+# Youtube API Access path
+YOUTUBE_API_SERVICE_NAME = 'youtube'
+YOUTUBE_API_VERSION = 'v3'
+
 # 言語
 LOCALE = 'ja'
 
@@ -118,9 +122,6 @@ def getYoutubeItems():
     """
     * @return :Dictionary
     """
-    YOUTUBE_API_SERVICE_NAME = 'youtube'
-    YOUTUBE_API_VERSION = 'v3'
-
     youtube = build(
         YOUTUBE_API_SERVICE_NAME,
         YOUTUBE_API_VERSION,
