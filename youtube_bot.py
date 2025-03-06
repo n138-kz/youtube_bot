@@ -506,6 +506,7 @@ async def on_ready():
             )
             embed.timestamp=datetime.datetime.now(datetime.timezone.utc)
             embed.add_field(name='設定情報',value=text_markdown,inline=False)
+            embed.set_thumbnail(url=client.user.avatar.url)
             response = await channel.send(embed=embed)
             file='{0}/{1}'.format(
                 os.getcwd(),
