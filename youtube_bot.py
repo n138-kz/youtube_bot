@@ -10,6 +10,7 @@ import pytz
 import logging
 import traceback
 import zlib
+import hashlib
 from apiclient.discovery import build
 from discord.ext import commands, tasks
 
@@ -52,8 +53,12 @@ GLOBAL_TEXT = {
 
 LOCALE = 'en'
 VERSION = '{0}.{1}'.format(
-    datetime.datetime.fromtimestamp(os.stat(__file__).st_mtime).strftime('%Y%m%d.%H%M%S'),
-    zlib.crc32(str(os.stat(__file__).st_mtime).encode('utf-8'))
+    datetime.datetime.fromtimestamp(os.stat(__file__).st_mtime).strftime('%Y%m%d'),
+    datetime.datetime.fromtimestamp(os.stat(__file__).st_mtime).strftime('%H%M%S'),
+)
+VERSION = '{0}.{1}'.format(
+    VERSION,
+    hashlib.md5(str(zlib.crc32(str(os.stat(__file__).st_mtime).encode('utf-8'))).encode()).hexdigest()[0:8],
 )
 
 def default_config():
@@ -738,7 +743,16 @@ async def on_ready():
                 url=GLOBAL_TEXT['url']['github']['repository'],
                 timestamp=datetime.datetime.now(datetime.timezone.utc),
             )
-            embed.add_field(name='設定情報',value=text_markdown,inline=False)
+            embed.add_field(
+                name='設定情報',
+                value=text_markdown,
+                inline=False
+            )
+            embed.add_field(
+                name='バージョン',
+                value=get_version(returnable=True,markdown=True),
+                inline=False
+            )
             embed.set_thumbnail(url=client.user.avatar.url)
             response = await channel.send(embed=embed)
             file='{0}/{1}'.format(
