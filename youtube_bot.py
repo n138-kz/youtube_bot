@@ -276,11 +276,16 @@ async def on_message(message):
                         inline=False
                     )
                     embed.add_field(
-                        name='After',
-                        value='`{0}`\n'.format(
-                            id_new
+                        name='After: '+id_new,
+                        value='ID: [{0}](https://www.youtube.com/channel/{0})\nName: [{1}](https://www.youtube.com/channel/{0})\n[thumbnails]({2})\nView:{3}\nSubscriber:{4}\nVideo:{5}'.format(
+                            id_new,
+                            channel_info_new['snippet']['title'],
+                            channel_info_new['snippet']['thumbnails']['default']['url'],
+                            channel_info_new['statistics']['viewCount'],
+                            channel_info_new['statistics']['subscriberCount'],
+                            channel_info_new['statistics']['videoCount'],
                         ),
-                        inline=True
+                        inline=False
                     )
                     await message.reply(embed=embed)
                 else:
