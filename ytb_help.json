@@ -1,0 +1,29 @@
+{
+    "prefix": "!ytb",
+    "command": {
+        "help": {
+            "description": "コマンドマニュアルを表示します。",
+            "admin":false
+        },
+        "version": {
+            "description": "Botのバージョンを表示します。",
+            "admin":false
+        },
+        "ping": {
+            "description": "Botのレイテンシを測定します。",
+            "admin":false
+        },
+        "youtube rawitems": {
+            "description": "Youtubeから最新の動画一覧を取得します。",
+            "admin":false
+        },
+        "upload notice.json": {
+            "description": "通知状態管理ファイルをアップロードします。",
+            "admin":true
+        },
+        "discord list channel": {
+            "description": "通知先チャンネル一覧を表示します。",
+            "admin":false
+        }
+    }
+}
