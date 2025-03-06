@@ -27,11 +27,13 @@ GLOBAL_TEXT = {
             'incomplete_command': '% Incomplete command.',
             'your_not_admin': 'Your NOT Administrators.',
             'require_args': 'Required the args.',
+            'invalid_args': 'Invalid the args.',
         },
         'ja':{
             'incomplete_command': 'コマンドが不完全です。',
             'your_not_admin': 'あなたは管理者ロールが付与されていません。',
             'require_args': '引数が必要です。',
+            'invalid_args': '引数が無効です。',
         }
     },
     'msg': {
@@ -355,6 +357,13 @@ async def on_message(message):
                         )
                         embed = discord.Embed(
                             title='Commit',description=text,color=0x00ff00,
+                            url=GLOBAL_TEXT['url']['github']['repository'],
+                            timestamp=datetime.datetime.now(datetime.timezone.utc),
+                        )
+                        print(await message.reply(embed=embed))
+                    else:
+                        embed = discord.Embed(
+                            title='Error',description=GLOBAL_TEXT['err'][LOCALE]['invalid_args'],color=0xff0000,
                             url=GLOBAL_TEXT['url']['github']['repository'],
                             timestamp=datetime.datetime.now(datetime.timezone.utc),
                         )
