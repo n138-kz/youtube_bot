@@ -1,9 +1,19 @@
+import os
 import json
 from apiclient.discovery import build
 
 def load_config():
     config = None
-    with open('.secret/config.json') as f:
+    # 現在のスクリプトファイルのディレクトリを取得
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # 1つ上の階層のディレクトリパスを取得
+    parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
+
+    # 1つ上の階層にあるファイルのパスを作成
+    file_path = os.path.join(parent_dir, '.secret/config.json')
+
+    with open(file_path) as f:
         config = json.load(f)
     return config
 
@@ -30,5 +40,5 @@ print(channeltitle)
 print(title)
 print(f'https://www.youtube.com/watch?v={videoId}')
 
-json_file=open('test.json', 'w')
-json.dump(snippetInfo,json_file)
+with open(os.path.splitext(os.path.basename(__file__))[0]+'.json',mode='w',encoding='UTF-8') as f:
+    json.dump(obj=snippetInfo,fp=f, indent=2, ensure_ascii=False)
