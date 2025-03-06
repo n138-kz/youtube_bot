@@ -209,11 +209,13 @@ async def on_message(message):
             print(f'on_message: {message.content}')
             global YOUTUBE_CHANNEL_ID
 
-            if message.content == '!ytb help':
+            if False:
+                pass
+            elif message.content.startswith('!ytb help'):
                 print(f'do_action: {message.content}')
 
                 await message.reply(ytb_getHelp())
-            elif message.content == '!ytb ping':
+            elif message.content.startswith('!ytb ping'):
                 # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
                 print(f'do_action: {message.content}')
 
@@ -228,13 +230,13 @@ async def on_message(message):
                 # 送信する
                 print(text)
                 await message.reply(text)
-            elif message.content == '!ytb version':
+            elif message.content.startswith('!ytb version'):
                 print(f'do_action: {message.content}')
                 text = ''
                 text += 'Current version is below.\n{}'.format(get_version())
                 
                 await message.reply(text)
-            elif message.content == '!ytb upload notice.json':
+            elif message.content.startswith('!ytb upload notice.json'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
                 # 管理者コマンド
@@ -308,7 +310,7 @@ async def on_message(message):
                 else:
                     embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000)
                     print(await message.reply(embed=embed))
-            elif message.content == '!ytb youtube rawitems':
+            elif message.content.startswith('!ytb youtube rawitems'):
                 print(f'do_action: {message.content}')
                 data1=getYoutubeItems()
                 data2=[]
