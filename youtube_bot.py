@@ -290,6 +290,11 @@ async def on_message(message):
                         inline=False
                     )
                     embed.set_thumbnail(url=channel_info_new['snippet']['thumbnails']['default']['url'])
+
+                    YOUTUBE_CHANNEL_ID = config['internal']['youtube']['channel_id']
+                    config['internal']['youtube']['channel_id'] = id_new
+                    commit_config(config)
+
                     print(await message.reply(embed=embed))
                 else:
                     embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000)
