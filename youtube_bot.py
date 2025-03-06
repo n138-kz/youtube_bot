@@ -649,8 +649,10 @@ async def on_ready():
 
     print(text_print.replace('`',''))
 
-    #スラッシュコマンドを同期
+    # スラッシュコマンドを同期
+    print('スラッシュコマンドを同期中: ',end='')
     await tree.sync()
+    print('... [ OK ]')
 
     # アクティビティステータスを設定
     # https://qiita.com/ryo_001339/items/d20777035c0f67911454
