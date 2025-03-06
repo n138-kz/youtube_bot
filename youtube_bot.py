@@ -213,11 +213,13 @@ async def on_message(message):
                 pass
             elif message.content.startswith('!ytb help'):
                 print(f'do_action: {message.content}')
+                print(f'do_author: {message.author.name}')
 
                 await message.reply(ytb_getHelp())
             elif message.content.startswith('!ytb ping'):
                 # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
                 print(f'do_action: {message.content}')
+                print(f'do_author: {message.author.name}')
 
                 # Ping値を秒単位で取得
                 raw_ping = client.latency
@@ -232,6 +234,7 @@ async def on_message(message):
                 await message.reply(text)
             elif message.content.startswith('!ytb version'):
                 print(f'do_action: {message.content}')
+                print(f'do_author: {message.author.name}')
                 text = ''
                 text += 'Current version is below.\n{}'.format(get_version())
                 
