@@ -300,15 +300,14 @@ async def on_message(message):
                     print(await message.reply(embed=embed))
                 else:
                     channels=DISCORD_SEND_MESSAGE
-                    tmp={}
+                    tmp={'on_ready':{},'notice':{}}
                     print('channels: {0}'.format(channels))
-                    for k in ['on_ready','notice']:
+                    for k in tmp:
                         for channel_id in channels[k]:
                             channel = client.get_channel(channel_id)
                             guild = channel.guild
-                            tmp1={guild.id: channel_id}
-                            print('k: {0}, guild_id: {1}, channel_id: {2}, tmp1: {3}'.format(k,guild.id,channel_id,tmp1))
-                            tmp|={k:tmp1}
+                            print('k: {0}, guild_id: {1}, channel_id: {2}'.format(k,guild.id,channel_id,))
+                            tmp[k]|={guild.id: channel_id}
                     channels=tmp
                     print('channels: {0}'.format(channels))
                     del tmp
