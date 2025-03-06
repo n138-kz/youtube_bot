@@ -236,6 +236,7 @@ async def on_message(message):
                 await message.reply(text)
             elif message.content == '!ytb upload notice.json':
                 print(f'do_action: {message.content}')
+                print(f'do_author: {message.author.name}')
                 # 管理者コマンド
                 if message.author.guild_permissions.administrator:
                     file=GLOBAL_FILE['notice_log']
