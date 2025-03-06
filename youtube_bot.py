@@ -137,6 +137,26 @@ def getYoutubeItems():
 
     return response
 
+def getYoutubeChannels(channel_id=YOUTUBE_CHANNEL_ID):
+    """
+    * @return :Dictionary
+    """
+    youtube = build(
+        YOUTUBE_API_SERVICE_NAME,
+        YOUTUBE_API_VERSION,
+        developerKey=YOUTUBE_API_KEY
+    )
+
+    response = youtube.channels().list(
+        part='snippet,statistics',
+        id=channel_id
+    ).execute()
+
+    for item in response.get("items", []):
+        if item["kind"] != "youtube#channel":
+            continue
+        return item
+
 def ytb_getHelp():
     text = ''
     text += '\n'
