@@ -497,7 +497,7 @@ async def on_ready():
     text_print+='[Discord]\n'
     text_markdown+='[Discord]\n'
     text_print+='Bot name: `{0}`\n'.format(client.user.name.capitalize())
-    text_markdown+='Bot name: [{0}](https://discord.com/developers/applications/{1})\n'.format(client.user.name.capitalize(),client.user.id)
+    text_markdown+='Bot name: [{0}](https://discord.com/developers/applications/{1})({1})\n'.format(client.user.name.capitalize(),client.user.id)
     text_print+='起動メッセージ送信先: '
     text_markdown+='起動メッセージ送信先:\n'
     for s in DISCORD_SEND_MESSAGE['on_ready']:
