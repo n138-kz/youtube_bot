@@ -246,6 +246,39 @@ async def on_message(message):
                 else:
                     embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000)
                     await message.reply(embed=embed)
+            elif message.content.startswith('!ytb youtube set channel'):
+                print(f'do_action: {message.content}')
+                # 管理者コマンド
+                if message.author.guild_permissions.administrator:
+                    id_old=ytb_getChannelId(type='youtube')
+                    id_new=message.content.replace('!ytb youtube set channel','').strip()
+
+                    text=''
+                    text+=''
+                    text+='Command: `{0}`\nYoutube channel-id has changed.'.format(
+                        message.content,
+                    )
+
+                    embed = discord.Embed(title='Commit',description=text,color=0x00ff00)
+                    embed.add_field(
+                        name='Before',
+                        value='`{0}`\n'.format(
+                            id_old
+                        ),
+                        inline=True
+                    )
+                    embed.add_field(
+                        name='After',
+                        value='`{0}`\n'.format(
+                            id_new
+                        ),
+                        inline=True
+                    )
+
+                    await message.reply(embed=embed)
+                else:
+                    embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000)
+                    await message.reply(embed=embed)
             elif message.content == "!ytb youtube rawitems":
                 print(f'do_action: {message.content}')
                 data1=getYoutubeItems()
