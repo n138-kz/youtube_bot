@@ -248,6 +248,7 @@ async def on_message(message):
                     await message.reply(embed=embed)
             elif message.content.startswith('!ytb youtube set channel'):
                 print(f'do_action: {message.content}')
+                print(f'do_author: {message.author.name}')
                 # 管理者コマンド
                 if message.author.guild_permissions.administrator:
                     id_old=ytb_getChannelId(type='youtube')
