@@ -260,9 +260,7 @@ async def on_message(message):
                     )
 
                     channel_info_old=getYoutubeChannels(channel_id=id_old)
-                    channel_info_old=channel_info_old['items']
                     channel_info_new=getYoutubeChannels(channel_id=id_new)
-                    channel_info_new=channel_info_new['items']
 
                     embed = discord.Embed(title='Commit',description=text,color=0x00ff00)
                     embed.add_field(
