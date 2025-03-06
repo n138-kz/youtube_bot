@@ -502,7 +502,10 @@ async def on_ready():
     # 起動メッセージ送信
     for channel_id in DISCORD_SEND_MESSAGE['on_ready']:
         try:
-            print('Discord channel({0})に起動メッセージ送信中'.format( channel_id ))
+            guild = channel.guild
+            guild_id = guild.id
+
+            print('Discord channel({0}/{1})に起動メッセージ送信中'.format( guild_id,channel_id ))
             channel = client.get_channel(channel_id)
             embed = discord.Embed(
                 title=client.user.name.capitalize(),
@@ -523,7 +526,7 @@ async def on_ready():
                 os.mkdir(os.path.dirname(file))
             with open(file,encoding='UTF-8',mode='w') as f:
                 f.write('{}'.format(response))
-            print('Discord channel({0})に起動メッセージ送信完了'.format( channel_id ))
+            print('Discord channel({0}/{1})に起動メッセージ送信完了'.format( guild_id,channel_id ))
         except Exception as e:
             print(e)
 
