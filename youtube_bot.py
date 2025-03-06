@@ -500,7 +500,7 @@ async def on_ready():
             channel = client.get_channel(channel_id)
             embed = discord.Embed(
                 title=client.user.name.capitalize(),
-                description=client.user.name.capitalize()+"が起動しました",
+                description='{0}が起動しました。'.format(client.user.name.capitalize()),
                 color=0x00ff00,
                 url=GLOBAL_TEXT['url']['github']['repository'],
             )
