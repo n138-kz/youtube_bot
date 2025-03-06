@@ -50,6 +50,7 @@ GLOBAL_TEXT = {
 }
 
 LOCALE = 'en'
+VERSION = os.stat(__file__).st_mtime
 
 def default_config():
     config = {}
@@ -89,16 +90,21 @@ def load_config(config_file=GLOBAL_FILE['config']):
     return config
 
 def get_version(returnable=True,markdown=False):
+    version = {}
+
     text = ''
     text += '\n'
-    if markdown:
-        text += 'python\n```\n'+sys.version+'```\n'
-    else:
-        text += 'python: '+sys.version+'\n'
-    if markdown:
-        text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
-    else:
-        text += 'discordpy: '+discord.__version__+' ('+str(discord.version_info)+')'+'\n'
+
+    version|={'python':sys.version}
+    version|={'discordpy':discord.__version__+' ('+str(discord.version_info)+')'}
+    version|={'google-api-python-client':'2.161.0'}
+    version|={os.path.basename(__file__):VERSION}
+    for i,v in version.items():
+        if markdown:
+            text += '{0}\n```\n{1}```\n'.format( i,v )
+        else:
+            text += '{0}: {1}\n'.format( i,v )
+
     if returnable:
         return text
     else:
@@ -287,7 +293,9 @@ async def on_message(message):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
                 text = ''
-                text += 'Current version is below.\n{}'.format(get_version())
+                text += 'Current version is below.\n{}'.format(
+                    get_version(returnable=True,markdown=True)
+                )
                 
                 await message.reply(text)
             elif message.content.startswith('!ytb upload notice.json'):
@@ -637,7 +645,9 @@ async def ping(interaction: discord.Interaction):
 @tree.command(name="version",description="Botのバージョンを表示します。")
 async def version(interaction: discord.Interaction):
     # 送信する
-    await interaction.response.send_message("Current version is below.\n{}".format(get_version()),ephemeral=True)#ephemeral=True→「これらはあなただけに表示されています」
+    await interaction.response.send_message("Current version is below.\n{}".format(
+        get_version(returnable=True,markdown=True)
+    ),ephemeral=True)#ephemeral=True→「これらはあなただけに表示されています」
 
 @tree.command(name="youtube",description="YoutubeAPIにアクセスします。")
 async def youtube(interaction: discord.Interaction):
