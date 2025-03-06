@@ -287,7 +287,8 @@ async def on_message(message):
                         ),
                         inline=False
                     )
-                    await message.reply(embed=embed)
+                    embed.set_thumbnail(url=channel_info_new['snippet']['thumbnails']['default']['url'])
+                    print(await message.reply(embed=embed))
                 else:
                     embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000)
                     await message.reply(embed=embed)
