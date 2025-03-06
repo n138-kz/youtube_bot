@@ -8,6 +8,7 @@ import datetime
 import time
 import pytz
 import logging
+import traceback
 from apiclient.discovery import build
 from discord.ext import commands, tasks
 
@@ -375,7 +376,8 @@ async def on_message(message):
 
                 await message.reply(text)
     except Exception as e:
-        print(e)
+        print('Exception:')
+        traceback.print_exc()
 
 @tasks.loop(seconds=YOUTUBE_CYCLE_INTERVAL)
 async def loops():
