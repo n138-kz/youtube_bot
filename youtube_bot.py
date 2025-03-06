@@ -381,6 +381,8 @@ async def on_message(message):
                     config['internal']['youtube']['channel_id'] = id_new
                     commit_config(config)
 
+                    del channel_info_old
+                    del channel_info_new
                     print(await message.reply(embed=embed))
                 else:
                     embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000)
