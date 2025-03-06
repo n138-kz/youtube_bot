@@ -197,19 +197,27 @@ def getHumanableTime(second=0,mode='arr',format='%H:%m:%S'):
         return text
 
 def ytb_getHelp():
-    text = ''
-    text += '\n'
-    text += '`!ytb help`\n'
-    text += 'コマンドマニュアルを表示します。\n'
-    text += '`!ytb ping`\n'
-    text += 'Botのレイテンシを測定します。\n'
-    text += '`!ytb version`\n'
-    text += 'Botのバージョンを表示します。\n'
-    text += '`!ytb youtube rawitems`\n'
-    text += 'Youtubeから最新の動画一覧を取得します。\n'
-    text += '`!ytb upload notice.json`\n'
-    text += '(管理者コマンド)\n'
-    text += '通知状態管理ファイルをアップロードします。\n'
+    text=''
+
+    file='ytb_help.json'
+    if not(os.path.isfile(file)):
+        text='{0}\n{1}'.format(
+            '`!ytb help`',
+            'コマンドヘルプを表示します。',
+        )
+    else:
+        with open(file, encoding='UTF-8') as f:
+            helps=json.load(f)
+            for index,help in helps['command'].items():
+                text += ''
+                text += '`{0} {1}`\n{2}\n'.format(
+                    helps['prefix'],
+                    index,
+                    help['description'],
+                )
+                if help['admin']:
+                    text += '※要管理者ロール\n'
+
     text += text.replace('!ytb ','/')
     return text
 
