@@ -13,6 +13,7 @@ detail.json
 notice.json
 except.log
 log/
+refs_modules/*.json
 
 # Secret files
 *.env
