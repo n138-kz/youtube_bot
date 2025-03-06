@@ -253,14 +253,6 @@ async def on_message(message):
                 else:
                     embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000)
                     await message.reply(embed=embed)
-            elif message.content.startswith('!ytb discord add channel'):
-                print(f'do_action: {message.content}')
-                print(f'do_author: {message.author.name}')
-
-                text=''
-                text+=''
-                embed = discord.Embed(title='Commit',description=text,color=0x00ff00)
-                print(await message.reply(embed=embed))
             elif message.content.startswith('!ytb youtube set channel'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
