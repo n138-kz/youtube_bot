@@ -323,7 +323,7 @@ async def on_message(message):
                         config['internal']['discord']['send_message_channel'][args[0]].append(message.channel.id)
                         DISCORD_SEND_MESSAGE=config['internal']['discord']['send_message_channel']
                         commit_config(config)
-                        channel = client.get_channel(channel_id)
+                        channel = client.get_channel(message.channel.id)
                         text='カテゴリ:{3}にチャンネル([{1}](https://discord.com/channels/{2}/{0}/))を新しく追加しました。'.format(
                             channel.id,
                             channel.name,
@@ -348,7 +348,7 @@ async def on_message(message):
                         config['internal']['discord']['send_message_channel'][args[0]].append(message.channel.id)
                         DISCORD_SEND_MESSAGE=config['internal']['discord']['send_message_channel']
                         commit_config(config)
-                        channel = client.get_channel(channel_id)
+                        channel = client.get_channel(message.channel.id)
                         text='カテゴリ:{3}にチャンネル([{1}](https://discord.com/channels/{2}/{0}/))を新しく追加しました。'.format(
                             channel.id,
                             channel.name,
