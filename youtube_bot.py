@@ -62,6 +62,7 @@ def default_config():
     config['internal']['discord']['send_message_channel'] = {} # require
     config['internal']['discord']['send_message_channel']['on_ready'] = [] # require
     config['internal']['discord']['send_message_channel']['notice'] = [] # require
+    config['internal']['local'] = {} # require
     config['internal']['local']['do_loop'] = True # require
     config['internal']['local']['do_sync_slash_command'] = True # require
     config['external'] = {} # require
