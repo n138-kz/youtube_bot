@@ -80,11 +80,17 @@ def load_config(config_file=GLOBAL_FILE['config']):
         commit_config(config=config,file=config_file)
     return config
 
-def get_version(returnable=True):
+def get_version(returnable=True,markdown=False):
     text = ''
     text += '\n'
-    text += 'python\n```\n'+sys.version+'```\n'
-    text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
+    if markdown:
+        text += 'python\n```\n'+sys.version+'```\n'
+    else:
+        text += 'python: '+sys.version+'\n'
+    if markdown:
+        text += 'discordpy\n```\n'+discord.__version__+' ('+str(discord.version_info)+')'+'```\n'
+    else:
+        text += 'discordpy: '+discord.__version__+' ('+str(discord.version_info)+')'+'\n'
     if returnable:
         return text
     else:
