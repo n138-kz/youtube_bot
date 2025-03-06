@@ -26,10 +26,12 @@ GLOBAL_TEXT = {
         'en':{
             'incomplete_command': '% Incomplete command.',
             'your_not_admin': 'Your NOT Administrators.',
+            'require_args': 'Required the args.',
         },
         'ja':{
             'incomplete_command': 'コマンドが不完全です。',
             'your_not_admin': 'あなたは管理者ロールが付与されていません。',
+            'require_args': '引数が必要です。',
         }
     },
     'msg': {
@@ -288,6 +290,51 @@ async def on_message(message):
                 else:
                     embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000)
                     await message.reply(embed=embed)
+            elif message.content.startswith('!ytb discord list channel'):
+                print(f'do_action: {message.content}')
+                print(f'do_author: {message.author.name}')
+
+                args=message.content.replace('!ytb discord list channel','').strip()
+                if False:
+                    embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['require_args'],color=0xff0000)
+                    print(await message.reply(embed=embed))
+                else:
+                    channels=DISCORD_SEND_MESSAGE
+                    tmp={}
+                    print('channels: {0}'.format(channels))
+                    for k in ['on_ready','notice']:
+                        for channel_id in channels[k]:
+                            channel = client.get_channel(channel_id)
+                            guild = channel.guild
+                            tmp1={guild.id: channel_id}
+                            print('k: {0}, guild_id: {1}, channel_id: {2}, tmp1: {3}'.format(k,guild.id,channel_id,tmp1))
+                            tmp|={k:tmp1}
+                    channels=tmp
+                    print('channels: {0}'.format(channels))
+                    del tmp
+
+                    if message.author.guild_permissions.administrator:
+                        pass
+                    else:
+                        tmp={}
+                        for k in ['on_ready','notice']:
+                            for guild_id,channel_id in channels[k].items():
+                                if guild_id == message.guild.id:
+                                    print('guild_id:{0}, message.guild:{1}, guild_id == message.guild.id: {2}'.format(
+                                        guild_id,
+                                        message.guild.id,
+                                        guild_id == message.guild.id,
+                                    ))
+                                    tmp|={k:{guild.id: channel_id}}
+                        channels=tmp
+                        del tmp
+                    text=json.dumps(channels,indent=2,ensure_ascii=False)
+                    embed = discord.Embed(
+                        title='Commit',description=text,color=0x00ff00,
+                        url=GLOBAL_TEXT['url']['github']['repository'],
+                        timestamp=datetime.datetime.now(datetime.timezone.utc),
+                    )
+                    print(await message.reply(embed=embed))
             elif message.content.startswith('!ytb youtube set channel'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
