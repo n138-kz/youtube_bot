@@ -292,7 +292,7 @@ async def on_message(message):
                     print(await message.reply(embed=embed))
                 else:
                     embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000)
-                    await message.reply(embed=embed)
+                    print(await message.reply(embed=embed))
             elif message.content == "!ytb youtube rawitems":
                 print(f'do_action: {message.content}')
                 data1=getYoutubeItems()
