@@ -288,10 +288,18 @@ async def on_message(message):
                     if not(os.path.exists(file)):
                         with open(file,mode='w',encoding='UTF-8') as f:
                             json.dump([],f)
-                        embed = discord.Embed(title=file,color=0x00ff00)
+                        embed = discord.Embed(
+                            title=file,color=0x00ff00,
+                            url=GLOBAL_TEXT['url']['github']['repository'],
+                            timestamp=datetime.datetime.now(datetime.timezone.utc),
+                        )
                     await message.reply(embed=embed,files=[discord.File(file)])
                 else:
-                    embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000)
+                    embed = discord.Embed(
+                        title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000,
+                        url=GLOBAL_TEXT['url']['github']['repository'],
+                        timestamp=datetime.datetime.now(datetime.timezone.utc),
+                    )
                     await message.reply(embed=embed)
             elif message.content.startswith('!ytb discord add channel'):
                 print(f'do_action: {message.content}')
@@ -381,7 +389,11 @@ async def on_message(message):
 
                 args=message.content.replace('!ytb discord list channel','').strip()
                 if False:
-                    embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['require_args'],color=0xff0000)
+                    embed = discord.Embed(
+                        title='Error',description=GLOBAL_TEXT['err'][LOCALE]['require_args'],color=0xff0000,
+                        url=GLOBAL_TEXT['url']['github']['repository'],
+                        timestamp=datetime.datetime.now(datetime.timezone.utc),
+                    )
                     print(await message.reply(embed=embed))
                 else:
                     channels=DISCORD_SEND_MESSAGE
@@ -435,7 +447,11 @@ async def on_message(message):
                     channel_info_old=getYoutubeChannels(channel_id=id_old)
                     channel_info_new=getYoutubeChannels(channel_id=id_new)
 
-                    embed = discord.Embed(title='Commit',description=text,color=0x00ff00)
+                    embed = discord.Embed(
+                        title='Result',description=text,color=0x00ff00,
+                        url=GLOBAL_TEXT['url']['github']['repository'],
+                        timestamp=datetime.datetime.now(datetime.timezone.utc),
+                    )
                     embed.add_field(
                         name='Before: '+id_old,
                         value='ID: [{0}](https://www.youtube.com/channel/{0})\nName: [{1}](https://www.youtube.com/channel/{0})\n[thumbnails]({2})\nView:{3}\nSubscriber:{4}\nVideo:{5}'.format(
@@ -470,7 +486,11 @@ async def on_message(message):
                     del channel_info_new
                     print(await message.reply(embed=embed))
                 else:
-                    embed = discord.Embed(title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000)
+                    embed = discord.Embed(
+                        title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000,
+                        url=GLOBAL_TEXT['url']['github']['repository'],
+                        timestamp=datetime.datetime.now(datetime.timezone.utc),
+                    )
                     print(await message.reply(embed=embed))
             elif message.content.startswith('!ytb youtube rawitems'):
                 print(f'do_action: {message.content}')
@@ -583,6 +603,7 @@ async def loops():
                 description='```\n{}\n```'.format(e.reason),
                 color=0xff0000,
                 url=GLOBAL_TEXT['url']['github']['repository'],
+                timestamp=datetime.datetime.now(datetime.timezone.utc),
             )
             await channel.send(embed=embed)
             await channel.send(files=[discord.File(file)])
