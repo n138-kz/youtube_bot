@@ -504,6 +504,7 @@ async def on_ready():
                 color=0x00ff00,
                 url=GLOBAL_TEXT['url']['github']['repository'],
             )
+            embed.timestamp=datetime.datetime.now(datetime.timezone.utc)
             embed.add_field(name='設定情報',value=text_markdown,inline=False)
             response = await channel.send(embed=embed)
             file='{0}/{1}'.format(
