@@ -507,7 +507,7 @@ async def on_message(message):
                         else:
                             value_old=YOUTUBE_CYCLE_INTERVAL
                             value_new=args[0]
-                            config['internal']['youtube']['cycle_interval']=value_new
+                            config['internal']['youtube']['cycle_interval']=int(value_new)
                             YOUTUBE_CYCLE_INTERVAL = config['internal']['youtube']['cycle_interval']
                             commit_config(config)
                             channel = client.get_channel(message.channel.id)
