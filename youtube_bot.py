@@ -486,10 +486,8 @@ async def on_message(message):
                 # 管理者コマンド
                 if message.author.guild_permissions.administrator:
                     args=message.content.replace('!ytb config modify loop interval','').strip()
-                    args+=' .'
-                    args=args.split()
                     print(f'args: "{args}"')
-                    if len(args)==0 or len(args[0])==0:
+                    if len(args)==0:
                         embed = discord.Embed(
                             title='Error',description=GLOBAL_TEXT['err'][LOCALE]['require_args'],color=0xff0000,
                             url=GLOBAL_TEXT['url']['github']['repository'],
@@ -497,6 +495,8 @@ async def on_message(message):
                         )
                         print(await message.reply(embed=embed))
                     else:
+                        args+=' .'
+                        args=args.split()
                         if not(int(args[0])>0):
                             embed = discord.Embed(
                                 title='Error',description=GLOBAL_TEXT['err'][LOCALE]['invalid_args'],color=0xff0000,
