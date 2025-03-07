@@ -28,6 +28,10 @@
         "discord add channel": {
             "description": "通知先チャンネルに現在のチャンネルを追加します。",
             "admin":false
+        },
+        "discord delete channel": {
+            "description": "通知先チャンネルから現在のチャンネルを削除します。",
+            "admin":false
         }
     }
 }

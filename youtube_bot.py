@@ -411,6 +411,73 @@ async def on_message(message):
                             timestamp=datetime.datetime.now(datetime.timezone.utc),
                         )
                         print(await message.reply(embed=embed))
+            elif message.content.startswith('!ytb discord delete channel'):
+                print(f'do_action: {message.content}')
+                print(f'do_author: {message.author.name}')
+
+                args=message.content.replace('!ytb discord delete channel','').strip()
+                args+=' .'
+                args=args.split()
+                print(f'args: "{args}"')
+                if len(args)==0 or len(args[0])==0:
+                    embed = discord.Embed(
+                        title='Error',description=GLOBAL_TEXT['err'][LOCALE]['require_args'],color=0xff0000,
+                        url=GLOBAL_TEXT['url']['github']['repository'],
+                        timestamp=datetime.datetime.now(datetime.timezone.utc),
+                    )
+                    print(await message.reply(embed=embed))
+                else:
+                    channels=DISCORD_SEND_MESSAGE
+
+                    if False:
+                        pass
+                    elif args[0] == 'on_ready':
+                        for index,channel_id in channels[args[0]].items():
+                            if message.channel.id == channel_id:
+                                config['internal']['discord']['send_message_channel'][args[0]].pop(index)
+                                DISCORD_SEND_MESSAGE=config['internal']['discord']['send_message_channel']
+                                commit_config(config)
+                                channel = client.get_channel(message.channel.id)
+                                text='カテゴリ:{3}からチャンネル([{1}](https://discord.com/channels/{2}/{0}/))を削除しました。'.format(
+                                    channel.id,
+                                    channel.name,
+                                    channel.guild.id,
+                                    args[0],
+                                )
+                                embed = discord.Embed(
+                                    title='Result',description=text,color=0x00ff00,
+                                    url=GLOBAL_TEXT['url']['github']['repository'],
+                                    timestamp=datetime.datetime.now(datetime.timezone.utc),
+                                )
+                                print(await message.reply(embed=embed))
+                                break
+                    elif args[0] == 'notice':
+                        for index,channel_id in channels[args[0]].items():
+                            if message.channel.id == channel_id:
+                                config['internal']['discord']['send_message_channel'][args[0]].pop(index)
+                                DISCORD_SEND_MESSAGE=config['internal']['discord']['send_message_channel']
+                                commit_config(config)
+                                channel = client.get_channel(message.channel.id)
+                                text='カテゴリ:{3}からチャンネル([{1}](https://discord.com/channels/{2}/{0}/))を削除しました。'.format(
+                                    channel.id,
+                                    channel.name,
+                                    channel.guild.id,
+                                    args[0],
+                                )
+                                embed = discord.Embed(
+                                    title='Result',description=text,color=0x00ff00,
+                                    url=GLOBAL_TEXT['url']['github']['repository'],
+                                    timestamp=datetime.datetime.now(datetime.timezone.utc),
+                                )
+                                print(await message.reply(embed=embed))
+                                break
+                    else:
+                        embed = discord.Embed(
+                            title='Error',description=GLOBAL_TEXT['err'][LOCALE]['invalid_args'],color=0xff0000,
+                            url=GLOBAL_TEXT['url']['github']['repository'],
+                            timestamp=datetime.datetime.now(datetime.timezone.utc),
+                        )
+                        print(await message.reply(embed=embed))
             elif message.content.startswith('!ytb discord list channel'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
