@@ -36,6 +36,10 @@
         "config modify loop interval": {
             "description": "動画投稿監視間隔を更新します。",
             "admin":true
+        },
+        "config modify expire limit": {
+            "description": "通知送信タイムリミットを更新します。",
+            "admin":true
         }
     }
 }
