@@ -6,7 +6,6 @@ import discord
 import urllib.parse
 import datetime
 import time
-import pytz
 import logging
 import traceback
 import zlib
@@ -886,7 +885,7 @@ async def loops():
                 sys.exit(1)           
 
             data.append({
-                'publishedAt': math.trunc(datetime.datetime.fromisoformat(item['snippet']['publishedAt'].replace('Z', '+00:00')).astimezone(pytz.utc).timestamp()),
+                'publishedAt': math.trunc(datetime.datetime.fromisoformat(item['snippet']['publishedAt'].replace('Z', '+00:00')).astimezone(datetime.timezone.utc).timestamp()),
                 'channel_id': item['snippet']['channelId'],
                 'title': urllib.parse.unquote(item['snippet']['title']).replace('&quot;', '"'),
                 'video_id': item['id']['videoId'],
