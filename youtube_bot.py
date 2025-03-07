@@ -682,6 +682,21 @@ async def on_message(message):
                     )
                     text=''
                     text+=''
+                    text+='`{0}`: {1}\n'.format(
+                        'internal.local.do_loop',
+                        tmp['internal']['local']['do_loop'],
+                    )
+                    text+='`{0}`: {1}\n'.format(
+                        'internal.local.do_sync_slash_command',
+                        tmp['internal']['local']['do_sync_slash_command'],
+                    )
+                    embed.add_field(
+                        name='設定情報(Local)',
+                        value=text,
+                        inline=False
+                    )
+                    text=''
+                    text+=''
                     tmp={
                         'hostname':socket.gethostname(),
                         'ipaddress':socket.gethostbyname(socket.gethostname()),
