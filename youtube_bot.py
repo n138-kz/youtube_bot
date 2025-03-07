@@ -11,6 +11,7 @@ import logging
 import traceback
 import zlib
 import hashlib
+import socket
 from apiclient.discovery import build
 from discord.ext import commands, tasks
 
@@ -569,6 +570,146 @@ async def on_message(message):
                             embed.add_field( name='Before', value='`{}`'.format(value_old), inline=True )
                             embed.add_field( name='After', value='`{}`'.format(value_new), inline=True )
                             print(await message.reply(embed=embed))
+                else:
+                    embed = discord.Embed(
+                        title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000,
+                        url=GLOBAL_TEXT['url']['github']['repository'],
+                        timestamp=datetime.datetime.now(datetime.timezone.utc),
+                    )
+                    print(await message.reply(embed=embed))
+            elif message.content.startswith('!ytb config dump'):
+                print(f'do_action: {message.content}')
+                print(f'do_author: {message.author.name}')
+
+                # 管理者コマンド
+                if message.author.guild_permissions.administrator:
+                    tmp=config
+                    tmp['external']['discord']['bot_token']='(Hidden)'
+                    tmp['external']['youtube']['api_key']='(Hidden)'
+                    with open('result.json',mode='w',encoding='UTF-8') as f:
+                        json.dump(tmp, indent=4, fp=f)
+                    embed = discord.Embed(
+                        title='Result',description='Send to DM.',color=0x00ff00,
+                        url=GLOBAL_TEXT['url']['github']['repository'],
+                        timestamp=datetime.datetime.now(datetime.timezone.utc),
+                    )
+                    response=await message.reply(embed=embed)
+                    print(response)
+
+                    embed = discord.Embed(
+                        title='Result',description='{0}\n{1}'.format(
+                            'Config Dump',
+                            'https://discord.com/channels/{0}/{1}/{2}'.format(
+                                response.guild.id,
+                                response.channel.id,
+                                response.id,
+                            )
+                        ),color=0x00ff00,
+                        url=GLOBAL_TEXT['url']['github']['repository'],
+                        timestamp=datetime.datetime.now(datetime.timezone.utc),
+                    )
+                    text=''
+                    text+=''
+                    text+='`{0}`: {1}\n'.format(
+                        'external.discord.bot.name',
+                        '[{0}](https://discord.com/developers/applications/{1})({1})'.format(
+                            client.user.name.capitalize(),
+                            client.user.id
+                        ),
+                    )
+                    t=''
+                    for s in tmp['internal']['discord']['send_message_channel']['on_ready']:
+                        channel = client.get_channel(s)
+                        guild = channel.guild
+                        t+='- [{0}](https://discord.com/channels/{2}/{0}/)({3}: {1})\n'.format(
+                            s,
+                            channel.name,
+                            guild.id,
+                            guild.name,
+                        )
+                    text+='`{0}`: \n{1}'.format(
+                        'internal.discord.send_message_channel.on_ready',
+                        t,
+                    )
+                    t=''
+                    for s in tmp['internal']['discord']['send_message_channel']['notice']:
+                        channel = client.get_channel(s)
+                        guild = channel.guild
+                        t+='- [{0}](https://discord.com/channels/{2}/{0}/)({3}: {1})\n'.format(
+                            s,
+                            channel.name,
+                            guild.id,
+                            guild.name,
+                        )
+                    text+='`{0}`: \n{1}'.format(
+                        'internal.discord.send_message_channel.notice',
+                        t,
+                    )
+                    embed.add_field(
+                        name='設定情報(Discord)',
+                        value=text,
+                        inline=False
+                    )
+                    text=''
+                    text+=''
+                    text+='`{0}`: {1}\n'.format(
+                        'internal.youtube.channel_id',
+                        '[{0}](https://www.youtube.com/channel/{0})'.format(
+                            tmp['internal']['youtube']['channel_id'],
+                        ),
+                    )
+                    text+='`{0}`: {1}\n'.format(
+                        'internal.youtube.cycle_interval',
+                        '`{0}`({1})'.format(
+                            tmp['internal']['youtube']['cycle_interval'],
+                            getHumanableTime(
+                                second=tmp['internal']['youtube']['cycle_interval'],mode='str'
+                            ),
+                        ),
+                    )
+                    text+='`{0}`: {1}\n'.format(
+                        'internal.youtube.notice_limit',
+                        '`{0}`({1})'.format(
+                            tmp['internal']['youtube']['notice_limit'],
+                            getHumanableTime(
+                                second=tmp['internal']['youtube']['notice_limit'],mode='str'
+                            ),
+                        ),
+                    )
+                    embed.add_field(
+                        name='設定情報(Youtube)',
+                        value=text,
+                        inline=False
+                    )
+                    text=''
+                    text+=''
+                    tmp={
+                        'hostname':socket.gethostname(),
+                        'ipaddress':socket.gethostbyname(socket.gethostname()),
+                    }
+                    for k,v in tmp.items():
+                        text+='{0}: `{1}`\n'.format(k,v)
+
+                    embed.add_field(
+                        name='環境',
+                        value=text,
+                        inline=False
+                    )
+                    embed.set_footer(
+                        text='v{0}'.format(VERSION),
+                    )
+
+                    message_send2channel=response
+                    response=await message.author.send(embed=embed)
+                    print(response)
+                    message_send2dm=response
+                    message_send2channel.embeds[0].description+='https://discord.com/channels/@me/{0}/{1}'.format(
+                        message_send2dm.channel.id,
+                        message_send2dm.id,
+                    )
+                    await message_send2channel.edit(embeds=message_send2channel.embeds)
+                    
+                    print(await message.author.send(files=[discord.File('result.json')]))
                 else:
                     embed = discord.Embed(
                         title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000,

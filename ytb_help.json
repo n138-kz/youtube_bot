@@ -40,6 +40,10 @@
         "config modify expire limit": {
             "description": "通知送信タイムリミットを更新します。",
             "admin":true
+        },
+        "config dump": {
+            "description": "コンフィグをDMに送信します。",
+            "admin":true
         }
     }
 }
