@@ -236,7 +236,7 @@ def ytb_getHelp():
                 if help['admin']:
                     text += '※要管理者ロール\n'
 
-    text += text.replace('!ytb ','/')
+    #text += text.replace('!ytb ','/')
     return text
 
 def ytb_getChannelId(type='youtube'):
