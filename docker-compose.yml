@@ -1,0 +1,5 @@
+services:
+  youtube_bot-core:
+    build:
+      context: docker_build
+      dockerfile: Dockerfile
