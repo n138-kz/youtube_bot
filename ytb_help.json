@@ -32,6 +32,10 @@
         "discord delete channel": {
             "description": "通知先チャンネルから現在のチャンネルを削除します。",
             "admin":false
+        },
+        "config modify loop interval": {
+            "description": "動画投稿監視間隔を更新します。",
+            "admin":true
         }
     }
 }

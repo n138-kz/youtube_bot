@@ -274,6 +274,7 @@ async def on_message(message):
             print(f'on_message: {message.content}')
             global YOUTUBE_CHANNEL_ID
             global DISCORD_SEND_MESSAGE
+            global YOUTUBE_CYCLE_INTERVAL
 
             if False:
                 pass
@@ -478,6 +479,54 @@ async def on_message(message):
                             timestamp=datetime.datetime.now(datetime.timezone.utc),
                         )
                         print(await message.reply(embed=embed))
+            elif message.content.startswith('!ytb config modify loop interval'):
+                print(f'do_action: {message.content}')
+                print(f'do_author: {message.author.name}')
+
+                # 管理者コマンド
+                if message.author.guild_permissions.administrator:
+                    args=message.content.replace('!ytb config modify loop interval','').strip()
+                    args+=' .'
+                    args=args.split()
+                    print(f'args: "{args}"')
+                    if len(args)==0 or len(args[0])==0:
+                        embed = discord.Embed(
+                            title='Error',description=GLOBAL_TEXT['err'][LOCALE]['require_args'],color=0xff0000,
+                            url=GLOBAL_TEXT['url']['github']['repository'],
+                            timestamp=datetime.datetime.now(datetime.timezone.utc),
+                        )
+                        print(await message.reply(embed=embed))
+                    else:
+                        if not(int(args[0])>0):
+                            embed = discord.Embed(
+                                title='Error',description=GLOBAL_TEXT['err'][LOCALE]['invalid_args'],color=0xff0000,
+                                url=GLOBAL_TEXT['url']['github']['repository'],
+                                timestamp=datetime.datetime.now(datetime.timezone.utc),
+                            )
+                            print(await message.reply(embed=embed))
+                        else:
+                            value_old=YOUTUBE_CYCLE_INTERVAL
+                            value_new=args[0]
+                            config['internal']['youtube']['cycle_interval']=value_new
+                            YOUTUBE_CYCLE_INTERVAL = config['internal']['youtube']['cycle_interval']
+                            commit_config(config)
+                            channel = client.get_channel(message.channel.id)
+                            text='動画投稿監視間隔を更新しました。'
+                            embed = discord.Embed(
+                                title='Result',description=text,color=0x00ff00,
+                                url=GLOBAL_TEXT['url']['github']['repository'],
+                                timestamp=datetime.datetime.now(datetime.timezone.utc),
+                            )
+                            embed.add_field( name='Before', value='`{}`'.format(value_old), inline=True )
+                            embed.add_field( name='After', value='`{}`'.format(value_new), inline=True )
+                            print(await message.reply(embed=embed))
+                else:
+                    embed = discord.Embed(
+                        title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000,
+                        url=GLOBAL_TEXT['url']['github']['repository'],
+                        timestamp=datetime.datetime.now(datetime.timezone.utc),
+                    )
+                    print(await message.reply(embed=embed))
             elif message.content.startswith('!ytb discord list channel'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
