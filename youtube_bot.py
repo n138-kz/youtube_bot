@@ -318,12 +318,14 @@ async def on_message(message):
                     if not(os.path.exists(file)):
                         with open(file,mode='w',encoding='UTF-8') as f:
                             json.dump([],f)
-                        embed = discord.Embed(
-                            title=file,color=0x00ff00,
-                            url=GLOBAL_TEXT['url']['github']['repository'],
-                            timestamp=datetime.datetime.now(datetime.timezone.utc),
-                        )
-                    await message.reply(embed=embed,files=[discord.File(file)])
+                    embed = discord.Embed(
+                        title=file,color=0x00ff00,
+                        description='attached notice.json',
+                        url=GLOBAL_TEXT['url']['github']['repository'],
+                        timestamp=datetime.datetime.now(datetime.timezone.utc),
+                    )
+                    print(await message.reply(embed=embed))
+                    print(await message.reply(files=[discord.File(file)]))
                 else:
                     embed = discord.Embed(
                         title='Error',description=GLOBAL_TEXT['err'][LOCALE]['your_not_admin'],color=0xff0000,
