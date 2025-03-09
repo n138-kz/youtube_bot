@@ -324,6 +324,7 @@ async def on_message(message):
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
+                    embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed,files=[discord.File(file)]))
                 else:
                     embed = discord.Embed(
@@ -331,6 +332,7 @@ async def on_message(message):
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
+                    embed.set_thumbnail(url=client.user.avatar.url)
                     await message.reply(embed=embed)
             elif message.content.startswith('!ytb discord add channel'):
                 print(f'do_action: {message.content}')
@@ -346,6 +348,7 @@ async def on_message(message):
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
+                    embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed))
                 else:
                     """
@@ -365,6 +368,7 @@ async def on_message(message):
                                     url=GLOBAL_TEXT['url']['github']['repository'],
                                     timestamp=datetime.datetime.now(datetime.timezone.utc),
                                 )
+                                embed.set_thumbnail(url=client.user.avatar.url)
                                 break
                         config['internal']['discord']['send_message_channel'][args[0]].append(message.channel.id)
                         DISCORD_SEND_MESSAGE=config['internal']['discord']['send_message_channel']
@@ -381,6 +385,7 @@ async def on_message(message):
                             url=GLOBAL_TEXT['url']['github']['repository'],
                             timestamp=datetime.datetime.now(datetime.timezone.utc),
                         )
+                        embed.set_thumbnail(url=client.user.avatar.url)
                         print(await message.reply(embed=embed))
                     elif args[0] == 'notice':
                         for channel_id in channels[args[0]]:
@@ -390,6 +395,7 @@ async def on_message(message):
                                     url=GLOBAL_TEXT['url']['github']['repository'],
                                     timestamp=datetime.datetime.now(datetime.timezone.utc),
                                 )
+                                embed.set_thumbnail(url=client.user.avatar.url)
                                 break
                         config['internal']['discord']['send_message_channel'][args[0]].append(message.channel.id)
                         DISCORD_SEND_MESSAGE=config['internal']['discord']['send_message_channel']
@@ -406,6 +412,7 @@ async def on_message(message):
                             url=GLOBAL_TEXT['url']['github']['repository'],
                             timestamp=datetime.datetime.now(datetime.timezone.utc),
                         )
+                        embed.set_thumbnail(url=client.user.avatar.url)
                         print(await message.reply(embed=embed))
                     else:
                         embed = discord.Embed(
@@ -413,6 +420,7 @@ async def on_message(message):
                             url=GLOBAL_TEXT['url']['github']['repository'],
                             timestamp=datetime.datetime.now(datetime.timezone.utc),
                         )
+                        embed.set_thumbnail(url=client.user.avatar.url)
                         print(await message.reply(embed=embed))
             elif message.content.startswith('!ytb discord delete channel'):
                 print(f'do_action: {message.content}')
@@ -428,6 +436,7 @@ async def on_message(message):
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
+                    embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed))
                 else:
                     channels=DISCORD_SEND_MESSAGE
@@ -452,6 +461,7 @@ async def on_message(message):
                                     url=GLOBAL_TEXT['url']['github']['repository'],
                                     timestamp=datetime.datetime.now(datetime.timezone.utc),
                                 )
+                                embed.set_thumbnail(url=client.user.avatar.url)
                                 print(await message.reply(embed=embed))
                                 break
                     elif args[0] == 'notice':
@@ -472,6 +482,7 @@ async def on_message(message):
                                     url=GLOBAL_TEXT['url']['github']['repository'],
                                     timestamp=datetime.datetime.now(datetime.timezone.utc),
                                 )
+                                embed.set_thumbnail(url=client.user.avatar.url)
                                 print(await message.reply(embed=embed))
                                 break
                     else:
@@ -480,6 +491,7 @@ async def on_message(message):
                             url=GLOBAL_TEXT['url']['github']['repository'],
                             timestamp=datetime.datetime.now(datetime.timezone.utc),
                         )
+                        embed.set_thumbnail(url=client.user.avatar.url)
                         print(await message.reply(embed=embed))
             elif message.content.startswith('!ytb config modify loop interval'):
                 print(f'do_action: {message.content}')
@@ -495,6 +507,7 @@ async def on_message(message):
                             url=GLOBAL_TEXT['url']['github']['repository'],
                             timestamp=datetime.datetime.now(datetime.timezone.utc),
                         )
+                        embed.set_thumbnail(url=client.user.avatar.url)
                         print(await message.reply(embed=embed))
                     else:
                         args+=' .'
@@ -505,6 +518,7 @@ async def on_message(message):
                                 url=GLOBAL_TEXT['url']['github']['repository'],
                                 timestamp=datetime.datetime.now(datetime.timezone.utc),
                             )
+                            embed.set_thumbnail(url=client.user.avatar.url)
                             print(await message.reply(embed=embed))
                         else:
                             value_old=YOUTUBE_CYCLE_INTERVAL
@@ -519,6 +533,7 @@ async def on_message(message):
                                 url=GLOBAL_TEXT['url']['github']['repository'],
                                 timestamp=datetime.datetime.now(datetime.timezone.utc),
                             )
+                            embed.set_thumbnail(url=client.user.avatar.url)
                             embed.add_field( name='Before', value='`{}`'.format(value_old), inline=True )
                             embed.add_field( name='After', value='`{}`'.format(value_new), inline=True )
                             print(await message.reply(embed=embed))
@@ -528,6 +543,7 @@ async def on_message(message):
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
+                    embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed))
             elif message.content.startswith('!ytb config modify expire limit'):
                 print(f'do_action: {message.content}')
@@ -543,6 +559,7 @@ async def on_message(message):
                             url=GLOBAL_TEXT['url']['github']['repository'],
                             timestamp=datetime.datetime.now(datetime.timezone.utc),
                         )
+                        embed.set_thumbnail(url=client.user.avatar.url)
                         print(await message.reply(embed=embed))
                     else:
                         args+=' .'
@@ -553,6 +570,7 @@ async def on_message(message):
                                 url=GLOBAL_TEXT['url']['github']['repository'],
                                 timestamp=datetime.datetime.now(datetime.timezone.utc),
                             )
+                            embed.set_thumbnail(url=client.user.avatar.url)
                             print(await message.reply(embed=embed))
                         else:
                             value_old=YOUTUBE_NOTICE_LIMIT
@@ -567,6 +585,7 @@ async def on_message(message):
                                 url=GLOBAL_TEXT['url']['github']['repository'],
                                 timestamp=datetime.datetime.now(datetime.timezone.utc),
                             )
+                            embed.set_thumbnail(url=client.user.avatar.url)
                             embed.add_field( name='Before', value='`{}`'.format(value_old), inline=True )
                             embed.add_field( name='After', value='`{}`'.format(value_new), inline=True )
                             print(await message.reply(embed=embed))
@@ -576,6 +595,7 @@ async def on_message(message):
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
+                    embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed))
             elif message.content.startswith('!ytb config dump'):
                 print(f'do_action: {message.content}')
@@ -593,6 +613,7 @@ async def on_message(message):
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
+                    embed.set_thumbnail(url=client.user.avatar.url)
                     response=await message.reply(embed=embed)
                     print(response)
 
@@ -608,6 +629,7 @@ async def on_message(message):
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
+                    embed.set_thumbnail(url=client.user.avatar.url)
                     text=''
                     text+=''
                     text+='`{0}`: {1}\n'.format(
@@ -731,6 +753,7 @@ async def on_message(message):
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
+                    embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed))
             elif message.content.startswith('!ytb discord list channel'):
                 print(f'do_action: {message.content}')
@@ -743,6 +766,7 @@ async def on_message(message):
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
+                    embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed))
                 else:
                     channels=DISCORD_SEND_MESSAGE
@@ -778,6 +802,7 @@ async def on_message(message):
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
+                    embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed))
             elif message.content.startswith('!ytb youtube set channel'):
                 print(f'do_action: {message.content}')
@@ -801,6 +826,7 @@ async def on_message(message):
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
+                    embed.set_thumbnail(url=client.user.avatar.url)
                     embed.add_field(
                         name='Before: '+id_old,
                         value='ID: [{0}](https://www.youtube.com/channel/{0})\nName: [{1}](https://www.youtube.com/channel/{0})\n[thumbnails]({2})\nView:{3}\nSubscriber:{4}\nVideo:{5}'.format(
@@ -840,6 +866,7 @@ async def on_message(message):
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
+                    embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed))
             elif message.content.startswith('!ytb youtube rawitems'):
                 print(f'do_action: {message.content}')
@@ -954,6 +981,7 @@ async def loops():
                 url=GLOBAL_TEXT['url']['github']['repository'],
                 timestamp=datetime.datetime.now(datetime.timezone.utc),
             )
+            embed.set_thumbnail(url=client.user.avatar.url)
             await channel.send(embed=embed)
             await channel.send(files=[discord.File(file)])
 
@@ -1064,6 +1092,7 @@ async def on_ready():
                 url=GLOBAL_TEXT['url']['github']['repository'],
                 timestamp=datetime.datetime.now(datetime.timezone.utc),
             )
+            embed.set_thumbnail(url=client.user.avatar.url)
             embed.add_field(
                 name='設定情報',
                 value=text_markdown,
