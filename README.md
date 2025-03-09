@@ -73,6 +73,10 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 ```json
 {
     "internal":{
+        "local":{
+            "do_loop":true,
+            "do_sync_slash_command":true
+        },
         "youtube":{
             "notice_limit":3600,
             "cycle_interval":300,
@@ -98,6 +102,8 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 
 |項目名|デフォルト値|説明|
 |:-|:-|:-|
+|`internal.local.do_loop`|`True`||
+|`internal.local.do_sync_slash_command`|`True`||
 |`.internal.discord.send_message_channel.on_ready`|`[]`|**起動**メッセージ送信先のチャンネルIDを整数リスト形式で記載します。|
 |`.internal.discord.send_message_channel.notice`|`[]`|**通知**メッセージ送信先のチャンネルIDを整数リスト形式で記載します。|
 |`.internal.youtube.cycle_interval`|300|単位: 秒(デフォルト: 5分)|
