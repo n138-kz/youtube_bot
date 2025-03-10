@@ -4,4 +4,3 @@ services:
       context: .
       dockerfile: docker_build/Dockerfile
     restart: always
-
