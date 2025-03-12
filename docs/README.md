@@ -30,12 +30,18 @@ GET https://api.github.com/repos/n138-kz/youtube_bot
 
 ## Discord Application
 
+### Application ID
 [1342289249365659778](https://discord.com/developers/applications/1342289249365659778/information)
+
+### Public Key
 
 ```
 c7a4576adcbc8907951582c419a56025c29aacd8bea7a7a42878bfdd361b27db
 ```
 
+### Invite URL
+
+[1342289249365659778](https://discord.com/oauth2/authorize?client_id=1342289249365659778)
 
 ## Refs
 
