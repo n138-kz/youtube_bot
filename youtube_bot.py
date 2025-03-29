@@ -828,7 +828,6 @@ async def on_message(message):
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
-                    embed.set_thumbnail(url=client.user.avatar.url)
                     embed.set_thumbnail(url=channel_info['snippet']['thumbnails']['default']['url'])
 
             elif message.content.startswith('!ytb youtube set channel'):
