@@ -966,6 +966,24 @@ async def on_message(message):
     except Exception as e:
         print('Exception:')
         traceback.print_exc()
+        traceback.print_exc(file=GLOBAL_FILE['except_log'])
+
+        title='Exception throw'
+        descr=''
+        color=0xff0000
+        embed = discord.Embed(
+            title=title,description=descr,color=color,
+            url=GLOBAL_TEXT['url']['github']['repository'],
+            timestamp=datetime.datetime.now(datetime.timezone.utc),
+        )
+        embed.set_thumbnail(url=client.user.avatar.url)
+        response=await message.reply(embed=embed,file=discord.File(GLOBAL_FILE['except_log']))
+
+        file='{0}/{1}'.format( os.getcwd(), GLOBAL_FILE['async_log'].replace('%time',str(math.trunc(time.time()))) )
+        if not(os.path.isdir(os.path.dirname(file))):
+            os.mkdir(os.path.dirname(file))
+        with open(file,encoding='UTF-8',mode='w') as f:
+            f.write('{}'.format(response))
 
 @tasks.loop(seconds=YOUTUBE_CYCLE_INTERVAL)
 async def loops():
