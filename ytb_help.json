@@ -21,6 +21,10 @@
             "description": "Youtubeチャンネルの情報を取得します。",
             "admin":true
         },
+        "youtube set channel": {
+            "description": "動画投稿監視チャンネルを設定します。",
+            "admin":true
+        },
         "discord list channel": {
             "description": "通知先チャンネル一覧を表示します。",
             "admin":false
