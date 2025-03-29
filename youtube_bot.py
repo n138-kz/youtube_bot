@@ -848,6 +848,10 @@ async def on_message(message):
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
                     embed.set_thumbnail(url=channel_info['snippet']['thumbnails']['default']['url'])
+                    for item in ['title', 'description', 'customUrl', 'publishedAt', 'defaultLanguage', 'country']:
+                        embed.add_field(inline=False,name=item,value=channel_info['snippet'][item])
+                    for item in ['viewCount', 'subscriberCount', 'hiddenSubscriberCount', 'videoCount']:
+                        embed.add_field(inline=False,name=item,value=channel_info['snippet']['statistics'][item])
                     response=await message.reply(embed=embed)
 
                     file='{0}/{1}'.format(
