@@ -5,36 +5,12 @@
             "description": "コマンドヘルプを表示します。",
             "admin":false
         },
-        "version": {
-            "description": "Botのバージョンを表示します。",
-            "admin":false
-        },
         "ping": {
             "description": "Botのレイテンシを測定します。",
             "admin":false
         },
-        "youtube rawitems": {
-            "description": "Youtubeから最新の動画一覧を取得します。",
-            "admin":false
-        },
-        "youtube get channel": {
-            "description": "Youtubeチャンネルの情報を取得します。",
-            "admin":true
-        },
-        "youtube set channel": {
-            "description": "動画投稿監視チャンネルを設定します。",
-            "admin":true
-        },
-        "discord list channel": {
-            "description": "通知先チャンネル一覧を表示します。",
-            "admin":false
-        },
-        "discord add channel": {
-            "description": "通知先チャンネルに現在のチャンネルを追加します。",
-            "admin":false
-        },
-        "discord delete channel": {
-            "description": "通知先チャンネルから現在のチャンネルを削除します。",
+        "version": {
+            "description": "Botのバージョンを表示します。",
             "admin":false
         },
         "config modify loop interval": {
@@ -52,6 +28,30 @@
         "upload notice.json": {
             "description": "通知状態管理ファイルをアップロードします。",
             "admin":true
+        },
+        "discord add channel": {
+            "description": "通知先チャンネルに現在のチャンネルを追加します。",
+            "admin":false
+        },
+        "discord delete channel": {
+            "description": "通知先チャンネルから現在のチャンネルを削除します。",
+            "admin":false
+        },
+        "discord list channel": {
+            "description": "通知先チャンネル一覧を表示します。",
+            "admin":false
+        },
+        "youtube get channel": {
+            "description": "Youtubeチャンネルの情報を取得します。",
+            "admin":true
+        },
+        "youtube set channel": {
+            "description": "動画投稿監視チャンネルを設定します。",
+            "admin":true
+        },
+        "youtube rawitems": {
+            "description": "Youtubeから最新の動画一覧を取得します。",
+            "admin":false
         }
     }
 }
