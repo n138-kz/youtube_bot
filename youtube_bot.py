@@ -848,9 +848,9 @@ async def on_message(message):
                 )
                 embed.set_thumbnail(url=channel_info['snippet']['thumbnails']['default']['url'])
                 for item in ['title', 'description', 'customUrl', 'publishedAt', 'defaultLanguage', 'country']:
-                    embed.add_field(inline=False,name=item,value=channel_info['snippet'][item])
+                    embed.add_field(inline=False,name=item,value='```\n'+channel_info['snippet'][item]+'\n```')
                 for item in ['viewCount', 'subscriberCount', 'hiddenSubscriberCount', 'videoCount']:
-                    embed.add_field(inline=False,name=item,value=channel_info['statistics'][item])
+                    embed.add_field(inline=False,name=item,value='```\n'+channel_info['statistics'][item]+'\n```')
                 response=await message.reply(embed=embed)
 
                 file='{0}/{1}'.format(
