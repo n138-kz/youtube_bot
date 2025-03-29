@@ -825,43 +825,42 @@ async def on_message(message):
             elif message.content.startswith('!ytb youtube get channel'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
-                # 管理者コマンド
-                if message.author.guild_permissions.administrator:
-                    channel_id=ytb_getChannelId(type='youtube')
-                    if message.content.replace('!ytb youtube get channel','').strip() != '':
-                        channel_id=message.content.replace('!ytb youtube get channel','').strip()
-                    channel_info=getYoutubeChannels(channel_id=channel_id)
+                
+                channel_id=ytb_getChannelId(type='youtube')
+                if message.content.replace('!ytb youtube get channel','').strip() != '':
+                    channel_id=message.content.replace('!ytb youtube get channel','').strip()
+                channel_info=getYoutubeChannels(channel_id=channel_id)
 
-                    file='{0}/{1}'.format( os.getcwd(), GLOBAL_FILE['detail_log'].replace('%time',str(math.trunc(time.time()))) )
-                    if not(os.path.isdir(os.path.dirname(file))):
-                        os.mkdir(os.path.dirname(file))
-                    with open(file,encoding='UTF-8',mode='w') as f:
-                        f.write('{}'.format(response))
+                file='{0}/{1}'.format( os.getcwd(), GLOBAL_FILE['detail_log'].replace('%time',str(math.trunc(time.time()))) )
+                if not(os.path.isdir(os.path.dirname(file))):
+                    os.mkdir(os.path.dirname(file))
+                with open(file,encoding='UTF-8',mode='w') as f:
+                    f.write('{}'.format(response))
 
-                    title='Channel info'
-                    descr=None
-                    color=0x00ff00
+                title='Channel info'
+                descr=None
+                color=0x00ff00
 
-                    embed = discord.Embed(
-                        title=title,description=descr,color=color,
-                        url=GLOBAL_TEXT['url']['github']['repository'],
-                        timestamp=datetime.datetime.now(datetime.timezone.utc),
-                    )
-                    embed.set_thumbnail(url=channel_info['snippet']['thumbnails']['default']['url'])
-                    for item in ['title', 'description', 'customUrl', 'publishedAt', 'defaultLanguage', 'country']:
-                        embed.add_field(inline=False,name=item,value=channel_info['snippet'][item])
-                    for item in ['viewCount', 'subscriberCount', 'hiddenSubscriberCount', 'videoCount']:
-                        embed.add_field(inline=False,name=item,value=channel_info['snippet']['statistics'][item])
-                    response=await message.reply(embed=embed)
+                embed = discord.Embed(
+                    title=title,description=descr,color=color,
+                    url=GLOBAL_TEXT['url']['github']['repository'],
+                    timestamp=datetime.datetime.now(datetime.timezone.utc),
+                )
+                embed.set_thumbnail(url=channel_info['snippet']['thumbnails']['default']['url'])
+                for item in ['title', 'description', 'customUrl', 'publishedAt', 'defaultLanguage', 'country']:
+                    embed.add_field(inline=False,name=item,value=channel_info['snippet'][item])
+                for item in ['viewCount', 'subscriberCount', 'hiddenSubscriberCount', 'videoCount']:
+                    embed.add_field(inline=False,name=item,value=channel_info['snippet']['statistics'][item])
+                response=await message.reply(embed=embed)
 
-                    file='{0}/{1}'.format(
-                        os.getcwd(),
-                        GLOBAL_FILE['async_log'].replace('%time',str(math.trunc(time.time())))
-                    )
-                    if not(os.path.isdir(os.path.dirname(file))):
-                        os.mkdir(os.path.dirname(file))
-                    with open(file,encoding='UTF-8',mode='w') as f:
-                        f.write('{}'.format(response))
+                file='{0}/{1}'.format(
+                    os.getcwd(),
+                    GLOBAL_FILE['async_log'].replace('%time',str(math.trunc(time.time())))
+                )
+                if not(os.path.isdir(os.path.dirname(file))):
+                    os.mkdir(os.path.dirname(file))
+                with open(file,encoding='UTF-8',mode='w') as f:
+                    f.write('{}'.format(response))
 
             elif message.content.startswith('!ytb youtube set channel'):
                 print(f'do_action: {message.content}')
