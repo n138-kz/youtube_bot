@@ -262,6 +262,12 @@ async def on_error(event):
 @client.event
 async def on_message(message):
     try:
+        # 変数初期化
+        title=None
+        descr=None
+        color=0x000000
+        text=None
+
         # 送信者がbotである場合は弾く
         if message.author.bot:
             return
@@ -804,6 +810,37 @@ async def on_message(message):
                     )
                     embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed))
+            elif message.content.startswith('!ytb youtube get channel'):
+                print(f'do_action: {message.content}')
+                print(f'do_author: {message.author.name}')
+                # 管理者コマンド
+                if message.author.guild_permissions.administrator:
+                    channel_id=ytb_getChannelId(type='youtube')
+                    if message.content.replace('!ytb youtube get channel','').strip() != '':
+                        channel_id=message.content.replace('!ytb youtube get channel','').strip()
+                    channel_info=getYoutubeChannels(channel_id=channel_id)
+                    
+                    title='Channel info'
+                    descr=None
+                    color=0x00ff00
+
+                    embed = discord.Embed(
+                        title=title,description=descr,color=color,
+                        url=GLOBAL_TEXT['url']['github']['repository'],
+                        timestamp=datetime.datetime.now(datetime.timezone.utc),
+                    )
+                    embed.set_thumbnail(url=channel_info['snippet']['thumbnails']['default']['url'])
+                    response=await message.reply(embed=embed)
+
+                    file='{0}/{1}'.format(
+                        os.getcwd(),
+                        GLOBAL_FILE['async_log'].replace('%time',str(math.trunc(time.time())))
+                    )
+                    if not(os.path.isdir(os.path.dirname(file))):
+                        os.mkdir(os.path.dirname(file))
+                    with open(file,encoding='UTF-8',mode='w') as f:
+                        f.write('{}'.format(response))
+
             elif message.content.startswith('!ytb youtube set channel'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
