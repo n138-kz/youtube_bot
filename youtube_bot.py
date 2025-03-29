@@ -265,6 +265,7 @@ async def on_message(message):
         # 変数初期化
         title=None
         descr=None
+        color=0x000000
         text=None
 
         # 送信者がbotである場合は弾く
