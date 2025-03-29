@@ -1087,7 +1087,7 @@ async def on_ready():
         channel = client.get_channel(s)
         guild = channel.guild
         text_print+='{0}({3}: {1}),'.format(s,channel.name,guild.id,guild.name)
-        text_markdown+='- [{0}](https://discord.com/channels/{2}/{0}/)({3}: {1})\n'.format(s,channel.name,guild.id,guild.name)
+        text_markdown+='- https://discord.com/channels/{0}/{1}\n'.format(guild.id,s)
     text_print+='\n'
     text_print+='通知メッセージ送信先: '
     text_markdown+='通知メッセージ送信先:\n'
@@ -1096,7 +1096,7 @@ async def on_ready():
         guild = channel.guild
         guild_id = guild.id
         text_print+='{0}({3}: {1}),'.format(s,channel.name,guild.id,guild.name)
-        text_markdown+='- [{0}](https://discord.com/channels/{2}/{0}/)({3}: {1})\n'.format(s,channel.name,guild.id,guild.name)
+        text_markdown+='- https://discord.com/channels/{0}/{1}\n'.format(guild.id,s)
     text_print+='\n'
     text_print+='\n'
     text_markdown+='\n'
