@@ -835,7 +835,7 @@ async def on_message(message):
                 if not(os.path.isdir(os.path.dirname(file))):
                     os.mkdir(os.path.dirname(file))
                 with open(file,encoding='UTF-8',mode='w') as f:
-                    f.write('{}'.format(response))
+                    f.write('{}'.format(channel_info))
 
                 title='Channel info'
                 descr=None
@@ -850,7 +850,7 @@ async def on_message(message):
                 for item in ['title', 'description', 'customUrl', 'publishedAt', 'defaultLanguage', 'country']:
                     embed.add_field(inline=False,name=item,value=channel_info['snippet'][item])
                 for item in ['viewCount', 'subscriberCount', 'hiddenSubscriberCount', 'videoCount']:
-                    embed.add_field(inline=False,name=item,value=channel_info['snippet']['statistics'][item])
+                    embed.add_field(inline=False,name=item,value=channel_info['statistics'][item])
                 response=await message.reply(embed=embed)
 
                 file='{0}/{1}'.format(
