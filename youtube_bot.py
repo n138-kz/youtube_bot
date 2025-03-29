@@ -818,13 +818,13 @@ async def on_message(message):
                     if message.content.replace('!ytb youtube get channel','').strip() != '':
                         channel_id=message.content.replace('!ytb youtube get channel','').strip()
                     channel_info=getYoutubeChannels(channel_id=channel_id)
-
                     
                     title='Channel info'
                     descr=None
+                    color=0x00ff00
 
                     embed = discord.Embed(
-                        title='Channel info',description=descr,color=0x00ff00,
+                        title=title,description=descr,color=color,
                         url=GLOBAL_TEXT['url']['github']['repository'],
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
