@@ -262,6 +262,11 @@ async def on_error(event):
 @client.event
 async def on_message(message):
     try:
+        # 変数初期化
+        title=None
+        descr=None
+        text=None
+
         # 送信者がbotである場合は弾く
         if message.author.bot:
             return
