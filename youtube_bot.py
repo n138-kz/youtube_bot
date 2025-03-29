@@ -830,6 +830,16 @@ async def on_message(message):
                         timestamp=datetime.datetime.now(datetime.timezone.utc),
                     )
                     embed.set_thumbnail(url=channel_info['snippet']['thumbnails']['default']['url'])
+                    response=await message.reply(embed=embed)
+
+                    file='{0}/{1}'.format(
+                        os.getcwd(),
+                        GLOBAL_FILE['async_log'].replace('%time',str(math.trunc(time.time())))
+                    )
+                    if not(os.path.isdir(os.path.dirname(file))):
+                        os.mkdir(os.path.dirname(file))
+                    with open(file,encoding='UTF-8',mode='w') as f:
+                        f.write('{}'.format(response))
 
             elif message.content.startswith('!ytb youtube set channel'):
                 print(f'do_action: {message.content}')
