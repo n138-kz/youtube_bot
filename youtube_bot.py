@@ -809,6 +809,28 @@ async def on_message(message):
                     )
                     embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed))
+            elif message.content.startswith('!ytb youtube get channel'):
+                print(f'do_action: {message.content}')
+                print(f'do_author: {message.author.name}')
+                # 管理者コマンド
+                if message.author.guild_permissions.administrator:
+                    channel_id=ytb_getChannelId(type='youtube')
+                    if message.content.replace('!ytb youtube get channel','').strip() != '':
+                        channel_id=message.content.replace('!ytb youtube get channel','').strip()
+                    channel_info=getYoutubeChannels(channel_id=channel_id)
+
+                    
+                    title='Channel info'
+                    descr=None
+
+                    embed = discord.Embed(
+                        title='Channel info',description=descr,color=0x00ff00,
+                        url=GLOBAL_TEXT['url']['github']['repository'],
+                        timestamp=datetime.datetime.now(datetime.timezone.utc),
+                    )
+                    embed.set_thumbnail(url=client.user.avatar.url)
+                    embed.set_thumbnail(url=channel_info['snippet']['thumbnails']['default']['url'])
+
             elif message.content.startswith('!ytb youtube set channel'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
