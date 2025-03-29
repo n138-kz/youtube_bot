@@ -21,10 +21,6 @@
             "description": "Youtubeチャンネルの情報を取得します。",
             "admin":true
         },
-        "upload notice.json": {
-            "description": "通知状態管理ファイルをアップロードします。",
-            "admin":true
-        },
         "discord list channel": {
             "description": "通知先チャンネル一覧を表示します。",
             "admin":false
@@ -47,6 +43,10 @@
         },
         "config dump": {
             "description": "コンフィグをDMに送信します。",
+            "admin":true
+        },
+        "upload notice.json": {
+            "description": "通知状態管理ファイルをアップロードします。",
             "admin":true
         }
     }
