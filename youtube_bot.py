@@ -290,6 +290,7 @@ async def on_message(message):
                 print(f'do_author: {message.author.name}')
 
                 await message.reply(ytb_getHelp())
+
             elif message.content.startswith('!ytb ping'):
                 # Ping値を測定 [Ping値を測定](https://discordbot.jp/blog/16/)
                 print(f'do_action: {message.content}')
@@ -306,6 +307,7 @@ async def on_message(message):
                 # 送信する
                 print(text)
                 await message.reply(text)
+
             elif message.content.startswith('!ytb version'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
@@ -315,6 +317,7 @@ async def on_message(message):
                 )
                 
                 await message.reply(text)
+
             elif message.content.startswith('!ytb upload notice.json'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
@@ -340,6 +343,7 @@ async def on_message(message):
                     )
                     embed.set_thumbnail(url=client.user.avatar.url)
                     await message.reply(embed=embed)
+
             elif message.content.startswith('!ytb discord add channel'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
@@ -428,6 +432,7 @@ async def on_message(message):
                         )
                         embed.set_thumbnail(url=client.user.avatar.url)
                         print(await message.reply(embed=embed))
+
             elif message.content.startswith('!ytb discord delete channel'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
@@ -499,6 +504,7 @@ async def on_message(message):
                         )
                         embed.set_thumbnail(url=client.user.avatar.url)
                         print(await message.reply(embed=embed))
+
             elif message.content.startswith('!ytb config modify loop interval'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
@@ -551,6 +557,7 @@ async def on_message(message):
                     )
                     embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed))
+
             elif message.content.startswith('!ytb config modify expire limit'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
@@ -603,6 +610,7 @@ async def on_message(message):
                     )
                     embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed))
+
             elif message.content.startswith('!ytb config dump'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
@@ -761,6 +769,7 @@ async def on_message(message):
                     )
                     embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed))
+
             elif message.content.startswith('!ytb discord list channel'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
@@ -810,6 +819,7 @@ async def on_message(message):
                     )
                     embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed))
+
             elif message.content.startswith('!ytb youtube get channel'):
                 print(f'do_action: {message.content}')
                 print(f'do_author: {message.author.name}')
@@ -905,6 +915,7 @@ async def on_message(message):
                     )
                     embed.set_thumbnail(url=client.user.avatar.url)
                     print(await message.reply(embed=embed))
+
             elif message.content.startswith('!ytb youtube rawitems'):
                 print(f'do_action: {message.content}')
                 data1=getYoutubeItems()
@@ -933,6 +944,7 @@ async def on_message(message):
                 text += data3+'\n'
 
                 await message.reply(text, files=[discord.File('result.json'),discord.File('detail.json')])
+
             else:
                 print(f'do_action: not recognised commands')
 
