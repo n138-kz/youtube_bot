@@ -831,7 +831,13 @@ async def on_message(message):
                     if message.content.replace('!ytb youtube get channel','').strip() != '':
                         channel_id=message.content.replace('!ytb youtube get channel','').strip()
                     channel_info=getYoutubeChannels(channel_id=channel_id)
-                    
+
+                    file='{0}/{1}'.format( os.getcwd(), GLOBAL_FILE['detail_log'].replace('%time',str(math.trunc(time.time()))) )
+                    if not(os.path.isdir(os.path.dirname(file))):
+                        os.mkdir(os.path.dirname(file))
+                    with open(file,encoding='UTF-8',mode='w') as f:
+                        f.write('{}'.format(response))
+
                     title='Channel info'
                     descr=None
                     color=0x00ff00
