@@ -966,7 +966,11 @@ async def on_message(message):
     except Exception as e:
         print('Exception:')
         traceback.print_exc()
-        traceback.print_exc(file=GLOBAL_FILE['except_log'])
+        file='{0}/{1}'.format( os.getcwd(), GLOBAL_FILE['except_log'].replace('%time',str(math.trunc(time.time()))) )
+        if not(os.path.isdir(os.path.dirname(file))):
+            os.mkdir(os.path.dirname(file))
+        with open(file,encoding='UTF-8',mode='w') as f:
+            traceback.print_exc(file=f)
 
         title='Exception throw'
         descr=''
