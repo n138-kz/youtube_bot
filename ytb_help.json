@@ -17,6 +17,10 @@
             "description": "Youtubeから最新の動画一覧を取得します。",
             "admin":false
         },
+        "youtube get channel": {
+            "description": "Youtubeチャンネルの情報を取得します。",
+            "admin":true
+        },
         "upload notice.json": {
             "description": "通知状態管理ファイルをアップロードします。",
             "admin":true
