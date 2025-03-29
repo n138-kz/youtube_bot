@@ -19,6 +19,7 @@ GLOBAL_FILE = {
     'config': '.secret/config.json', # 設定
     'notice_log': 'notice.json', # 通知状態管理ファイル
     'except_log': 'log/except_%time.log',
+    'result_log': 'log/result_%time.log',
     'async_log': 'log/async_%time.log',
 }
 
