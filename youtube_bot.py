@@ -256,7 +256,7 @@ client = discord.Client(intents=intents)
 tree = discord.app_commands.CommandTree(client)
 
 @client.event
-async def on_error(event):
+async def on_error(event, error):
     text = ''
     text += '\n'
     text += 'Called On_Error\n'
