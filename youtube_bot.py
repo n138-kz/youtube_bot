@@ -276,16 +276,6 @@ async def on_error(event, error):
         url=GLOBAL_TEXT['url']['github']['repository'],
         timestamp=datetime.datetime.now(datetime.timezone.utc),
     )
-    response=await message.reply(embed=embed)
-
-    file='{0}/{1}'.format(
-        os.getcwd(),
-        GLOBAL_FILE['async_log'].replace('%time',str(math.trunc(time.time())))
-    )
-    if not(os.path.isdir(os.path.dirname(file))):
-        os.mkdir(os.path.dirname(file))
-    with open(file,encoding='UTF-8',mode='w') as f:
-        f.write('{}'.format(response))
 
 @client.event
 async def on_message(message):
