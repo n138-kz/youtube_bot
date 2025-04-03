@@ -884,7 +884,7 @@ async def on_message(message):
                         embed.add_field(inline=False,name=item,value='```\n{}```'.format(None))
                     except KeyError:
                         embed.add_field(inline=False,name=item,value='```\n{}```'.format(None))
-                response=await message.reply(embed=embed)
+                response=await message.reply(embed=embed, files=[discord.File(logfname_detail)])
 
                 file='{0}/{1}'.format(
                     os.getcwd(),
