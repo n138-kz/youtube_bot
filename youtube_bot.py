@@ -285,6 +285,8 @@ async def on_message(message):
         descr=None
         color=0x000000
         text=None
+        logfname_async=None
+        logfname_detail=None
 
         # 送信者がbotである場合は弾く
         if message.author.bot:
