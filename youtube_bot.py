@@ -856,7 +856,8 @@ async def on_message(message):
                 if not(os.path.isdir(os.path.dirname(file))):
                     os.mkdir(os.path.dirname(file))
                 with open(file,encoding='UTF-8',mode='w') as f:
-                    f.write('{}'.format(channel_info))
+                    #f.write('{}'.format(channel_info))
+                    f.write('{}'.format(channel_info.replace('False','false').replace('True','true').replace('\'','"')))
 
                 title='Channel info'
                 descr=None
