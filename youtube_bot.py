@@ -285,6 +285,8 @@ async def on_message(message):
         descr=None
         color=0x000000
         text=None
+        logfname_async=None
+        logfname_detail=None
 
         # 送信者がbotである場合は弾く
         if message.author.bot:
@@ -849,11 +851,14 @@ async def on_message(message):
                 print('is_channelId: {}'.format(channel_id))
                 print('umask: {}'.format(os.umask(0)))
 
-                file='{0}/{1}'.format( os.getcwd(), GLOBAL_FILE['detail_log'].replace('%time',str(math.trunc(time.time()))) )
+                logfname_detail=GLOBAL_FILE['detail_log'].replace('%time',str(math.trunc(time.time())))
+                file='{0}/{1}'.format( os.getcwd(), logfname_detail )
                 if not(os.path.isdir(os.path.dirname(file))):
                     os.mkdir(os.path.dirname(file))
                 with open(file,encoding='UTF-8',mode='w') as f:
-                    f.write('{}'.format(channel_info))
+                    #f.write('{}'.format(channel_info))
+                    #f.write('{}'.format(channel_info.replace('False','false').replace('True','true').replace('\'','"')))
+                    f.write('{}'.format(json.dumps(channel_info,indent=4)))
 
                 title='Channel info'
                 descr=None
@@ -881,7 +886,7 @@ async def on_message(message):
                         embed.add_field(inline=False,name=item,value='```\n{}```'.format(None))
                     except KeyError:
                         embed.add_field(inline=False,name=item,value='```\n{}```'.format(None))
-                response=await message.reply(embed=embed)
+                response=await message.reply(embed=embed, files=[discord.File(fp=logfname_detail, filename='detail.json')])
 
                 file='{0}/{1}'.format(
                     os.getcwd(),
