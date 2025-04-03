@@ -4,3 +4,8 @@ services:
       context: .
       dockerfile: docker_build/Dockerfile
     restart: always
+    volumes:
+      - type: bind
+        source: ./
+        target: /tmp/
+        read_only: false
