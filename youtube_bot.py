@@ -256,10 +256,26 @@ client = discord.Client(intents=intents)
 tree = discord.app_commands.CommandTree(client)
 
 @client.event
-async def on_error(event):
+async def on_error(event, error):
     text = ''
     text += '\n'
     text += 'Called On_Error\n'
+
+    print('{0}\n{1}\n{2}'.format(
+        '-'*10,
+        event,
+        error
+    ))
+
+    title='Error occured'
+    descr=None
+    color=0xff0000
+
+    embed = discord.Embed(
+        title=title,description=descr,color=color,
+        url=GLOBAL_TEXT['url']['github']['repository'],
+        timestamp=datetime.datetime.now(datetime.timezone.utc),
+    )
 
 @client.event
 async def on_message(message):
@@ -830,6 +846,8 @@ async def on_message(message):
                 if message.content.replace('!ytb youtube get channel','').strip() != '':
                     channel_id=message.content.replace('!ytb youtube get channel','').strip()
                 channel_info=getYoutubeChannels(channel_id=channel_id)
+                print('is_channelId: {}'.format(channel_id))
+                print('umask: {}'.format(os.umask(0)))
 
                 file='{0}/{1}'.format( os.getcwd(), GLOBAL_FILE['detail_log'].replace('%time',str(math.trunc(time.time()))) )
                 if not(os.path.isdir(os.path.dirname(file))):
@@ -848,10 +866,21 @@ async def on_message(message):
                 )
                 embed.url = 'https://www.youtube.com/{}'.format(channel_info['snippet']['customUrl'])
                 embed.set_thumbnail(url=channel_info['snippet']['thumbnails']['default']['url'])
+
                 for item in ['title', 'description', 'customUrl', 'publishedAt', 'defaultLanguage', 'country']:
-                    embed.add_field(inline=False,name=item,value='```\n{}```'.format(channel_info['snippet'][item]))
+                    try:
+                        embed.add_field(inline=False,name=item,value='```\n{}```'.format(channel_info['snippet'][item]))
+                    except NameError:
+                        embed.add_field(inline=False,name=item,value='```\n{}```'.format(None))
+                    except KeyError:
+                        embed.add_field(inline=False,name=item,value='```\n{}```'.format(None))
                 for item in ['viewCount', 'subscriberCount', 'hiddenSubscriberCount', 'videoCount']:
-                    embed.add_field(inline=False,name=item,value='```\n{}```'.format(channel_info['statistics'][item]))
+                    try:
+                        embed.add_field(inline=False,name=item,value='```\n{}```'.format(channel_info['statistics'][item]))
+                    except NameError:
+                        embed.add_field(inline=False,name=item,value='```\n{}```'.format(None))
+                    except KeyError:
+                        embed.add_field(inline=False,name=item,value='```\n{}```'.format(None))
                 response=await message.reply(embed=embed)
 
                 file='{0}/{1}'.format(
