@@ -846,6 +846,7 @@ async def on_message(message):
                     url=GLOBAL_TEXT['url']['github']['repository'],
                     timestamp=datetime.datetime.now(datetime.timezone.utc),
                 )
+                embed.url = 'https://www.youtube.com/{}'.format(channel_info['snippet']['customUrl'])
                 embed.set_thumbnail(url=channel_info['snippet']['thumbnails']['default']['url'])
                 for item in ['title', 'description', 'customUrl', 'publishedAt', 'defaultLanguage', 'country']:
                     embed.add_field(inline=False,name=item,value='```\n{}```'.format(channel_info['snippet'][item]))
