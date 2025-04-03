@@ -857,6 +857,10 @@ async def on_message(message):
                     os.mkdir(os.path.dirname(file))
                 with open(file,encoding='UTF-8',mode='w') as f:
                     f.write('{}'.format(channel_info))
+                with open(file,encoding='UTF-8',mode='r') as f:
+                    text=json.load(f)
+                with open(file,encoding='UTF-8',mode='w') as f:
+                    json.dump(text, f, indent=4)
 
                 title='Channel info'
                 descr=None
