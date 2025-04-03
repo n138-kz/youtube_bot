@@ -851,7 +851,8 @@ async def on_message(message):
                 print('is_channelId: {}'.format(channel_id))
                 print('umask: {}'.format(os.umask(0)))
 
-                file='{0}/{1}'.format( os.getcwd(), GLOBAL_FILE['detail_log'].replace('%time',str(math.trunc(time.time()))) )
+                logfname_detail=GLOBAL_FILE['detail_log'].replace('%time',str(math.trunc(time.time())))
+                file='{0}/{1}'.format( os.getcwd(), logfname_detail )
                 if not(os.path.isdir(os.path.dirname(file))):
                     os.mkdir(os.path.dirname(file))
                 with open(file,encoding='UTF-8',mode='w') as f:
