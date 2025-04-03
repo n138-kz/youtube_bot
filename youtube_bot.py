@@ -261,6 +261,32 @@ async def on_error(event, error):
     text += '\n'
     text += 'Called On_Error\n'
 
+    print('{0}\n{1}\n{2}'.format(
+        '-'*10,
+        event,
+        error
+    ))
+
+    title='Error occured'
+    descr=None
+    color=0xff0000
+
+    embed = discord.Embed(
+        title=title,description=descr,color=color,
+        url=GLOBAL_TEXT['url']['github']['repository'],
+        timestamp=datetime.datetime.now(datetime.timezone.utc),
+    )
+    response=await message.reply(embed=embed)
+
+    file='{0}/{1}'.format(
+        os.getcwd(),
+        GLOBAL_FILE['async_log'].replace('%time',str(math.trunc(time.time())))
+    )
+    if not(os.path.isdir(os.path.dirname(file))):
+        os.mkdir(os.path.dirname(file))
+    with open(file,encoding='UTF-8',mode='w') as f:
+        f.write('{}'.format(response))
+
 @client.event
 async def on_message(message):
     try:
