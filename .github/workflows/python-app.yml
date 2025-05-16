@@ -13,9 +13,9 @@ permissions:
 
 jobs:
   send_github_context:
-    uses: n138-kz/n138-kz/.github/workflows/github-act_send_github_context.yml@master
-    # https://github.com/n138-kz/n138-kz.github.io/blob/master/.github/workflows/github-act_send_github_context.yml
-    secrets: inherit # pass all secrets, Require: secrets.DISCORD_WEBHOOK_URL
+    uses: n138-kz/n138-kz/.github/workflows/github-act_send_github_context.yml@main
+    # https://github.com/n138-kz/n138-kz/blob/main/.github/workflows/github-act_send_github_context.yml
+    secrets: inherit # pass all secrets
 
   build:
 
